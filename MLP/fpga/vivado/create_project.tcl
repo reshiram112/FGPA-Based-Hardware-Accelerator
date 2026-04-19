@@ -24,14 +24,14 @@ create_project ${project_name} ${project_dir} -part ${part} -force
 # Note: PYNQ-Z2 board files may not be installed.
 # Using xc7z020clg400-1 directly with manual PS7 configuration.
 
-# Add HLS IP to repository path — use the zip file directly
-set ip_zip "[file normalize [file dirname [info script]]]/../../mlp_top/solution/impl/ip/xilinx_com_hls_mlp_top_1_0.zip"
-if {[file exists $ip_zip]} {
-    set_property ip_repo_paths "[file dirname $ip_zip]" [current_project]
+# Add HLS IP to repository path
+set ip_dir "[file normalize [file dirname [info script]]]/../hls_ip"
+if {[file exists $ip_dir]} {
+    set_property ip_repo_paths $ip_dir [current_project]
     update_ip_catalog -quiet
-    puts "INFO: Added HLS IP from $ip_zip"
+    puts "INFO: Added HLS IP from $ip_dir"
 } else {
-    puts "WARNING: HLS IP zip not found at $ip_zip — check HLS synthesis ran first"
+    puts "WARNING: HLS IP directory not found at $ip_dir"
 }
 
 # ── 2. Create Block Design ───────────────────────────────────
