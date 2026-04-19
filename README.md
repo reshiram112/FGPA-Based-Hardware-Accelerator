@@ -87,6 +87,5 @@ Once the GUI opens:
 ### Step 5: Hardware Deployment (PYNQ)
 1. Boot your PYNQ-Z2 board and open its Jupyter Notebook server.
 2. Upload the exported bitstream (`.bit` and `.hwh`) to the board.
-3. Upload the `fpga/fpga_weights/` directory containing the `.npy` files.
-4. Upload the `test_image.png` file and the `fpga/pynq/mnist_inference.ipynb` script.
-5. Run the Jupyter Notebook to allocate continuous physical memory, map weight addresses via AXI-Lite, and execute pure hardware inference on your test image!
+3. Upload your `test_image.png` file and the `fpga/pynq/mnist_inference.ipynb` script.
+4. Run the Jupyter Notebook to automatically decode the bundled weights, map memory via AXI-Lite, and execute pure hardware inference on your test image!
