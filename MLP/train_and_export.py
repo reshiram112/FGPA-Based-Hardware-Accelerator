@@ -1,8 +1,10 @@
-"""
+""" 
 Minimal local training script — Windows compatible (num_workers=0).
 Trains the MLP, saves mnist_mlp_best.pth, then exports quantised weights.
+Run from anywhere: python MLP/train_and_export.py
 """
 import os, time, random, warnings
+from pathlib import Path
 import numpy as np
 import torch
 import torch.nn as nn
@@ -10,9 +12,11 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, random_split
 import torchvision
 import torchvision.transforms as transforms
-from collections import defaultdict
 
 warnings.filterwarnings("ignore")
+
+# All paths are relative to this script's directory (works from any CWD)
+ROOT = Path(__file__).parent
 
 # ── Reproducibility ───────────────────────────────────────────
 SEED = 42
@@ -47,8 +51,8 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))
 ])
-train_full = torchvision.datasets.MNIST("./data", train=True,  download=True, transform=transform)
-test_ds    = torchvision.datasets.MNIST("./data", train=False, download=True, transform=transform)
+train_full = torchvision.datasets.MNIST(str(ROOT / "data"), train=True,  download=True, transform=transform)
+test_ds    = torchvision.datasets.MNIST(str(ROOT / "data"), train=False, download=True, transform=transform)
 
 val_size   = 6000
 train_size = len(train_full) - val_size
@@ -126,8 +130,8 @@ torch.save({
     "model_state_dict": model.state_dict(),
     "test_accuracy"   : test_acc,
     "config"          : {"hidden_dims": [512, 256, 128], "dropout": 0.3},
-}, "mnist_mlp_best.pth")
-print("Saved: mnist_mlp_best.pth")
+}, str(ROOT / "mnist_mlp_best.pth"))
+print(f"Saved: {ROOT / 'mnist_mlp_best.pth'}")
 
 # ── Export quantised weights for FPGA ─────────────────────────
 print("\nExporting quantised weights for FPGA...")
@@ -157,10 +161,10 @@ def quantise(arr):
 qw = [quantise(w) for w in layers_w]
 qb = [quantise(b) for b in layers_b]
 
-os.makedirs("fpga/fpga_weights", exist_ok=True)
+(ROOT / "fpga" / "fpga_weights").mkdir(parents=True, exist_ok=True)
 for k in range(4):
-    np.save(f"fpga/fpga_weights/w{k+1}.npy", qw[k])
-    np.save(f"fpga/fpga_weights/b{k+1}.npy", qb[k])
+    np.save(str(ROOT / "fpga" / "fpga_weights" / f"w{k+1}.npy"), qw[k])
+    np.save(str(ROOT / "fpga" / "fpga_weights" / f"b{k+1}.npy"), qb[k])
     print(f"  Layer {k+1}: W{qw[k].shape} B{qb[k].shape}")
 
 # Generate C header for HLS
@@ -184,7 +188,7 @@ for k in range(4):
     lines.append("")
 lines.append("#endif")
 
-with open("fpga/hls/mlp_weights.h", "w") as f:
+with open(str(ROOT / "fpga" / "hls" / "mlp_weights.h"), "w") as f:
     f.write("\n".join(lines))
-print("Saved: fpga/hls/mlp_weights.h")
+print(f"Saved: {ROOT / 'fpga' / 'hls' / 'mlp_weights.h'}")
 print("\nAll done. Ready for Vitis HLS.")

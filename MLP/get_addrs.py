@@ -1,6 +1,11 @@
 import re, sys
+from pathlib import Path
 
-hwh = open('fpga/vivado/proj_mnist_mlp/output/mlp.hwh', encoding='utf-8-sig').read()
+# All paths resolve relative to this script's location (works from any CWD)
+ROOT = Path(__file__).parent
+HWH  = ROOT / "fpga" / "vivado" / "proj_mnist_mlp" / "output" / "mlp.hwh"
+
+hwh = HWH.read_text(encoding='utf-8-sig')
 
 # Vivado 2025 HWH is an XML. Find ADDRMAP entries.
 # Pattern: <MEMRANGE INSTANCE="..." MASTERBUSINTERFACE="..." BASEVALUE="0x..." HIGHVALUE="0x..."/>

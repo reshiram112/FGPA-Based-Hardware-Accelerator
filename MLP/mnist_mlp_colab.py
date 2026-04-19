@@ -25,6 +25,7 @@
 # ----------------------------------------------------------
 # (torchvision & matplotlib are pre-installed on Colab)
 import os, time, random, warnings
+from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -40,6 +41,9 @@ import torchvision.transforms as transforms
 from sklearn.metrics import confusion_matrix, classification_report
 
 warnings.filterwarnings("ignore")
+
+# All file paths are anchored to this script's directory (works from any CWD)
+ROOT = Path(__file__).parent
 
 # ----------------------------------------------------------
 # 1. REPRODUCIBILITY
@@ -90,9 +94,9 @@ def get_dataloaders(batch_size: int, val_fraction: float):
     ])
 
     train_full = torchvision.datasets.MNIST(
-        root="./data", train=True, download=True, transform=transform)
+        root=str(ROOT / "data"), train=True, download=True, transform=transform)
     test_ds = torchvision.datasets.MNIST(
-        root="./data", train=False, download=True, transform=transform)
+        root=str(ROOT / "data"), train=False, download=True, transform=transform)
 
     val_size   = int(len(train_full) * val_fraction)
     train_size = len(train_full) - val_size
@@ -287,8 +291,8 @@ def plot_training_curves(history: dict, attempt: int):
     axes[1].legend(); axes[1].grid(alpha=0.3)
 
     plt.tight_layout()
-    fname = f"training_curves_attempt{attempt}.png"
-    plt.savefig(fname, dpi=120, bbox_inches="tight")
+    fname = ROOT / f"training_curves_attempt{attempt}.png"
+    plt.savefig(str(fname), dpi=120, bbox_inches="tight")
     plt.show()
     print(f"   Saved  {fname}\n")
 
@@ -302,9 +306,10 @@ def plot_confusion_matrix(y_true, y_pred):
     ax.set_title("Confusion Matrix  MNIST MLP", fontsize=14, fontweight="bold")
     ax.set_xlabel("Predicted Label"); ax.set_ylabel("True Label")
     plt.tight_layout()
-    plt.savefig("confusion_matrix.png", dpi=120, bbox_inches="tight")
+    cm_path = ROOT / "confusion_matrix.png"
+    plt.savefig(str(cm_path), dpi=120, bbox_inches="tight")
     plt.show()
-    print("   Saved  confusion_matrix.png\n")
+    print(f"   Saved  {cm_path}\n")
 
 
 def show_misclassified(test_loader, model, n=16):
@@ -336,24 +341,25 @@ def show_misclassified(test_loader, model, n=16):
     fig.suptitle("Misclassified Samples  (True  Predicted)",
                  fontsize=13, fontweight="bold")
     plt.tight_layout()
-    plt.savefig("misclassified.png", dpi=120, bbox_inches="tight")
+    mc_path = ROOT / "misclassified.png"
+    plt.savefig(str(mc_path), dpi=120, bbox_inches="tight")
     plt.show()
-    print("   Saved  misclassified.png\n")
+    print(f"   Saved  {mc_path}\n")
 
 # ----------------------------------------------------------
 # 9. SAVE MODEL (optionally to Google Drive)
 # ----------------------------------------------------------
 def save_model(model, test_acc: float, use_drive: bool = False):
-    fname = "mnist_mlp_best.pth"
+    fname = str(ROOT / "mnist_mlp_best.pth")
     if use_drive:
         try:
             from google.colab import drive
             drive.mount("/content/drive", force_remount=False)
             save_dir = "/content/drive/MyDrive/mnist_mlp/"
             os.makedirs(save_dir, exist_ok=True)
-            fname = os.path.join(save_dir, fname)
+            fname = os.path.join(save_dir, "mnist_mlp_best.pth")
         except Exception:
-            print("    Drive mount failed  saving locally instead.")
+            print("    Drive mount failed — saving locally instead.")
     torch.save({
         "model_state_dict" : model.state_dict(),
         "test_accuracy"    : test_acc,

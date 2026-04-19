@@ -1,8 +1,14 @@
-"""Export quantised FPGA weights from saved mnist_mlp_best.pth"""
+"""Export quantised FPGA weights from saved mnist_mlp_best.pth
+Run from anywhere: python MLP/export_weights.py
+"""
 import os
+from pathlib import Path
 import numpy as np
 import torch
 import torch.nn as nn
+
+# All paths resolve relative to this script's location
+ROOT = Path(__file__).parent
 
 class MLP(nn.Module):
     def __init__(self):
@@ -17,7 +23,7 @@ class MLP(nn.Module):
         return self.net(x.view(x.size(0), -1))
 
 print("Loading mnist_mlp_best.pth ...")
-ckpt  = torch.load("mnist_mlp_best.pth", map_location="cpu")
+ckpt  = torch.load(str(ROOT / "mnist_mlp_best.pth"), map_location="cpu")
 model = MLP()
 model.load_state_dict(ckpt["model_state_dict"])
 model.eval()
@@ -52,10 +58,10 @@ qw = [quantise(w) for w in layers_w]
 qb = [quantise(b) for b in layers_b]
 
 # Save .npy files
-os.makedirs("fpga/fpga_weights", exist_ok=True)
+(ROOT / "fpga" / "fpga_weights").mkdir(parents=True, exist_ok=True)
 for k in range(4):
-    np.save(f"fpga/fpga_weights/w{k+1}.npy", qw[k])
-    np.save(f"fpga/fpga_weights/b{k+1}.npy", qb[k])
+    np.save(str(ROOT / "fpga" / "fpga_weights" / f"w{k+1}.npy"), qw[k])
+    np.save(str(ROOT / "fpga" / "fpga_weights" / f"b{k+1}.npy"), qb[k])
     print(f"  Layer {k+1}: W{qw[k].shape}  B{qb[k].shape}")
 
 # Generate C header for HLS
@@ -78,10 +84,11 @@ for k in range(4):
     ]
 lines.append("#endif")
 
-with open("fpga/hls/mlp_weights.h", "w") as f:
+hdr_path = ROOT / "fpga" / "hls" / "mlp_weights.h"
+with open(str(hdr_path), "w") as f:
     f.write("\n".join(lines))
 
 print("\nSaved:")
-print("  fpga/fpga_weights/w1..b4.npy")
-print("  fpga/hls/mlp_weights.h")
+print(f"  {ROOT / 'fpga' / 'fpga_weights'}/w1..b4.npy")
+print(f"  {hdr_path}")
 print("Ready for Vitis HLS.")
