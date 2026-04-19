@@ -214,7 +214,7 @@ def train(cfg: dict, train_loader, val_loader):
     optimizer = optim.Adam(model.parameters(),
                            lr=cfg["lr"], weight_decay=cfg["weight_decay"])
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode="max", factor=0.5, patience=3, verbose=True)
+        optimizer, mode="max", factor=0.5, patience=3)
 
     history   = defaultdict(list)
     best_val  = 0.0
