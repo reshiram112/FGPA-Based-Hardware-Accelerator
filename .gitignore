@@ -1,0 +1,21 @@
+# Vivado / Vitis build files
+*.jou
+*.log
+*.str
+*.dcp
+*.pb
+*.backup.*
+dfx_runtime.txt
+cnn_top/
+mlp_top/
+logs/
+.Xil/
+proj_*/
+CNN/fpga/vivado/proj_*/
+MLP/fpga/vivado/proj_*/
+embed_bitstreams.py
+build_all.ps1
+show_cnn.tcl
+show_mlp.tcl
+hs_err_*.log
+*.pyc
