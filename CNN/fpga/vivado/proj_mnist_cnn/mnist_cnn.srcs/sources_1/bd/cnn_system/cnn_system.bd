@@ -815,7 +815,7 @@
       },
       "cnn_top_0": {
         "vlnv": "xilinx.com:hls:cnn_top:1.0",
-        "ip_revision": "2114573109",
+        "ip_revision": "2114573139",
         "xci_name": "cnn_system_cnn_top_0_0",
         "xci_path": "ip\\cnn_system_cnn_top_0_0\\cnn_system_cnn_top_0_0.xci",
         "inst_hier_path": "cnn_top_0",

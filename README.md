@@ -13,7 +13,7 @@ We have implemented two completely different neural network architectures from s
 - **Quantization**: 16-bit fixed point (`int16`).
 - **Characteristics**: Extremely high memory bandwidth requirement. The hardware utilizes large matrix multiplications and heavily unrolled loops.
 - **Accuracy**: ~98.05% on MNIST test set.
-- **Location**: [`MLP/`](MLP/) branch.
+- **Location**: [`MLP/`](MLP/) directory.
 
 ### 2. Convolutional Neural Network (CNN)
 - **Architecture**: 
@@ -23,7 +23,7 @@ We have implemented two completely different neural network architectures from s
 - **Quantization**: 16-bit fixed point (`int16`).
 - **Characteristics**: Highly parameter-efficient. The hardware leverages nested sliding-window computations (spatial loops) to share weights, allowing the entire model to be loaded dynamically into FPGA Block RAM (BRAM).
 - **Accuracy**: ~98.24% on MNIST test set.
-- **Location**: [`CNN/`](CNN/) branch.
+- **Location**: [`CNN/`](CNN/) directory.
 
 ## System Design (PS + PL Architecture)
 
