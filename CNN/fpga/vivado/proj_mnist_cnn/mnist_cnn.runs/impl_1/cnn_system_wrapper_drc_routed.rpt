@@ -1,0 +1,540 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Sun Apr 19 23:25:16 2026
+| Host         : DESKTOP-G7LOJLI running 64-bit major release  (build 9200)
+| Command      : report_drc -file cnn_system_wrapper_drc_routed.rpt -pb cnn_system_wrapper_drc_routed.pb -rpx cnn_system_wrapper_drc_routed.rpx
+| Design       : cnn_system_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 97
++-----------+----------+----------------------------+--------+
+| Rule      | Severity | Description                | Checks |
++-----------+----------+----------------------------+--------+
+| DPIP-1    | Warning  | Input pipelining           | 82     |
+| PDCN-1569 | Warning  | LUT equation term check    | 4      |
+| REQP-1839 | Warning  | RAMB36 async control check | 8      |
+| RTSTAT-10 | Warning  | No routable loads          | 1      |
+| REQP-181  | Advisory | writefirst                 | 2      |
++-----------+----------+----------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+DPIP-1#1 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U59/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U59/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#2 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U60/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U60/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#3 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U61/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U61/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#4 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U62/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U62/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#5 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U63/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U63/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#6 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U64/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U64/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#7 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U65/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U65/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#8 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U66/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U66/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#9 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U67/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L_fu_426/mac_muladd_16s_16s_26ns_26_4_1_U67/cnn_top_mac_muladd_16s_16s_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#10 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U100/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U100/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#11 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U101/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U101/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#12 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U102/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U102/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#13 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U103/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U103/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#14 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U104/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U104/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#15 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U105/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U105/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#16 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U106/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U106/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#17 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U107/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U107/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#18 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U108/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U108/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#19 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U109/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U109/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#20 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U110/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U110/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#21 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U111/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U111/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#22 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U112/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U112/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#23 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U113/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U113/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#24 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U114/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U114/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#25 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U115/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U115/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#26 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U116/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U116/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#27 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U117/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U117/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#28 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U118/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U118/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#29 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U119/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U119/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#30 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U120/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U120/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#31 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U121/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U121/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#32 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U122/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U122/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#33 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U123/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U123/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#34 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U124/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U124/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#35 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U125/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U125/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#36 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U126/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U126/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#37 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U127/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U127/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#38 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U128/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U128/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#39 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U129/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U129/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#40 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U130/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U130/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#41 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U131/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U131/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#42 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U132/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U132/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#43 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U133/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U133/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#44 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U134/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U134/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#45 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U135/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U135/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#46 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U136/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U136/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#47 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U137/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U137/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#48 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U138/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U138/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#49 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U139/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U139/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#50 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U140/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U140/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#51 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U141/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U141/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#52 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U142/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U142/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#53 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U143/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U143/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#54 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U144/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U144/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#55 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U145/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U145/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#56 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U146/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U146/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#57 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U147/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U147/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#58 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U148/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U148/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#59 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U149/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U149/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#60 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U150/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U150/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#61 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U151/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U151/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#62 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U152/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U152/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#63 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U153/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U153/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#64 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U154/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U154/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#65 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U155/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U155/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#66 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U156/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U156/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#67 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U157/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U157/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#68 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U87/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U87/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#69 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U88/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U88/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#70 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U89/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U89/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#71 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U90/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U90/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#72 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U91/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U91/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#73 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U92/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U92/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#74 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U93/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U93/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#75 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U94/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U94/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#76 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U95/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U95/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#77 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U96/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U96/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#78 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U97/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U97/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#79 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U98/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U98/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#80 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U99/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L_fu_480/mac_muladd_16s_15ns_26ns_26_4_1_U99/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#81 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C_fu_528/mac_muladd_10ns_4ns_10ns_13_4_1_U184/cnn_top_mac_muladd_10ns_4ns_10ns_13_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C_fu_528/mac_muladd_10ns_4ns_10ns_13_4_1_U184/cnn_top_mac_muladd_10ns_4ns_10ns_13_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#82 Warning
+Input pipelining  
+DSP cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C_fu_528/mac_muladd_16s_15ns_26ns_26_4_1_U185/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg input cnn_system_i/cnn_top_0/inst/grp_cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C_fu_528/mac_muladd_16s_15ns_26ns_26_4_1_U185/cnn_top_mac_muladd_16s_15ns_26ns_26_4_1_DSP48_0_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+PDCN-1569#1 Warning
+LUT equation term check  
+Used physical LUT pin 'A2' of cell cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A1)+((~A1)*(~A6)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Related violations: <none>
+
+PDCN-1569#2 Warning
+LUT equation term check  
+Used physical LUT pin 'A2' of cell cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A1)+((~A1)*(~A3)*A5)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Related violations: <none>
+
+PDCN-1569#3 Warning
+LUT equation term check  
+Used physical LUT pin 'A4' of cell cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A2)+((~A2)*(~A6)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Related violations: <none>
+
+PDCN-1569#4 Warning
+LUT equation term check  
+Used physical LUT pin 'A4' of cell cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1 (pin cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_i_1/I1) is not included in the LUT equation: 'O6=(A5)+((~A5)*(~A6)*A3)'. If this cell is a user instantiated LUT in the design, please remove connectivity to the pin or change the equation and/or INIT string of the LUT to prevent this issue. If the cell is inferred or IP created LUT, please regenerate the IP and/or resynthesize the design to attempt to correct the issue.
+Related violations: <none>
+
+REQP-1839#1 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[0] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#2 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[1] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#3 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[2] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#4 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[3] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#5 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[4] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#6 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[5] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#7 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[6] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+REQP-1839#8 Warning
+RAMB36 async control check  
+The RAMB36E1 cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/WEBWE[7] (net: cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+RTSTAT-10#1 Warning
+No routable loads  
+44 net(s) have no routable loads. The problem bus(es) and/or net(s) are cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
+cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
+cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0]
+ (the first 15 of 28 listed nets/buses).
+Related violations: <none>
+
+REQP-181#1 Advisory
+writefirst  
+Synchronous clocking is detected for BRAM (cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg) in SDP mode with WRITE_FIRST write-mode. This is the preferred mode for best power characteristics, however it may exhibit address collisions if the same address appears on both read and write ports resulting in unknown or corrupted read data. It is suggested to confirm via simulation that an address collision never occurs and if so it is suggested to try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+Related violations: <none>
+
+REQP-181#2 Advisory
+writefirst  
+Synchronous clocking is detected for BRAM (cnn_system_i/axi_dma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg) in SDP mode with WRITE_FIRST write-mode. This is the preferred mode for best power characteristics, however it may exhibit address collisions if the same address appears on both read and write ports resulting in unknown or corrupted read data. It is suggested to confirm via simulation that an address collision never occurs and if so it is suggested to try and avoid this situation. If address collisions cannot be avoided, the write-mode may be set to READ_FIRST which guarantees that the read data is the prior contents of the memory at the cost of additional power in the design. See the FPGA Memory Resources User Guide for additional information.
+Related violations: <none>
+
+

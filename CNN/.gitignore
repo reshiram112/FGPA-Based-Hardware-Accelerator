@@ -1,0 +1,13 @@
+vivado.log
+vivado.jou
+*.str
+*.backup.log
+proj_mnist_cnn/mnist_cnn.cache/
+proj_mnist_cnn/mnist_cnn.gen/
+proj_mnist_cnn/mnist_cnn.hw/
+proj_mnist_cnn/mnist_cnn.ip_user_files/
+proj_mnist_cnn/mnist_cnn.runs/
+proj_mnist_cnn/mnist_cnn.sim/
+proj_mnist_cnn/output/xsa_extracted/
+cnn_top/
+.Xil/
