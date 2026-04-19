@@ -1,0 +1,450 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sun Apr 19 23:19:38 2026
+# Process ID         : 42224
+# Current directory  : C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1
+# Command line       : vivado.exe -log cnn_system_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cnn_system_wrapper.tcl
+# Log file           : C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/cnn_system_wrapper.vds
+# Journal file       : C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1\vivado.jou
+# Running On         : DESKTOP-G7LOJLI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-12500H
+# CPU Frequency      : 3110 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16849 MB
+# Swap memory        : 34476 MB
+# Total Virtual      : 51326 MB
+# Available Virtual  : 14972 MB
+#-----------------------------------------------------------
+source cnn_system_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:12 . Memory (MB): peak = 504.996 ; gain = 213.273
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls_ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.cache/ip 
+add_files: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 524.512 ; gain = 15.578
+Command: synth_design -top cnn_system_wrapper -part xc7z020clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 60420
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1264.031 ; gain = 491.426
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_wrapper' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/hdl/cnn_system_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:13]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_dma_0_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_dma_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_dma_0_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_dma_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'cnn_system_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'cnn_system_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'cnn_system_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+WARNING: [Synth 8-7071] port 's2mm_introut' of module 'cnn_system_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'cnn_system_axi_dma_0_0' is unconnected for instance 'axi_dma_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+WARNING: [Synth 8-7023] instance 'axi_dma_0' of module 'cnn_system_axi_dma_0_0' has 64 connections declared, but only 59 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:281]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_ctrl_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:787]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_DE0HKF' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2292]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_DE0HKF' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2292]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_NMJ82X' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2401]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_NMJ82X' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2401]
+INFO: [Synth 8-6157] synthesizing module 'm02_couplers_imp_1XIRFC3' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2516]
+INFO: [Synth 8-6155] done synthesizing module 'm02_couplers_imp_1XIRFC3' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2516]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_MR8QPA' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2835]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_ctrl_imp_auto_pc_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_ctrl_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_ctrl_imp_auto_pc_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_ctrl_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_MR8QPA' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2835]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_ctrl_imp_xbar_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_ctrl_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_ctrl_imp_xbar_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_ctrl_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'cnn_system_axi_ic_ctrl_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1323]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'cnn_system_axi_ic_ctrl_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1323]
+WARNING: [Synth 8-7023] instance 'xbar' of module 'cnn_system_axi_ic_ctrl_imp_xbar_0' has 40 connections declared, but only 38 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1323]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_ctrl_0' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:787]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp0_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1364]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_1U5DJG0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2631]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp0_imp_auto_pc_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp0_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp0_imp_auto_pc_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp0_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp0_imp_auto_us_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp0_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp0_imp_auto_us_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp0_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_1U5DJG0' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2631]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp0_0' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1364]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1522]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_3M6BTI' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2051]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_3M6BTI' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2051]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_UVRQFR' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:3081]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_pc_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_pc_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_us_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_us_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_us_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_UVRQFR' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:3081]
+INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_2TJD8X' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:3262]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_pc_1' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_pc_1' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_us_1' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_imp_auto_us_1' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_auto_us_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_2TJD8X' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:3262]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_axi_ic_hp1_imp_xbar_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_imp_xbar_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_axi_ic_hp1_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_arready' does not match port width (2) of module 'cnn_system_axi_ic_hp1_imp_xbar_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2021]
+WARNING: [Synth 8-689] width (64) of port connection 's_axi_rdata' does not match port width (128) of module 'cnn_system_axi_ic_hp1_imp_xbar_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2038]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rlast' does not match port width (2) of module 'cnn_system_axi_ic_hp1_imp_xbar_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2039]
+WARNING: [Synth 8-689] width (2) of port connection 's_axi_rresp' does not match port width (4) of module 'cnn_system_axi_ic_hp1_imp_xbar_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2041]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rvalid' does not match port width (2) of module 'cnn_system_axi_ic_hp1_imp_xbar_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:2042]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'cnn_system_axi_ic_hp1_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1972]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'cnn_system_axi_ic_hp1_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1972]
+WARNING: [Synth 8-7023] instance 'xbar' of module 'cnn_system_axi_ic_hp1_imp_xbar_0' has 78 connections declared, but only 76 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1972]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_axi_ic_hp1_0' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:1522]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_cnn_top_0_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_cnn_top_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_cnn_top_0_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_cnn_top_0_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'interrupt' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWADDR' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWBURST' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWCACHE' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWID' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWLEN' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWLOCK' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWPROT' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWQOS' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWREGION' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWSIZE' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_AWVALID' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_BREADY' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_WDATA' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_WID' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_WLAST' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_WSTRB' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axi_weights_WVALID' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axis_output_TDEST' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axis_output_TID' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axis_output_TSTRB' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7071] port 'm_axis_output_TUSER' of module 'cnn_system_cnn_top_0_0' is unconnected for instance 'cnn_top_0' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+WARNING: [Synth 8-7023] instance 'cnn_top_0' of module 'cnn_system_cnn_top_0_0' has 95 connections declared, but only 73 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:556]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_ps7_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_ps7_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_ps7_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_ps7_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'ENET0_GMII_TX_EN' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'ENET0_GMII_TX_ER' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'ENET0_GMII_TXD' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_AWREADY' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BVALID' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WREADY' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BRESP' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BID' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RID' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP1_RCOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP1_WCOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP1_RACOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7071] port 'S_AXI_HP1_WACOUNT' of module 'cnn_system_ps7_0' is unconnected for instance 'ps7' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'cnn_system_ps7_0' has 166 connections declared, but only 147 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:630]
+INFO: [Synth 8-6157] synthesizing module 'cnn_system_rst_gen_0' [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_rst_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_rst_gen_0' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/.Xil/Vivado-42224-DESKTOP-G7LOJLI/realtime/cnn_system_rst_gen_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'cnn_system_rst_gen_0' is unconnected for instance 'rst_gen' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:778]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'cnn_system_rst_gen_0' is unconnected for instance 'rst_gen' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:778]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'cnn_system_rst_gen_0' is unconnected for instance 'rst_gen' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:778]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'cnn_system_rst_gen_0' is unconnected for instance 'rst_gen' [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:778]
+WARNING: [Synth 8-7023] instance 'rst_gen' of module 'cnn_system_rst_gen_0' has 10 connections declared, but only 6 given [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:778]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system' (0#1) [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/synth/cnn_system.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'cnn_system_wrapper' (0#1) [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/hdl/cnn_system_wrapper.v:13]
+WARNING: [Synth 8-7129] Port M_ACLK in module s01_couplers_imp_2TJD8X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s01_couplers_imp_2TJD8X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_UVRQFR is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_UVRQFR is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_3M6BTI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_3M6BTI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_3M6BTI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_3M6BTI is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_1U5DJG0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_1U5DJG0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_arlock[1] in module s00_couplers_imp_1U5DJG0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESETN in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_MR8QPA is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_MR8QPA is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m02_couplers_imp_1XIRFC3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m02_couplers_imp_1XIRFC3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m02_couplers_imp_1XIRFC3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m02_couplers_imp_1XIRFC3 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m01_couplers_imp_NMJ82X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m01_couplers_imp_NMJ82X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m01_couplers_imp_NMJ82X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m01_couplers_imp_NMJ82X is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_DE0HKF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_DE0HKF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_DE0HKF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_DE0HKF is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.064 . Memory (MB): peak = 1386.609 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_ps7_0/cnn_system_ps7_0/cnn_system_ps7_0_in_context.xdc] for cell 'cnn_system_i/ps7'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_ps7_0/cnn_system_ps7_0/cnn_system_ps7_0_in_context.xdc] for cell 'cnn_system_i/ps7'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_dma_0_0/cnn_system_axi_dma_0_0/cnn_system_axi_dma_0_0_in_context.xdc] for cell 'cnn_system_i/axi_dma_0'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_dma_0_0/cnn_system_axi_dma_0_0/cnn_system_axi_dma_0_0_in_context.xdc] for cell 'cnn_system_i/axi_dma_0'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_cnn_top_0_0/cnn_system_cnn_top_0_0/cnn_system_cnn_top_0_0_in_context.xdc] for cell 'cnn_system_i/cnn_top_0'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_cnn_top_0_0/cnn_system_cnn_top_0_0/cnn_system_cnn_top_0_0_in_context.xdc] for cell 'cnn_system_i/cnn_top_0'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_ctrl_imp_xbar_0/cnn_system_axi_ic_ctrl_imp_xbar_0/cnn_system_axi_ic_ctrl_imp_xbar_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_ctrl/xbar'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_ctrl_imp_xbar_0/cnn_system_axi_ic_ctrl_imp_xbar_0/cnn_system_axi_ic_ctrl_imp_xbar_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_ctrl/xbar'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_ctrl_imp_auto_pc_0/cnn_system_axi_ic_ctrl_imp_auto_pc_0/cnn_system_axi_ic_ctrl_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_ctrl/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_ctrl_imp_auto_pc_0/cnn_system_axi_ic_ctrl_imp_auto_pc_0/cnn_system_axi_ic_ctrl_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_ctrl/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp0_imp_auto_pc_0/cnn_system_axi_ic_hp0_imp_auto_pc_0/cnn_system_axi_ic_hp0_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp0_imp_auto_pc_0/cnn_system_axi_ic_hp0_imp_auto_pc_0/cnn_system_axi_ic_hp0_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp0/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp0_imp_auto_us_0/cnn_system_axi_ic_hp0_imp_auto_us_0/cnn_system_axi_ic_hp0_imp_auto_us_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp0/s00_couplers/auto_us'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp0_imp_auto_us_0/cnn_system_axi_ic_hp0_imp_auto_us_0/cnn_system_axi_ic_hp0_imp_auto_us_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp0/s00_couplers/auto_us'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_xbar_0/cnn_system_axi_ic_hp1_imp_xbar_0/cnn_system_axi_ic_hp1_imp_xbar_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/xbar'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_xbar_0/cnn_system_axi_ic_hp1_imp_xbar_0/cnn_system_axi_ic_hp1_imp_xbar_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/xbar'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_pc_0/cnn_system_axi_ic_hp1_imp_auto_pc_0/cnn_system_axi_ic_hp1_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_pc_0/cnn_system_axi_ic_hp1_imp_auto_pc_0/cnn_system_axi_ic_hp1_imp_auto_pc_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_us_0/cnn_system_axi_ic_hp1_imp_auto_us_0/cnn_system_axi_ic_hp1_imp_auto_us_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s00_couplers/auto_us'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_us_0/cnn_system_axi_ic_hp1_imp_auto_us_0/cnn_system_axi_ic_hp1_imp_auto_us_0_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s00_couplers/auto_us'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_pc_1/cnn_system_axi_ic_hp1_imp_auto_pc_1/cnn_system_axi_ic_hp1_imp_auto_pc_1_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_pc_1/cnn_system_axi_ic_hp1_imp_auto_pc_1/cnn_system_axi_ic_hp1_imp_auto_pc_1_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s01_couplers/auto_pc'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_us_1/cnn_system_axi_ic_hp1_imp_auto_us_1/cnn_system_axi_ic_hp1_imp_auto_us_1_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s01_couplers/auto_us'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_axi_ic_hp1_imp_auto_us_1/cnn_system_axi_ic_hp1_imp_auto_us_1/cnn_system_axi_ic_hp1_imp_auto_us_1_in_context.xdc] for cell 'cnn_system_i/axi_ic_hp1/s01_couplers/auto_us'
+Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_rst_gen_0/cnn_system_rst_gen_0/cnn_system_rst_gen_0_in_context.xdc] for cell 'cnn_system_i/rst_gen'
+Finished Parsing XDC File [c:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_rst_gen_0/cnn_system_rst_gen_0/cnn_system_rst_gen_0_in_context.xdc] for cell 'cnn_system_i/rst_gen'
+Parsing XDC File [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1386.609 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1386.609 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1386.609 ; gain = 614.004
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port M00_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[5] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[4] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[3] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[2] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[1] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[5] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[4] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[3] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[2] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[1] in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module cnn_system_axi_ic_hp1_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ACLK in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ARESETN in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_AXI_arlock[1] in module cnn_system_axi_ic_hp0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M02_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module cnn_system_axi_ic_ctrl_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1396.035 ; gain = 623.430
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1570.215 ; gain = 797.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1571.660 ; gain = 799.055
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1582.344 ; gain = 809.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-------------------------------------+----------+
+|      |BlackBox name                        |Instances |
++------+-------------------------------------+----------+
+|1     |cnn_system_axi_dma_0_0               |         1|
+|2     |cnn_system_axi_ic_ctrl_imp_xbar_0    |         1|
+|3     |cnn_system_axi_ic_ctrl_imp_auto_pc_0 |         1|
+|4     |cnn_system_axi_ic_hp0_imp_auto_pc_0  |         1|
+|5     |cnn_system_axi_ic_hp0_imp_auto_us_0  |         1|
+|6     |cnn_system_axi_ic_hp1_imp_xbar_0     |         1|
+|7     |cnn_system_axi_ic_hp1_imp_auto_pc_0  |         1|
+|8     |cnn_system_axi_ic_hp1_imp_auto_us_0  |         1|
+|9     |cnn_system_axi_ic_hp1_imp_auto_pc_1  |         1|
+|10    |cnn_system_axi_ic_hp1_imp_auto_us_1  |         1|
+|11    |cnn_system_cnn_top_0_0               |         1|
+|12    |cnn_system_ps7_0                     |         1|
+|13    |cnn_system_rst_gen_0                 |         1|
++------+-------------------------------------+----------+
+
+Report Cell Usage: 
++------+-----------------------------------+------+
+|      |Cell                               |Count |
++------+-----------------------------------+------+
+|1     |cnn_system_axi_dma_0               |     1|
+|2     |cnn_system_axi_ic_ctrl_imp_auto_pc |     1|
+|3     |cnn_system_axi_ic_ctrl_imp_xbar    |     1|
+|4     |cnn_system_axi_ic_hp0_imp_auto_pc  |     1|
+|5     |cnn_system_axi_ic_hp0_imp_auto_us  |     1|
+|6     |cnn_system_axi_ic_hp1_imp_auto_pc  |     2|
+|8     |cnn_system_axi_ic_hp1_imp_auto_us  |     2|
+|10    |cnn_system_axi_ic_hp1_imp_xbar     |     1|
+|11    |cnn_system_cnn_top_0               |     1|
+|12    |cnn_system_ps7                     |     1|
+|13    |cnn_system_rst_gen                 |     1|
++------+-----------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 30 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:28 ; elapsed = 00:00:40 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+Synthesis Optimization Complete : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 1815.957 ; gain = 1043.352
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1815.957 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1828.762 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: c485aaf9
+INFO: [Common 17-83] Releasing license: Synthesis
+67 Infos, 137 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:53 . Memory (MB): peak = 1832.766 ; gain = 1308.254
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.runs/synth_1/cnn_system_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file cnn_system_wrapper_utilization_synth.rpt -pb cnn_system_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 19 23:20:54 2026...

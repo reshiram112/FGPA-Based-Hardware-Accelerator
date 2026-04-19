@@ -1,0 +1,659 @@
+  **** HLS Build v2025.1 6135595
+Sourcing Tcl script 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls/run_hls.tcl'
+HLS source directory: C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls
+INFO: [HLS 200-1510] Running: open_project cnn_top 
+WARNING: [HLS 200-2182] The 'cnn_top' project will not automatically appear within Vitis IDE workspaces and is meant only for TCL batch use.  Please use open_component instead of open_project/open_solution to generate Vitis IDE compatible component files and directory structure.
+Resolution: For help on HLS 200-2182 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-2182.html
+INFO: [HLS 200-10] Creating and opening solution 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top'.
+INFO: [HLS 200-1510] Running: set_top cnn_top 
+INFO: [HLS 200-1510] Running: open_solution solution -flow_target vivado 
+INFO: [HLS 200-10] Creating and opening solution 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1510] Running: add_files C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls/cnn_top.cpp -cflags -IC:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls 
+INFO: [HLS 200-10] Adding design file 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls/cnn_top.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls/cnn_top.h -cflags -IC:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls 
+INFO: [HLS 200-10] Adding design file 'C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls/cnn_top.h' to the project
+Running HLS synthesis (C â†’ RTL)...
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.751 seconds; current allocated memory: 152.629 MB.
+INFO: [HLS 200-10] Analyzing design file 'fpga/hls/cnn_top.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 8.266 seconds; current allocated memory: 155.875 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 2,608 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 4,357 instructions in the design after the 'Unroll/Inline (step 1)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,783 instructions in the design after the 'Unroll/Inline (step 2)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,681 instructions in the design after the 'Unroll/Inline (step 3)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,680 instructions in the design after the 'Unroll/Inline (step 4)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,784 instructions in the design after the 'Array/Struct (step 1)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,747 instructions in the design after the 'Array/Struct (step 2)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,747 instructions in the design after the 'Array/Struct (step 3)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,747 instructions in the design after the 'Array/Struct (step 4)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,870 instructions in the design after the 'Array/Struct (step 5)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,846 instructions in the design after the 'Performance (step 1)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,801 instructions in the design after the 'Performance (step 2)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,889 instructions in the design after the 'Performance (step 3)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,825 instructions in the design after the 'Performance (step 4)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,804 instructions in the design after the 'HW Transforms (step 1)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 200-1995] There were 1,850 instructions in the design after the 'HW Transforms (step 2)' phase of compilation. See the Design Size Report for more details (C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/syn/report/csynth_design_size.rpt:2)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_192_4' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:192:35)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_193_5' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:193:39)
+INFO: [HLS 214-291] Loop 'CONV2_CH_IN' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:166:30)
+INFO: [HLS 214-291] Loop 'CONV2_K_R' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:167:32)
+INFO: [HLS 214-291] Loop 'CONV2_K_C' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:168:36)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_147_2' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:147:35)
+INFO: [HLS 214-291] Loop 'VITIS_LOOP_148_3' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:148:39)
+INFO: [HLS 214-291] Loop 'CONV1_K_R' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:122:28)
+INFO: [HLS 214-291] Loop 'CONV1_K_C' is marked as complete unroll implied by the pipeline pragma (fpga/hls/cnn_top.cpp:123:32)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_192_4' (fpga/hls/cnn_top.cpp:192:35) in function 'cnn_top' completely with a factor of 2 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_193_5' (fpga/hls/cnn_top.cpp:193:39) in function 'cnn_top' completely with a factor of 2 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'CONV2_CH_IN' (fpga/hls/cnn_top.cpp:166:30) in function 'cnn_top' completely with a factor of 8 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'CONV2_K_R' (fpga/hls/cnn_top.cpp:167:32) in function 'cnn_top' completely with a factor of 3 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'CONV2_K_C' (fpga/hls/cnn_top.cpp:168:36) in function 'cnn_top' completely with a factor of 3 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_147_2' (fpga/hls/cnn_top.cpp:147:35) in function 'cnn_top' completely with a factor of 2 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_148_3' (fpga/hls/cnn_top.cpp:148:39) in function 'cnn_top' completely with a factor of 2 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'CONV1_K_R' (fpga/hls/cnn_top.cpp:122:28) in function 'cnn_top' completely with a factor of 3 (fpga/hls/cnn_top.cpp:33:0)
+INFO: [HLS 214-186] Unrolling loop 'CONV1_K_C' (fpga/hls/cnn_top.cpp:123:32) in function 'cnn_top' completely with a factor of 3 (fpga/hls/cnn_top.cpp:33:0)
+WARNING: [HLS 214-167] The program may have out of bound array access on variable 'w_conv1' (fpga/hls/cnn_top.cpp:76:24)
+WARNING: [HLS 214-167] The program may have out of bound array access on variable 'w_conv2' (fpga/hls/cnn_top.cpp:84:24)
+WARNING: [HLS 214-167] The program may have out of bound array access on variable 'w_fc' (fpga/hls/cnn_top.cpp:92:21)
+INFO: [HLS 214-248] Applying array_partition to 'b_conv1': Complete partitioning on dimension 1. (fpga/hls/cnn_top.cpp:61:12)
+INFO: [HLS 214-248] Applying array_partition to 'b_conv2': Complete partitioning on dimension 1. (fpga/hls/cnn_top.cpp:63:12)
+INFO: [HLS 214-248] Applying array_partition to 'b_fc': Complete partitioning on dimension 1. (fpga/hls/cnn_top.cpp:65:12)
+INFO: [HLS 214-449] Automatically partitioning array 'img_buf' dimension 1 completely based on constant index. (fpga/hls/cnn_top.cpp:52:9)
+INFO: [HLS 214-270] Inferring pragma 'array_partition type=complete dim=1' for array 'img_buf' due to pipeline pragma (fpga/hls/cnn_top.cpp:52:9)
+INFO: [HLS 214-270] Inferring pragma 'array_partition type=cyclic factor=2 dim=3' for array 'conv1_buf' due to pipeline pragma (fpga/hls/cnn_top.cpp:145:9)
+INFO: [HLS 214-270] Inferring pragma 'array_partition type=cyclic factor=2 dim=3' for array 'conv2_buf' due to pipeline pragma (fpga/hls/cnn_top.cpp:190:9)
+INFO: [HLS 214-248] Applying array_partition to 'img_buf': Complete partitioning on dimension 1. (fpga/hls/cnn_top.cpp:52:9)
+INFO: [HLS 214-248] Applying array_partition to 'conv1_buf': Cyclic partitioning with factor 2 on dimension 3. (fpga/hls/cnn_top.cpp:53:12)
+INFO: [HLS 214-248] Applying array_partition to 'conv2_buf': Cyclic partitioning with factor 2 on dimension 3. (fpga/hls/cnn_top.cpp:55:12)
+INFO: [HLS 214-115] Multiple burst reads of length 72 and bit width 16 in loop 'LOAD_W_CONV1'(fpga/hls/cnn_top.cpp:74:16) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:74:16)
+INFO: [HLS 214-115] Multiple burst reads of length 8 and bit width 16 in loop 'LOAD_B_CONV1'(fpga/hls/cnn_top.cpp:78:19) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:78:19)
+INFO: [HLS 214-115] Multiple burst reads of length 1152 and bit width 16 in loop 'LOAD_W_CONV2'(fpga/hls/cnn_top.cpp:82:19) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:82:19)
+INFO: [HLS 214-115] Multiple burst reads of length 16 and bit width 16 in loop 'LOAD_B_CONV2'(fpga/hls/cnn_top.cpp:86:19) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:86:19)
+INFO: [HLS 214-115] Multiple burst reads of length 7840 and bit width 16 in loop 'LOAD_W_FC'(fpga/hls/cnn_top.cpp:90:16) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:90:16)
+INFO: [HLS 214-115] Multiple burst reads of length 10 and bit width 16 in loop 'LOAD_B_FC'(fpga/hls/cnn_top.cpp:94:16) has been inferred on bundle 'weights'. These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings. (fpga/hls/cnn_top.cpp:94:16)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 13.574 seconds; current allocated memory: 158.688 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.005 seconds; current allocated memory: 158.688 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.358 seconds; current allocated memory: 168.594 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.215 seconds; current allocated memory: 171.453 MB.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (fpga/hls/cnn_top.cpp:120:9) to (fpga/hls/cnn_top.cpp:134:41) in function 'cnn_top'... converting 17 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (fpga/hls/cnn_top.cpp:164:9) to (fpga/hls/cnn_top.cpp:179:41) in function 'cnn_top'... converting 129 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.281 seconds; current allocated memory: 201.148 MB.
+INFO: [HLS 200-2061] Successfully converted nested loops 'READ_IMG'(fpga/hls/cnn_top.cpp:102:15) and 'VITIS_LOOP_103_1'(fpga/hls/cnn_top.cpp:103:27) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'CONV1_C'(fpga/hls/cnn_top.cpp:118:18) and 'CONV1_CH_L'(fpga/hls/cnn_top.cpp:119:25) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'CONV1_R'(fpga/hls/cnn_top.cpp:117:14) and 'CONV1_C'(fpga/hls/cnn_top.cpp:118:18) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'POOL1_R'(fpga/hls/cnn_top.cpp:143:18) and 'POOL1_C'(fpga/hls/cnn_top.cpp:144:22) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'POOL1_CH'(fpga/hls/cnn_top.cpp:142:15) and 'POOL1_R'(fpga/hls/cnn_top.cpp:143:18) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'CONV2_C'(fpga/hls/cnn_top.cpp:162:18) and 'CONV2_CH_L'(fpga/hls/cnn_top.cpp:163:25) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'CONV2_R'(fpga/hls/cnn_top.cpp:161:14) and 'CONV2_C'(fpga/hls/cnn_top.cpp:162:18) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'POOL2_R'(fpga/hls/cnn_top.cpp:188:18) and 'POOL2_C'(fpga/hls/cnn_top.cpp:189:22) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'POOL2_CH'(fpga/hls/cnn_top.cpp:187:15) and 'POOL2_R'(fpga/hls/cnn_top.cpp:188:18) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'FC_IN_R'(fpga/hls/cnn_top.cpp:210:22) and 'FC_IN_C'(fpga/hls/cnn_top.cpp:211:26) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'FC_IN_CH'(fpga/hls/cnn_top.cpp:209:19) and 'FC_IN_R'(fpga/hls/cnn_top.cpp:210:22) in function 'cnn_top' into perfectly nested loops.
+INFO: [HLS 200-2061] Successfully converted nested loops 'FC_OUT_LOOP'(fpga/hls/cnn_top.cpp:206:18) and 'FC_IN_CH'(fpga/hls/cnn_top.cpp:209:19) in function 'cnn_top' into perfectly nested loops.
+INFO: [XFORM 203-541] Flattening a loop nest 'READ_IMG' (fpga/hls/cnn_top.cpp:102:15) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'CONV1_C' (fpga/hls/cnn_top.cpp:118:18) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'CONV1_R' (fpga/hls/cnn_top.cpp:117:14) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'POOL1_R' (fpga/hls/cnn_top.cpp:143:18) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'POOL1_CH' (fpga/hls/cnn_top.cpp:142:15) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'CONV2_C' (fpga/hls/cnn_top.cpp:162:18) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'CONV2_R' (fpga/hls/cnn_top.cpp:161:14) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'POOL2_R' (fpga/hls/cnn_top.cpp:188:18) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'POOL2_CH' (fpga/hls/cnn_top.cpp:187:15) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'FC_IN_R' (fpga/hls/cnn_top.cpp:210:22) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'FC_IN_CH' (fpga/hls/cnn_top.cpp:209:19) in function 'cnn_top'.
+INFO: [XFORM 203-541] Flattening a loop nest 'FC_OUT_LOOP' (fpga/hls/cnn_top.cpp:206:18) in function 'cnn_top'.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 2 seconds. CPU system time: 0 seconds. Elapsed time: 1.856 seconds; current allocated memory: 308.098 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'cnn_top' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_W_CONV1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'w_conv1'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_W_CONV1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'LOAD_W_CONV1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.478 seconds; current allocated memory: 312.250 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.044 seconds; current allocated memory: 313.312 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_B_CONV1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_B_CONV1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'LOAD_B_CONV1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.041 seconds; current allocated memory: 313.727 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.024 seconds; current allocated memory: 313.750 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_W_CONV2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'w_conv2'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_W_CONV2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'LOAD_W_CONV2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.046 seconds; current allocated memory: 313.867 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.023 seconds; current allocated memory: 313.875 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_B_CONV2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_B_CONV2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'LOAD_B_CONV2'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.622 seconds; current allocated memory: 314.387 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.053 seconds; current allocated memory: 314.500 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_W_FC' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_W_FC'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'LOAD_W_FC'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.055 seconds; current allocated memory: 314.605 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 314.605 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_LOAD_B_FC' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'LOAD_B_FC'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'LOAD_B_FC'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.054 seconds; current allocated memory: 314.840 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 314.902 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_READ_IMG_VITIS_LOOP_103_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'img_buf'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'READ_IMG_VITIS_LOOP_103_1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'READ_IMG_VITIS_LOOP_103_1'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.054 seconds; current allocated memory: 315.082 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 315.156 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_8) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_7) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_6) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_5) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_4) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_3) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_2) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128_1) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln128) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'w_conv1'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'img_buf'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'CONV1_R_CONV1_C_CONV1_CH_L'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 16, loop 'CONV1_R_CONV1_C_CONV1_CH_L'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.883 seconds; current allocated memory: 318.203 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.096 seconds; current allocated memory: 318.328 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_POOL1_CH_POOL1_R_POOL1_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'pool1_buf'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'POOL1_CH_POOL1_R_POOL1_C'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 6, loop 'POOL1_CH_POOL1_R_POOL1_C'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.112 seconds; current allocated memory: 318.484 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.074 seconds; current allocated memory: 318.484 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_71) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_70) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_69) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_68) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_67) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_66) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_65) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_64) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_63) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_62) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_61) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_60) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_59) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_58) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_57) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_56) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_55) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_54) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_53) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_52) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_51) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_50) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_49) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_48) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_47) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_46) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_45) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_44) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_43) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_42) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_41) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_40) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_39) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_38) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_37) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_36) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_35) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_34) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_33) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_32) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_31) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_30) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_29) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_28) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_27) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_26) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_25) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_24) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_23) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_22) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_21) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_20) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_19) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_18) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_17) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_16) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_15) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_14) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_13) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_12) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_11) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_10) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_9) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_8) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_7) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_6) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_5) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_4) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_3) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_2) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172_1) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln172) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'w_conv2'. Use bind_storage pragma to override this type.
+INFO: [HLS 200-1457] Automatically inferring inferring RAM_1WNR storage type for array 'pool1_buf'. Use bind_storage pragma to override this type.
+INFO: [SCHED 204-61] Pipelining loop 'CONV2_R_CONV2_C_CONV2_CH_L'.
+WARNING: [HLS 200-885] The II Violation in module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' (loop 'CONV2_R_CONV2_C_CONV2_CH_L'): Unable to schedule 'load' operation 15 bit ('pool1_buf_load_22', fpga/hls/cnn_top.cpp:172) on array 'pool1_buf' due to limited memory ports (II = 1). Please consider using a memory core with more ports or partitioning the array 'pool1_buf'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' (loop 'CONV2_R_CONV2_C_CONV2_CH_L'): Unable to schedule 'load' operation 15 bit ('pool1_buf_load_37', fpga/hls/cnn_top.cpp:172) on array 'pool1_buf' due to limited memory ports (II = 2). Please consider using a memory core with more ports or partitioning the array 'pool1_buf'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' (loop 'CONV2_R_CONV2_C_CONV2_CH_L'): Unable to schedule 'load' operation 15 bit ('pool1_buf_load_52', fpga/hls/cnn_top.cpp:172) on array 'pool1_buf' due to limited memory ports (II = 3). Please consider using a memory core with more ports or partitioning the array 'pool1_buf'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+WARNING: [HLS 200-885] The II Violation in module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' (loop 'CONV2_R_CONV2_C_CONV2_CH_L'): Unable to schedule 'load' operation 15 bit ('pool1_buf_load_7', fpga/hls/cnn_top.cpp:171) on array 'pool1_buf' due to limited memory ports (II = 4). Please consider using a memory core with more ports or partitioning the array 'pool1_buf'.
+Resolution: For help on HLS 200-885 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2025.1%20English&url=ug1448-hls-guidance&resourceid=200-885.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 5, Depth = 79, loop 'CONV2_R_CONV2_C_CONV2_CH_L'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 3 seconds. CPU system time: 0 seconds. Elapsed time: 8.423 seconds; current allocated memory: 336.672 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.644 seconds; current allocated memory: 336.824 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_POOL2_CH_POOL2_R_POOL2_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'POOL2_CH_POOL2_R_POOL2_C'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 6, loop 'POOL2_CH_POOL2_R_POOL2_C'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.57 seconds; current allocated memory: 336.824 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.035 seconds; current allocated memory: 336.824 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln213) to 3 in order to utilize available DSP registers.
+INFO: [HLS 200-486] Changing DSP latency (root=add_ln213_3) to 3 in order to utilize available DSP registers.
+INFO: [SCHED 204-61] Pipelining loop 'FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 8, loop 'FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 336.824 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.062 seconds; current allocated memory: 336.828 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top_Pipeline_WRITE_OUT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'WRITE_OUT'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 2, loop 'WRITE_OUT'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 336.832 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 336.832 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cnn_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.07 seconds; current allocated memory: 336.910 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.59 seconds; current allocated memory: 336.941 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_W_CONV1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_W_CONV1' pipeline 'LOAD_W_CONV1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV1/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_W_CONV1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.195 seconds; current allocated memory: 338.531 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_B_CONV1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_B_CONV1' pipeline 'LOAD_B_CONV1' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV1/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_B_CONV1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 1.787 seconds; current allocated memory: 339.281 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_W_CONV2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_W_CONV2' pipeline 'LOAD_W_CONV2' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_CONV2/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_W_CONV2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.2 seconds; current allocated memory: 339.316 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_B_CONV2' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_B_CONV2' pipeline 'LOAD_B_CONV2' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_CONV2/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_B_CONV2'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.167 seconds; current allocated memory: 339.316 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_W_FC' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_W_FC' pipeline 'LOAD_W_FC' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_W_FC/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_W_FC'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.366 seconds; current allocated memory: 341.113 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_LOAD_B_FC' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_LOAD_B_FC' pipeline 'LOAD_B_FC' pipeline type 'loop pipeline'
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARVALID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARADDR' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARID' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARLEN' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARSIZE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARBURST' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARLOCK' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARCACHE' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARPROT' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARQOS' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARREGION' to 0.
+WARNING: [RTGEN 206-101] Setting dangling out port 'cnn_top_Pipeline_LOAD_B_FC/m_axi_weights_0_ARUSER' to 0.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_LOAD_B_FC'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.16 seconds; current allocated memory: 341.262 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_READ_IMG_VITIS_LOOP_103_1' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_READ_IMG_VITIS_LOOP_103_1' pipeline 'READ_IMG_VITIS_LOOP_103_1' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_READ_IMG_VITIS_LOOP_103_1'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.506 seconds; current allocated memory: 342.781 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L' pipeline 'CONV1_R_CONV1_C_CONV1_CH_L' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16s_16s_26ns_26_4_1': 9 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sparsemux_17_3_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_CONV1_R_CONV1_C_CONV1_CH_L'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.425 seconds; current allocated memory: 346.363 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_POOL1_CH_POOL1_R_POOL1_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_POOL1_CH_POOL1_R_POOL1_C' pipeline 'POOL1_CH_POOL1_R_POOL1_C' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_POOL1_CH_POOL1_R_POOL1_C'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.834 seconds; current allocated memory: 352.715 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L' pipeline 'CONV2_R_CONV2_C_CONV2_CH_L' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16s_15ns_26ns_26_4_1': 72 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sparsemux_33_4_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_CONV2_R_CONV2_C_CONV2_CH_L'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 1.342 seconds; current allocated memory: 367.910 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_POOL2_CH_POOL2_R_POOL2_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_POOL2_CH_POOL2_R_POOL2_C' pipeline 'POOL2_CH_POOL2_R_POOL2_C' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_POOL2_CH_POOL2_R_POOL2_C'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2 seconds. CPU system time: 2 seconds. Elapsed time: 4.07 seconds; current allocated memory: 395.137 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C' pipeline 'FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Generating core module 'mac_muladd_10ns_4ns_10ns_13_4_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mac_muladd_16s_15ns_26ns_26_4_1': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'sparsemux_21_4_16_1_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_FC_OUT_LOOP_FC_IN_CH_FC_IN_R_FC_IN_C'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.337 seconds; current allocated memory: 395.137 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top_Pipeline_WRITE_OUT' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'cnn_top_Pipeline_WRITE_OUT' pipeline 'WRITE_OUT' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top_Pipeline_WRITE_OUT'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.472 seconds; current allocated memory: 395.457 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cnn_top' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/weights' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/s_axis_input_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_data_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_keep_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_strb_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_user_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_last_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_id_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axis_output_V_dest_V' to 'axis' (register, both mode).
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_w_conv1' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_b_conv1' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_w_conv2' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_b_conv2' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_w_fc' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cnn_top/m_axi_b_fc' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'cnn_top' to 's_axilite & ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Bundling port 'm_axi_w_conv1', 'm_axi_b_conv1', 'm_axi_w_conv2', 'm_axi_b_conv2', 'm_axi_w_fc' and 'm_axi_b_fc' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Bundling port 'return' to AXI-Lite port ctrl.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cnn_top'.
+INFO: [HLS 200-2167] Implementing memory 'cnn_top_img_buf_RAM_1WNR_AUTO_1R1W' using auto RAMs with 8 copies to ensure enough ports to satisfy II or latency constraints.
+INFO: [RTMG 210-278] Implementing memory 'cnn_top_conv1_buf_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [HLS 200-2167] Implementing memory 'cnn_top_pool1_buf_RAM_1WNR_AUTO_1R1W' using auto RAMs with 14 copies to ensure enough ports to satisfy II or latency constraints.
+INFO: [RTMG 210-278] Implementing memory 'cnn_top_conv2_buf_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'cnn_top_pool2_buf_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [RTMG 210-278] Implementing memory 'cnn_top_fc_buf_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [HLS 200-2167] Implementing memory 'cnn_top_w_conv1_RAM_1WNR_AUTO_1R1W' using auto RAMs with 8 copies to ensure enough ports to satisfy II or latency constraints.
+INFO: [HLS 200-2167] Implementing memory 'cnn_top_w_conv2_RAM_1WNR_AUTO_1R1W' using auto RAMs with 14 copies to ensure enough ports to satisfy II or latency constraints.
+INFO: [RTMG 210-278] Implementing memory 'cnn_top_w_fc_RAM_AUTO_1R1W' using auto RAMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 1.003 seconds; current allocated memory: 398.488 MB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 2.301 seconds; current allocated memory: 406.949 MB.
+INFO: [HLS 200-1603] Design has inferred MAXI bursts and missed bursts, see Vitis HLS GUI synthesis summary report for detailed information.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 2.136 seconds; current allocated memory: 423.457 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for cnn_top.
+INFO: [VLOG 209-307] Generating Verilog RTL for cnn_top.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 136.99 MHz
+INFO: [HLS 200-2161] Finished Command csynth_design Elapsed time: 00:01:02; Allocated memory: 271.242 MB.
+Exporting IP to: C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls_ip
+INFO: [HLS 200-1510] Running: export_design -format ip_catalog -description MNIST CNN Accelerator -vendor xilinx.com -library hls -version 1.0 -output C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/hls_ip.zip 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Sun Apr 19 23:09:16 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: calling package_hls_ip ip_types=vitis sysgen json_file=C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/solution_data.json outdir=C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip srcdir=C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution ippack_options_dict= ippack_options_dict=
+INFO: Copied 1 ipmisc file(s) to C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/misc
+INFO: Copied 40 verilog file(s) to C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/hdl/verilog
+INFO: Copied 34 vhdl file(s) to C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/hdl/vhdl
+INFO: Copied 10 swdriver file(s) to C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/drivers
+ipx::create_core: Time (s): cpu = 00:00:10 ; elapsed = 00:00:08 . Memory (MB): peak = 513.312 ; gain = 207.352
+INFO: Import ports from HDL: C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/hdl/vhdl/cnn_top.vhd (cnn_top)
+INFO: Add axi4lite interface s_axi_control
+INFO: Add axi4lite interface s_axi_ctrl
+INFO: Add clock interface ap_clk
+INFO: Add reset interface ap_rst_n
+INFO: Add interrupt interface interrupt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+INFO: Add axi4full interface m_axi_weights
+INFO: Add axi4stream interface s_axis_input
+INFO: Add axi4stream interface m_axis_output
+INFO: Calling post_process_vitis to specialize IP
+INFO: Calling post_process_sysgen to specialize IP
+Generating sysgen info xml from json file
+INFO: Created IP C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/component.xml
+INFO: Created IP archive C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/cnn_top/solution/impl/ip/xilinx_com_hls_cnn_top_1_0.zip
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 19 23:09:33 2026...
+INFO: [HLS 200-802] Generated output file fpga/hls_ip.zip
+INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:00:21; Allocated memory: 3.941 MB.
+
+=== HLS DONE ===
+IP exported to: C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/hls_ip.zip
+Next: run fpga/vivado/create_project.tcl in Vivado
+INFO: [HLS 200-1510] Running: close_project 
+INFO: [HLS 200-112] Total CPU user time: 19 seconds. Total CPU system time: 8 seconds. Total elapsed time: 88.156 seconds; peak allocated memory: 427.430 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 1m 29s
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.
