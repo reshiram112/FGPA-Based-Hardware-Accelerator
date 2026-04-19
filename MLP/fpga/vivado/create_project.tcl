@@ -65,9 +65,9 @@ set_property -dict [list \
     CONFIG.c_include_sg {0} \
     CONFIG.c_sg_length_width {23} \
     CONFIG.c_m_axi_mm2s_data_width {32} \
-    CONFIG.c_m_axis_mm2s_tdata_width {16} \
+    CONFIG.c_m_axis_mm2s_tdata_width {32} \
     CONFIG.c_m_axi_s2mm_data_width {32} \
-    CONFIG.c_s_axis_s2mm_tdata_width {16} \
+    CONFIG.c_s_axis_s2mm_tdata_width {32} \
 ] [get_bd_cells axi_dma_0]
 
 # ── 5. Add MLP HLS IP ─────────────────────────────────────────
@@ -114,26 +114,26 @@ connect_bd_net [get_bd_pins ps7/FCLK_CLK0] \
     [get_bd_pins axi_ic_hp1/S01_ACLK] \
     [get_bd_pins axi_ic_hp1/M00_ACLK]
 
-connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] \
-    [get_bd_pins mlp_top_0/ap_rst_n] \
-    [get_bd_pins axi_ic_ctrl/ARESETN] \
-    [get_bd_pins axi_ic_ctrl/M00_ARESETN] \
-    [get_bd_pins axi_ic_ctrl/M01_ARESETN] \
-    [get_bd_pins axi_ic_ctrl/S00_ARESETN] \
-    [get_bd_pins axi_ic_hp0/ARESETN] \
-    [get_bd_pins axi_ic_hp0/S00_ARESETN] \
-    [get_bd_pins axi_ic_hp0/M00_ARESETN] \
-    [get_bd_pins axi_ic_hp1/ARESETN] \
-    [get_bd_pins axi_ic_hp1/S00_ARESETN] \
-    [get_bd_pins axi_ic_hp1/S01_ARESETN] \
-    [get_bd_pins axi_ic_hp1/M00_ARESETN]
-
-# DMA reset from Proc Sys Reset
 set rst_gen [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_gen]
 connect_bd_net [get_bd_pins ps7/FCLK_CLK0]    [get_bd_pins rst_gen/slowest_sync_clk]
 connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins rst_gen/ext_reset_in]
+
+connect_bd_net [get_bd_pins rst_gen/interconnect_aresetn] \
+    [get_bd_pins axi_ic_ctrl/ARESETN] \
+    [get_bd_pins axi_ic_hp0/ARESETN] \
+    [get_bd_pins axi_ic_hp1/ARESETN]
+
 connect_bd_net [get_bd_pins rst_gen/peripheral_aresetn] \
-    [get_bd_pins axi_dma_0/axi_resetn]
+    [get_bd_pins mlp_top_0/ap_rst_n] \
+    [get_bd_pins axi_dma_0/axi_resetn] \
+    [get_bd_pins axi_ic_ctrl/M00_ARESETN] \
+    [get_bd_pins axi_ic_ctrl/M01_ARESETN] \
+    [get_bd_pins axi_ic_ctrl/S00_ARESETN] \
+    [get_bd_pins axi_ic_hp0/S00_ARESETN] \
+    [get_bd_pins axi_ic_hp0/M00_ARESETN] \
+    [get_bd_pins axi_ic_hp1/S00_ARESETN] \
+    [get_bd_pins axi_ic_hp1/S01_ARESETN] \
+    [get_bd_pins axi_ic_hp1/M00_ARESETN]
 
 # ── 9. AXI4-Lite control connections (GP0 → DMA + MLP ctrl) ─
 connect_bd_intf_net [get_bd_intf_pins ps7/M_AXI_GP0] \
@@ -179,8 +179,8 @@ set_property top ${bd_name}_wrapper [current_fileset]
 update_compile_order -fileset sources_1
 
 # ── 13. Synthesise, implement, generate bitstream ────────────
-launch_runs impl_1 -to_step write_bitstream -jobs 4
-wait_on_run impl_1
+# launch_runs impl_1 -to_step write_bitstream -jobs 4
+# wait_on_run impl_1
 
 # Copy bitstream + hardware handoff to output folder
 set out_dir "${project_dir}/output"

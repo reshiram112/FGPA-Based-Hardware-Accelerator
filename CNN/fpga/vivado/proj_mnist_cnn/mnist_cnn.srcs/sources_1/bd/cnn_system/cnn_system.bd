@@ -757,10 +757,10 @@
             "value": "32"
           },
           "c_m_axis_mm2s_tdata_width": {
-            "value": "16"
+            "value": "32"
           },
           "c_s_axis_s2mm_tdata_width": {
-            "value": "16"
+            "value": "32"
           },
           "c_sg_length_width": {
             "value": "23"
@@ -1367,15 +1367,59 @@
           }
         },
         "nets": {
+          "M00_ACLK_1": {
+            "ports": [
+              "M00_ACLK",
+              "m00_couplers/M_ACLK"
+            ]
+          },
+          "M00_ARESETN_1": {
+            "ports": [
+              "M00_ARESETN",
+              "m00_couplers/M_ARESETN"
+            ]
+          },
+          "M01_ACLK_1": {
+            "ports": [
+              "M01_ACLK",
+              "m01_couplers/M_ACLK"
+            ]
+          },
+          "M01_ARESETN_1": {
+            "ports": [
+              "M01_ARESETN",
+              "m01_couplers/M_ARESETN"
+            ]
+          },
+          "M02_ACLK_1": {
+            "ports": [
+              "M02_ACLK",
+              "m02_couplers/M_ACLK"
+            ]
+          },
+          "M02_ARESETN_1": {
+            "ports": [
+              "M02_ARESETN",
+              "m02_couplers/M_ARESETN"
+            ]
+          },
+          "S00_ACLK_1": {
+            "ports": [
+              "S00_ACLK",
+              "s00_couplers/S_ACLK"
+            ]
+          },
+          "S00_ARESETN_1": {
+            "ports": [
+              "S00_ARESETN",
+              "s00_couplers/S_ARESETN"
+            ]
+          },
           "axi_ic_ctrl_ACLK_net": {
             "ports": [
               "ACLK",
               "xbar/aclk",
-              "s00_couplers/S_ACLK",
               "s00_couplers/M_ACLK",
-              "m00_couplers/M_ACLK",
-              "m01_couplers/M_ACLK",
-              "m02_couplers/M_ACLK",
               "m00_couplers/S_ACLK",
               "m01_couplers/S_ACLK",
               "m02_couplers/S_ACLK"
@@ -1385,11 +1429,7 @@
             "ports": [
               "ARESETN",
               "xbar/aresetn",
-              "s00_couplers/S_ARESETN",
               "s00_couplers/M_ARESETN",
-              "m00_couplers/M_ARESETN",
-              "m01_couplers/M_ARESETN",
-              "m02_couplers/M_ARESETN",
               "m00_couplers/S_ARESETN",
               "m01_couplers/S_ARESETN",
               "m02_couplers/S_ARESETN"
@@ -2273,15 +2313,48 @@
           }
         },
         "nets": {
+          "M00_ACLK_1": {
+            "ports": [
+              "M00_ACLK",
+              "m00_couplers/M_ACLK"
+            ]
+          },
+          "M00_ARESETN_1": {
+            "ports": [
+              "M00_ARESETN",
+              "m00_couplers/M_ARESETN"
+            ]
+          },
+          "S00_ACLK_1": {
+            "ports": [
+              "S00_ACLK",
+              "s00_couplers/S_ACLK"
+            ]
+          },
+          "S00_ARESETN_1": {
+            "ports": [
+              "S00_ARESETN",
+              "s00_couplers/S_ARESETN"
+            ]
+          },
+          "S01_ACLK_1": {
+            "ports": [
+              "S01_ACLK",
+              "s01_couplers/S_ACLK"
+            ]
+          },
+          "S01_ARESETN_1": {
+            "ports": [
+              "S01_ARESETN",
+              "s01_couplers/S_ARESETN"
+            ]
+          },
           "axi_ic_hp1_ACLK_net": {
             "ports": [
               "ACLK",
               "xbar/aclk",
-              "s00_couplers/S_ACLK",
-              "s01_couplers/S_ACLK",
               "s00_couplers/M_ACLK",
               "s01_couplers/M_ACLK",
-              "m00_couplers/M_ACLK",
               "m00_couplers/S_ACLK"
             ]
           },
@@ -2289,11 +2362,8 @@
             "ports": [
               "ARESETN",
               "xbar/aresetn",
-              "s00_couplers/S_ARESETN",
-              "s01_couplers/S_ARESETN",
               "s00_couplers/M_ARESETN",
               "s01_couplers/M_ARESETN",
-              "m00_couplers/M_ARESETN",
               "m00_couplers/S_ARESETN"
             ]
           }
@@ -2417,26 +2487,31 @@
       "ps7_FCLK_RESET0_N": {
         "ports": [
           "ps7/FCLK_RESET0_N",
-          "cnn_top_0/ap_rst_n",
-          "axi_ic_ctrl/ARESETN",
-          "axi_ic_ctrl/M00_ARESETN",
-          "axi_ic_ctrl/M01_ARESETN",
-          "axi_ic_ctrl/M02_ARESETN",
-          "axi_ic_ctrl/S00_ARESETN",
-          "axi_ic_hp0/ARESETN",
-          "axi_ic_hp0/S00_ARESETN",
-          "axi_ic_hp0/M00_ARESETN",
-          "axi_ic_hp1/ARESETN",
-          "axi_ic_hp1/S00_ARESETN",
-          "axi_ic_hp1/S01_ARESETN",
-          "axi_ic_hp1/M00_ARESETN",
           "rst_gen/ext_reset_in"
+        ]
+      },
+      "rst_gen_interconnect_aresetn": {
+        "ports": [
+          "rst_gen/interconnect_aresetn",
+          "axi_ic_ctrl/ARESETN",
+          "axi_ic_hp0/ARESETN",
+          "axi_ic_hp1/ARESETN"
         ]
       },
       "rst_gen_peripheral_aresetn": {
         "ports": [
           "rst_gen/peripheral_aresetn",
-          "axi_dma_0/axi_resetn"
+          "cnn_top_0/ap_rst_n",
+          "axi_dma_0/axi_resetn",
+          "axi_ic_ctrl/M00_ARESETN",
+          "axi_ic_ctrl/M01_ARESETN",
+          "axi_ic_ctrl/M02_ARESETN",
+          "axi_ic_ctrl/S00_ARESETN",
+          "axi_ic_hp0/S00_ARESETN",
+          "axi_ic_hp0/M00_ARESETN",
+          "axi_ic_hp1/S00_ARESETN",
+          "axi_ic_hp1/S01_ARESETN",
+          "axi_ic_hp1/M00_ARESETN"
         ]
       }
     },
