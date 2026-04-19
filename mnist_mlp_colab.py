@@ -1,24 +1,24 @@
 # ============================================================
-#  MNIST MLP Classifier — Google Colab Ready
+#  MNIST MLP Classifier  Google Colab Ready
 #  Author : Antigravity (Gemini Agent)
-#  Target : ≥ 95% test accuracy on MNIST
-#  Stack  : PyTorch · torchvision · matplotlib · seaborn
+#  Target :  95% test accuracy on MNIST
+#  Stack  : PyTorch  torchvision  matplotlib  seaborn
 # ============================================================
-# ╔══════════════════════════════════════════════════════════╗
-# ║              MODEL DESIGN EXPLANATION                    ║
-# ╠══════════════════════════════════════════════════════════╣
-# ║  Architecture  : MLP (fully-connected only, no CNNs)    ║
-# ║  Input         : 784  (28×28 flattened, normalised)     ║
-# ║  Hidden 1      : 512 neurons  — ReLU + BatchNorm        ║
-# ║  Hidden 2      : 256 neurons  — ReLU + BatchNorm        ║
-# ║  Hidden 3      : 128 neurons  — ReLU + BatchNorm        ║
-# ║  Output        : 10  neurons  — CrossEntropyLoss        ║
-# ║  Regulariser   : Dropout (p=0.3) after each hidden      ║
-# ║  Optimiser     : Adam (lr=1e-3, weight_decay=1e-4)      ║
-# ║  Scheduler     : ReduceLROnPlateau (patience=3)         ║
-# ║  Batch size    : 128                                    ║
-# ║  Epochs        : up to 20 (early-stop on val-acc)       ║
-# ╚══════════════════════════════════════════════════════════╝
+# 
+#               MODEL DESIGN EXPLANATION                    
+# 
+#   Architecture  : MLP (fully-connected only, no CNNs)    
+#   Input         : 784  (2828 flattened, normalised)     
+#   Hidden 1      : 512 neurons   ReLU + BatchNorm        
+#   Hidden 2      : 256 neurons   ReLU + BatchNorm        
+#   Hidden 3      : 128 neurons   ReLU + BatchNorm        
+#   Output        : 10  neurons   CrossEntropyLoss        
+#   Regulariser   : Dropout (p=0.3) after each hidden      
+#   Optimiser     : Adam (lr=1e-3, weight_decay=1e-4)      
+#   Scheduler     : ReduceLROnPlateau (patience=3)         
+#   Batch size    : 128                                    
+#   Epochs        : up to 20 (early-stop on val-acc)       
+# 
 
 # ----------------------------------------------------------
 # 0. INSTALL / IMPORTS
@@ -57,10 +57,10 @@ torch.backends.cudnn.benchmark = False
 # ----------------------------------------------------------
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"{'='*60}")
-print(f"  🖥️  Device : {DEVICE}")
+print(f"    Device : {DEVICE}")
 if DEVICE.type == "cuda":
-    print(f"  🚀 GPU    : {torch.cuda.get_device_name(0)}")
-    print(f"  💾 VRAM   : {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
+    print(f"   GPU    : {torch.cuda.get_device_name(0)}")
+    print(f"   VRAM   : {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
 print(f"{'='*60}\n")
 
 # ----------------------------------------------------------
@@ -73,7 +73,7 @@ CONFIG = {
     "epochs"        : 20,
     "dropout"       : 0.3,
     "hidden_dims"   : [512, 256, 128],
-    "val_fraction"  : 0.1,          # 10 % of train → validation
+    "val_fraction"  : 0.1,          # 10 % of train  validation
     "patience"      : 5,            # early-stopping patience
     "min_accuracy"  : 0.80,         # retry threshold
     "target_acc"    : 0.95,         # success target
@@ -108,9 +108,9 @@ def get_dataloaders(batch_size: int, val_fraction: float):
     test_loader  = DataLoader(test_ds,  batch_size=batch_size,
                               shuffle=False, num_workers=2, pin_memory=True)
 
-    print(f"  📦 Train samples : {train_size:,}")
-    print(f"  📦 Val   samples : {val_size:,}")
-    print(f"  📦 Test  samples : {len(test_ds):,}\n")
+    print(f"   Train samples : {train_size:,}")
+    print(f"   Val   samples : {val_size:,}")
+    print(f"   Test  samples : {len(test_ds):,}\n")
     return train_loader, val_loader, test_loader
 
 # ----------------------------------------------------------
@@ -119,7 +119,7 @@ def get_dataloaders(batch_size: int, val_fraction: float):
 class MLP(nn.Module):
     """
     Multilayer Perceptron for MNIST.
-    Layers: Linear → BatchNorm → ReLU → Dropout  (×N)  → Linear (output)
+    Layers: Linear  BatchNorm  ReLU  Dropout  (N)   Linear (output)
     """
     def __init__(self, input_dim: int, hidden_dims: list, output_dim: int,
                  dropout: float):
@@ -145,7 +145,7 @@ class MLP(nn.Module):
                 nn.init.zeros_(m.bias)
 
     def forward(self, x):
-        x = x.view(x.size(0), -1)   # flatten  28×28 → 784
+        x = x.view(x.size(0), -1)   # flatten  2828  784
         return self.net(x)
 
 def build_model(cfg: dict) -> MLP:
@@ -156,15 +156,15 @@ def build_model(cfg: dict) -> MLP:
         dropout     = cfg["dropout"],
     ).to(DEVICE)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"  🧠 Model         : MLP {[784]+cfg['hidden_dims']+[10]}")
-    print(f"  🔢 Parameters    : {total_params:,}\n")
+    print(f"   Model         : MLP {[784]+cfg['hidden_dims']+[10]}")
+    print(f"   Parameters    : {total_params:,}\n")
     return model
 
 # ----------------------------------------------------------
 # 6. TRAINING & EVALUATION HELPERS
 # ----------------------------------------------------------
 def run_epoch(model, loader, criterion, optimizer=None):
-    """One forward pass over loader. If optimizer given → train mode."""
+    """One forward pass over loader. If optimizer given  train mode."""
     is_train = optimizer is not None
     model.train() if is_train else model.eval()
 
@@ -221,10 +221,10 @@ def train(cfg: dict, train_loader, val_loader):
     best_state= None
     no_improve= 0
 
-    print(f"{'─'*60}")
+    print(f"{''*60}")
     print(f"  {'Epoch':>5}  {'Train Loss':>10}  {'Train Acc':>9}  "
           f"{'Val Loss':>9}  {'Val Acc':>8}  {'LR':>8}")
-    print(f"{'─'*60}")
+    print(f"{''*60}")
 
     start = time.time()
     for epoch in range(1, cfg["epochs"] + 1):
@@ -249,13 +249,13 @@ def train(cfg: dict, train_loader, val_loader):
         else:
             no_improve += 1
             if no_improve >= cfg["patience"]:
-                print(f"\n  ⏹  Early stopping at epoch {epoch} "
+                print(f"\n    Early stopping at epoch {epoch} "
                       f"(no improvement for {cfg['patience']} epochs)")
                 break
 
     elapsed = time.time() - start
-    print(f"{'─'*60}")
-    print(f"  ⏱  Training time : {elapsed:.1f}s  |  "
+    print(f"{''*60}")
+    print(f"    Training time : {elapsed:.1f}s  |  "
           f"Best val acc : {best_val*100:.2f}%\n")
 
     model.load_state_dict(best_state)  # restore best weights
@@ -290,7 +290,7 @@ def plot_training_curves(history: dict, attempt: int):
     fname = f"training_curves_attempt{attempt}.png"
     plt.savefig(fname, dpi=120, bbox_inches="tight")
     plt.show()
-    print(f"  📊 Saved → {fname}\n")
+    print(f"   Saved  {fname}\n")
 
 
 def plot_confusion_matrix(y_true, y_pred):
@@ -299,12 +299,12 @@ def plot_confusion_matrix(y_true, y_pred):
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
                 xticklabels=range(10), yticklabels=range(10),
                 linewidths=0.5, ax=ax)
-    ax.set_title("Confusion Matrix — MNIST MLP", fontsize=14, fontweight="bold")
+    ax.set_title("Confusion Matrix  MNIST MLP", fontsize=14, fontweight="bold")
     ax.set_xlabel("Predicted Label"); ax.set_ylabel("True Label")
     plt.tight_layout()
     plt.savefig("confusion_matrix.png", dpi=120, bbox_inches="tight")
     plt.show()
-    print("  📊 Saved → confusion_matrix.png\n")
+    print("   Saved  confusion_matrix.png\n")
 
 
 def show_misclassified(test_loader, model, n=16):
@@ -333,12 +333,12 @@ def show_misclassified(test_loader, model, n=16):
         ax.set_title(f"T:{wrong_trues[i]} P:{wrong_preds[i]}",
                      color="red", fontsize=9)
         ax.axis("off")
-    fig.suptitle("Misclassified Samples  (True → Predicted)",
+    fig.suptitle("Misclassified Samples  (True  Predicted)",
                  fontsize=13, fontweight="bold")
     plt.tight_layout()
     plt.savefig("misclassified.png", dpi=120, bbox_inches="tight")
     plt.show()
-    print("  📊 Saved → misclassified.png\n")
+    print("   Saved  misclassified.png\n")
 
 # ----------------------------------------------------------
 # 9. SAVE MODEL (optionally to Google Drive)
@@ -353,13 +353,13 @@ def save_model(model, test_acc: float, use_drive: bool = False):
             os.makedirs(save_dir, exist_ok=True)
             fname = os.path.join(save_dir, fname)
         except Exception:
-            print("  ⚠️  Drive mount failed — saving locally instead.")
+            print("    Drive mount failed  saving locally instead.")
     torch.save({
         "model_state_dict" : model.state_dict(),
         "test_accuracy"    : test_acc,
         "config"           : CONFIG,
     }, fname)
-    print(f"  💾 Model saved → {fname}")
+    print(f"   Model saved  {fname}")
 
 # ----------------------------------------------------------
 # 10. ITERATIVE IMPROVEMENT LOOP
@@ -375,9 +375,9 @@ def iterative_train_loop(train_loader, val_loader, test_loader):
 
     while attempt < MAX_ATTEMPTS:
         attempt += 1
-        print(f"\n{'═'*60}")
-        print(f"  🔁  TRAINING ATTEMPT {attempt} / {MAX_ATTEMPTS}")
-        print(f"{'═'*60}")
+        print(f"\n{''*60}")
+        print(f"    TRAINING ATTEMPT {attempt} / {MAX_ATTEMPTS}")
+        print(f"{''*60}")
         print(f"  Config: lr={cfg['lr']:.2e} | dropout={cfg['dropout']} "
               f"| hidden={cfg['hidden_dims']}\n")
 
@@ -385,16 +385,16 @@ def iterative_train_loop(train_loader, val_loader, test_loader):
         plot_training_curves(history, attempt)
 
         test_acc, preds, labels = evaluate_test(model, test_loader)
-        print(f"\n{'★'*60}")
-        print(f"  🎯 TEST ACCURACY  →  {test_acc*100:.2f}%")
-        print(f"{'★'*60}\n")
+        print(f"\n{''*60}")
+        print(f"   TEST ACCURACY    {test_acc*100:.2f}%")
+        print(f"{''*60}\n")
 
         if test_acc >= cfg["min_accuracy"]:
-            break  # success — exit loop
+            break  # success  exit loop
 
-        # ── Failure: adjust hyperparameters for next attempt ──────────
-        print(f"  ⚠️  Accuracy {test_acc*100:.2f}% < {cfg['min_accuracy']*100:.0f}% "
-              f"— auto-adjusting hyperparameters …\n")
+        #  Failure: adjust hyperparameters for next attempt 
+        print(f"    Accuracy {test_acc*100:.2f}% < {cfg['min_accuracy']*100:.0f}% "
+              f" auto-adjusting hyperparameters \n")
         if attempt == 1:
             cfg["lr"]          = 5e-4
             cfg["dropout"]     = 0.2
@@ -407,21 +407,21 @@ def iterative_train_loop(train_loader, val_loader, test_loader):
             cfg["weight_decay"]= 5e-5
             cfg["epochs"]      = 30
 
-    # ── Final reporting ────────────────────────────────────────────────
-    print("\n" + "═"*60)
-    print(f"  FINAL RESULTS — Attempt {attempt}")
-    print("═"*60)
+    #  Final reporting 
+    print("\n" + ""*60)
+    print(f"  FINAL RESULTS  Attempt {attempt}")
+    print(""*60)
     print(f"  Test Accuracy : {test_acc*100:.2f}%")
 
     if test_acc >= cfg["target_acc"]:
-        print("  ✅  SUCCESS — Target ≥ 95% ACHIEVED!")
+        print("    SUCCESS  Target  95% ACHIEVED!")
     elif test_acc >= cfg["min_accuracy"]:
-        print("  ✅  SUCCESS — Minimum ≥ 80% achieved.")
+        print("    SUCCESS  Minimum  80% achieved.")
     else:
-        print("  ❌  WARNING: Model did NOT reach 80% accuracy.")
+        print("    WARNING: Model did NOT reach 80% accuracy.")
         print("      Consider: longer training, data augmentation, or different arch.")
 
-    print("\n  📋 Classification Report:")
+    print("\n   Classification Report:")
     print(classification_report(labels, preds,
                                 target_names=[str(i) for i in range(10)]))
 
@@ -432,20 +432,20 @@ def iterative_train_loop(train_loader, val_loader, test_loader):
     return model, test_acc
 
 # ----------------------------------------------------------
-# 11.  OPTIONAL — GOOGLE DRIVE CHECKPOINT
+# 11.  OPTIONAL  GOOGLE DRIVE CHECKPOINT
 # ----------------------------------------------------------
-USE_DRIVE = False   # ← set True inside Colab to save to Drive
+USE_DRIVE = False   #  set True inside Colab to save to Drive
 
 # ----------------------------------------------------------
 # 12.  MAIN ENTRY POINT
 # ----------------------------------------------------------
 if __name__ == "__main__":
-    print("\n" + "═"*60)
-    print("   MNIST MLP CLASSIFIER — Antigravity Edition")
-    print("═"*60 + "\n")
+    print("\n" + ""*60)
+    print("   MNIST MLP CLASSIFIER  Antigravity Edition")
+    print(""*60 + "\n")
 
     # Load data
-    print("📂 Loading MNIST …")
+    print(" Loading MNIST ")
     train_loader, val_loader, test_loader = get_dataloaders(
         CONFIG["batch_size"], CONFIG["val_fraction"])
 
@@ -455,4 +455,4 @@ if __name__ == "__main__":
     # Persist model
     save_model(model, test_acc, use_drive=USE_DRIVE)
 
-    print("\n✅ All done. Check the saved PNG files for plots.")
+    print("\n All done. Check the saved PNG files for plots.")
