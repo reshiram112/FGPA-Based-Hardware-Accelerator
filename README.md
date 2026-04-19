@@ -65,17 +65,28 @@ vitis-run.bat --mode hls --tcl fpga/hls/run_hls.tcl
 ```
 *This will automatically synthesize the `cnn_top` or `mlp_top` C++ code, analyze loop pipelining, and extract the IP to `fpga/hls_ip`.*
 
-### Step 3: Vivado Block Design & Bitstream Generation
-Use the automation script to instantly build the full Zynq PS + AXI DMA + Custom IP block design and run physical synthesis.
+### Step 3: Vivado Block Design
+Use the automation script to instantly build the full Zynq PS + AXI DMA + Custom IP block design and wire all interfaces together.
 ```bash
 # Ensure Vivado is in your PATH
 vivado -mode batch -source fpga/vivado/create_project.tcl
 ```
-*This will take 15-25 minutes to complete. The final `.bit` and `.hwh` files will be placed in `fpga/vivado/proj_mnist_cnn/output/`.*
+*This creates the Vivado project in the `fpga/vivado/proj_.../` directory.*
 
-### Step 4: Hardware Deployment (PYNQ)
+### Step 4: Open Vivado GUI & Generate Bitstream
+To view the generated architecture and compile the final hardware bitstream, open the project in the Vivado GUI:
+```bash
+# From the MLP/ or CNN/ directory
+vivado fpga/vivado/proj_mnist_cnn/mnist_cnn.xpr  # (Or proj_mnist_mlp/mnist_mlp.xpr)
+```
+Once the GUI opens:
+1. Click **Open Block Design** on the left panel to inspect the PS+PL architecture.
+2. Click **Generate Bitstream** at the bottom left.
+3. This process will take 15-25 minutes. Once finished, export your `.bit` and `.hwh` files from the output directories.
+
+### Step 5: Hardware Deployment (PYNQ)
 1. Boot your PYNQ-Z2 board and open its Jupyter Notebook server.
-2. Upload the `output/` bitstream (`.bit` and `.hwh`) to the board.
+2. Upload the exported bitstream (`.bit` and `.hwh`) to the board.
 3. Upload the `fpga/fpga_weights/` directory containing the `.npy` files.
-4. Upload the `fpga/pynq/mnist_inference.ipynb` script.
-5. Run the Jupyter Notebook! It will allocate continuous physical memory, map the weight addresses via AXI-Lite, and test hardware acceleration throughput.
+4. Upload the `test_image.png` file and the `fpga/pynq/mnist_inference.ipynb` script.
+5. Run the Jupyter Notebook to allocate continuous physical memory, map weight addresses via AXI-Lite, and execute pure hardware inference on your test image!
