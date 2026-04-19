@@ -65,27 +65,20 @@ vitis-run.bat --mode hls --tcl fpga/hls/run_hls.tcl
 ```
 *This will automatically synthesize the `cnn_top` or `mlp_top` C++ code, analyze loop pipelining, and extract the IP to `fpga/hls_ip`.*
 
-### Step 3: Vivado Block Design
-Use the automation script to instantly build the full Zynq PS + AXI DMA + Custom IP block design and wire all interfaces together.
+### Step 3: Vivado Block Design & Bitstream Generation
+Use the automation script to instantly build the full Zynq PS + AXI DMA + Custom IP block design and compile the final hardware bitstream.
 ```bash
 # Ensure Vivado is in your PATH
 vivado -mode batch -source fpga/vivado/create_project.tcl
 ```
-*This creates the Vivado project in the `fpga/vivado/proj_.../` directory.*
+*This creates the Vivado project, connects all interfaces, and runs placement and routing to generate the `.bit` and `.xsa` hardware handoff files in `fpga/vivado/proj_.../output/`. This process takes 15-25 minutes.*
 
-### Step 4: Open Vivado GUI & Generate Bitstream
-To view the generated architecture and compile the final hardware bitstream, open the project in the Vivado GUI:
-```bash
-# From the MLP/ or CNN/ directory
-vivado fpga/vivado/proj_mnist_cnn/mnist_cnn.xpr  # (Or proj_mnist_mlp/mnist_mlp.xpr)
-```
-Once the GUI opens:
-1. Click **Open Block Design** on the left panel to inspect the PS+PL architecture.
-2. Click **Generate Bitstream** at the bottom left.
-3. This process will take 15-25 minutes. Once finished, export your `.bit` and `.hwh` files from the output directories.
+*(Optional) You can open the generated project in the Vivado GUI (`.xpr` file) to visually inspect the Zynq PS+PL architecture.*
 
-### Step 5: Hardware Deployment (PYNQ)
+### Step 4: Hardware Deployment (PYNQ)
+We have optimized deployment into a **Single-File Zero-Configuration** workflow. The pre-trained weights, hardware bitstream (`.bit`), and IP register maps (`.hwh`) are all securely embedded directly inside the Jupyter Notebook as Base64 strings.
+
 1. Boot your PYNQ-Z2 board and open its Jupyter Notebook server.
-2. Upload the exported bitstream (`.bit` and `.hwh`) to the board.
-3. Upload your `test_image.png` file and the `fpga/pynq/mnist_inference.ipynb` script.
-4. Run the Jupyter Notebook to automatically decode the bundled weights, map memory via AXI-Lite, and execute pure hardware inference on your test image!
+2. Upload **only** the `fpga/pynq/mnist_inference.ipynb` (or `mnist_cnn_inference.ipynb`) script.
+3. Upload your `test_image.png` file.
+4. Run the Jupyter Notebook! It will automatically decode and write the hardware bitstream to the FPGA, configure the AXI-Lite weight registers, and execute pure hardware inference on your test image.
