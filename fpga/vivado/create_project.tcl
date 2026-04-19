@@ -20,11 +20,19 @@ set hls_ip_repo   "[file normalize [file dirname [info script]]]/../hls_ip"
 
 # ── 1. Create Vivado project ─────────────────────────────────
 create_project ${project_name} ${project_dir} -part ${part} -force
-set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
 
-# Add HLS IP to repository path
-set_property ip_repo_paths ${hls_ip_repo} [current_project]
-update_ip_catalog
+# Note: PYNQ-Z2 board files may not be installed.
+# Using xc7z020clg400-1 directly with manual PS7 configuration.
+
+# Add HLS IP to repository path — use the zip file directly
+set ip_zip "[file normalize [file dirname [info script]]]/../../mlp_top/solution/impl/ip/xilinx_com_hls_mlp_top_1_0.zip"
+if {[file exists $ip_zip]} {
+    set_property ip_repo_paths "[file dirname $ip_zip]" [current_project]
+    update_ip_catalog -quiet
+    puts "INFO: Added HLS IP from $ip_zip"
+} else {
+    puts "WARNING: HLS IP zip not found at $ip_zip — check HLS synthesis ran first"
+}
 
 # ── 2. Create Block Design ───────────────────────────────────
 create_bd_design ${bd_name}
@@ -47,8 +55,9 @@ set_property -dict [list \
     CONFIG.PCW_EN_RST0_PORT {1} \
 ] [get_bd_cells ps7]
 
-apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 \
-    -config {make_external "FIXED_IO, DDR" apply_board_preset "1"} [get_bd_cells ps7]
+# Expose DDR and FIXED_IO to top level (no board preset needed)
+make_bd_intf_pins_external [get_bd_intf_pins ps7/DDR]
+make_bd_intf_pins_external [get_bd_intf_pins ps7/FIXED_IO]
 
 # ── 4. Add AXI DMA (for input/output streams) ────────────────
 set dma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0]
@@ -76,9 +85,19 @@ set ic_hp0 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi
 set_property CONFIG.NUM_SI 1 [get_bd_cells axi_ic_hp0]
 set_property CONFIG.NUM_MI 1 [get_bd_cells axi_ic_hp0]
 
-# ── 7. Connect clocks and resets ─────────────────────────────
-# 100 MHz clock from PS FCLK_CLK0
+# ── 7. Enable HP1 on PS7 for DMA memory access ──────────────
+set_property CONFIG.PCW_USE_S_AXI_HP1 {1} [get_bd_cells ps7]
+
+# AXI interconnect for DMA memory (HP1)
+set ic_hp1 [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_ic_hp1]
+set_property CONFIG.NUM_SI 2 [get_bd_cells axi_ic_hp1]
+set_property CONFIG.NUM_MI 1 [get_bd_cells axi_ic_hp1]
+
+# ── 8. Connect clocks and resets ─────────────────────────────
 connect_bd_net [get_bd_pins ps7/FCLK_CLK0] \
+    [get_bd_pins ps7/M_AXI_GP0_ACLK] \
+    [get_bd_pins ps7/S_AXI_HP0_ACLK] \
+    [get_bd_pins ps7/S_AXI_HP1_ACLK] \
     [get_bd_pins axi_dma_0/s_axi_lite_aclk] \
     [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] \
     [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] \
@@ -89,7 +108,11 @@ connect_bd_net [get_bd_pins ps7/FCLK_CLK0] \
     [get_bd_pins axi_ic_ctrl/S00_ACLK] \
     [get_bd_pins axi_ic_hp0/ACLK] \
     [get_bd_pins axi_ic_hp0/S00_ACLK] \
-    [get_bd_pins axi_ic_hp0/M00_ACLK]
+    [get_bd_pins axi_ic_hp0/M00_ACLK] \
+    [get_bd_pins axi_ic_hp1/ACLK] \
+    [get_bd_pins axi_ic_hp1/S00_ACLK] \
+    [get_bd_pins axi_ic_hp1/S01_ACLK] \
+    [get_bd_pins axi_ic_hp1/M00_ACLK]
 
 connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] \
     [get_bd_pins mlp_top_0/ap_rst_n] \
@@ -99,7 +122,11 @@ connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] \
     [get_bd_pins axi_ic_ctrl/S00_ARESETN] \
     [get_bd_pins axi_ic_hp0/ARESETN] \
     [get_bd_pins axi_ic_hp0/S00_ARESETN] \
-    [get_bd_pins axi_ic_hp0/M00_ARESETN]
+    [get_bd_pins axi_ic_hp0/M00_ARESETN] \
+    [get_bd_pins axi_ic_hp1/ARESETN] \
+    [get_bd_pins axi_ic_hp1/S00_ARESETN] \
+    [get_bd_pins axi_ic_hp1/S01_ARESETN] \
+    [get_bd_pins axi_ic_hp1/M00_ARESETN]
 
 # DMA reset from Proc Sys Reset
 set rst_gen [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_gen]
@@ -108,7 +135,7 @@ connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins rst_gen/ext_reset_in
 connect_bd_net [get_bd_pins rst_gen/peripheral_aresetn] \
     [get_bd_pins axi_dma_0/axi_resetn]
 
-# ── 8. AXI4-Lite control connections (GP0 → DMA + MLP ctrl) ─
+# ── 9. AXI4-Lite control connections (GP0 → DMA + MLP ctrl) ─
 connect_bd_intf_net [get_bd_intf_pins ps7/M_AXI_GP0] \
     [get_bd_intf_pins axi_ic_ctrl/S00_AXI]
 connect_bd_intf_net [get_bd_intf_pins axi_ic_ctrl/M00_AXI] \
@@ -116,38 +143,31 @@ connect_bd_intf_net [get_bd_intf_pins axi_ic_ctrl/M00_AXI] \
 connect_bd_intf_net [get_bd_intf_pins axi_ic_ctrl/M01_AXI] \
     [get_bd_intf_pins mlp_top_0/s_axi_ctrl]
 
-# ── 9. AXI4-Stream data path: DMA → MLP → DMA ───────────────
+# ── 10. AXI4-Stream data path: DMA → MLP → DMA ──────────────
 connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] \
     [get_bd_intf_pins mlp_top_0/s_axis_input]
 connect_bd_intf_net [get_bd_intf_pins mlp_top_0/m_axis_output] \
     [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM]
 
-# ── 10. AXI4-HP0: MLP weight reads → PS DDR ─────────────────
+# ── 11. AXI4-HP0: MLP weight reads → PS DDR ─────────────────
 connect_bd_intf_net [get_bd_intf_pins mlp_top_0/m_axi_weights] \
     [get_bd_intf_pins axi_ic_hp0/S00_AXI]
 connect_bd_intf_net [get_bd_intf_pins axi_ic_hp0/M00_AXI] \
     [get_bd_intf_pins ps7/S_AXI_HP0]
 
-# ── 11. Address mapping ──────────────────────────────────────
+# ── 12. AXI4-HP1: DMA memory access → PS DDR ────────────────
+connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXI_MM2S] \
+    [get_bd_intf_pins axi_ic_hp1/S00_AXI]
+connect_bd_intf_net [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] \
+    [get_bd_intf_pins axi_ic_hp1/S01_AXI]
+connect_bd_intf_net [get_bd_intf_pins axi_ic_hp1/M00_AXI] \
+    [get_bd_intf_pins ps7/S_AXI_HP1]
+
+# ── 11. Address mapping — auto-assign ────────────────────────
+# Vivado auto-assigns non-overlapping addresses for all slaves.
+# (MLP ctrl and DMA will be at their auto-assigned base addresses)
 assign_bd_address
-
-# DMA at 0x4000_0000 (256 MB segment)
-set_property offset 0x40000000 \
-    [get_bd_addr_segs ps7/Data/SEG_axi_dma_0_Reg]
-set_property range 64K \
-    [get_bd_addr_segs ps7/Data/SEG_axi_dma_0_Reg]
-
-# MLP ctrl at 0x4001_0000
-set_property offset 0x40010000 \
-    [get_bd_addr_segs ps7/Data/SEG_mlp_top_0_Reg]
-set_property range 64K \
-    [get_bd_addr_segs ps7/Data/SEG_mlp_top_0_Reg]
-
-# HP0: MLP can access full DDR (1 GB)
-set_property offset 0x00000000 \
-    [get_bd_addr_segs mlp_top_0/Data_m_axi_weights/SEG_ps7_HP0_DDR_LOWOCM]
-set_property range 1G \
-    [get_bd_addr_segs mlp_top_0/Data_m_axi_weights/SEG_ps7_HP0_DDR_LOWOCM]
+puts "INFO: Address auto-assignment complete"
 
 # ── 12. Validate and generate ────────────────────────────────
 validate_bd_design

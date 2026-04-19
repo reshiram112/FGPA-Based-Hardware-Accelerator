@@ -85,12 +85,14 @@ void mlp_top(
 #pragma HLS INTERFACE s_axilite port=b4 bundle=ctrl
 #pragma HLS INTERFACE s_axilite port=return bundle=ctrl
 
-// Local activation buffers — in BRAM (much smaller than weight matrices)
-#pragma HLS ARRAY_PARTITION variable=act1 complete dim=0
-    static data_t act1[L1];
-    static data_t act2[L2];
-    static data_t act3[L3];
-    static data_t act4[L4];
+// Local activation buffers — stored in BRAM
+    data_t act1[L1];
+    data_t act2[L2];
+    data_t act3[L3];
+    data_t act4[L4];
+#pragma HLS ARRAY_PARTITION variable=act1 cyclic factor=8 dim=1
+#pragma HLS ARRAY_PARTITION variable=act2 cyclic factor=8 dim=1
+#pragma HLS ARRAY_PARTITION variable=act3 cyclic factor=8 dim=1
 
 // ── Step 1: Read 784 pixels from AXI-Stream into local buffer ────────────────
     data_t input[L0];
