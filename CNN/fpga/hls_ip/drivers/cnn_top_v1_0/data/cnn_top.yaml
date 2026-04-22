@@ -17,7 +17,7 @@ config:
     - XCnn_top_Config
 required:
     - compatible
-    - reg: 2
+    - reg
 additionalProperties:
    - interrupts
    - interrupt-parent

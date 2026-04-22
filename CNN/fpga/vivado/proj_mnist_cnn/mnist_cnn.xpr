@@ -7,7 +7,7 @@
 <Project Product="Vivado" Version="7" Minor="70" Path="C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/CNN/fpga/vivado/proj_mnist_cnn/mnist_cnn.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="f0b5ec1aa7b443f3973c8a8747f87105"/>
+    <Option Name="Id" Val="1b7b867cb7674b2e8146697a54e2299d"/>
     <Option Name="Part" Val="xc7z020clg400-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -96,6 +96,39 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_dma_0_0/cnn_system_axi_dma_0_0.xci">
+          <Proxy FileSetName="cnn_system_axi_dma_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_ctrl_imp_auto_pc_0/cnn_system_axi_ic_ctrl_imp_auto_pc_0.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_ctrl_imp_auto_pc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_ctrl_imp_xbar_0/cnn_system_axi_ic_ctrl_imp_xbar_0.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_ctrl_imp_xbar_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_hp1_imp_auto_pc_0/cnn_system_axi_ic_hp1_imp_auto_pc_0.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_hp1_imp_auto_pc_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_hp1_imp_auto_pc_1/cnn_system_axi_ic_hp1_imp_auto_pc_1.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_hp1_imp_auto_pc_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_hp1_imp_auto_us_0/cnn_system_axi_ic_hp1_imp_auto_us_0.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_hp1_imp_auto_us_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_hp1_imp_auto_us_1/cnn_system_axi_ic_hp1_imp_auto_us_1.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_hp1_imp_auto_us_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_axi_ic_hp1_imp_xbar_0/cnn_system_axi_ic_hp1_imp_xbar_0.xci">
+          <Proxy FileSetName="cnn_system_axi_ic_hp1_imp_xbar_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_cnn_top_0_0/cnn_system_cnn_top_0_0.xci">
+          <Proxy FileSetName="cnn_system_cnn_top_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_ps7_0/cnn_system_ps7_0.xci">
+          <Proxy FileSetName="cnn_system_ps7_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="cnn_system.bd" FileRelPathName="ip/cnn_system_rst_gen_0/cnn_system_rst_gen_0.xci">
+          <Proxy FileSetName="cnn_system_rst_gen_0"/>
+        </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/cnn_system/hdl/cnn_system_wrapper.v">
         <FileInfo>
@@ -139,6 +172,72 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
+    <FileSet Name="cnn_system_axi_ic_ctrl_imp_xbar_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_ctrl_imp_xbar_0" RelGenDir="$PGENDIR/cnn_system_axi_ic_ctrl_imp_xbar_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_ctrl_imp_xbar_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_ctrl_imp_auto_pc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_ctrl_imp_auto_pc_0" RelGenDir="$PGENDIR/cnn_system_axi_ic_ctrl_imp_auto_pc_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_ctrl_imp_auto_pc_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_ps7_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_ps7_0" RelGenDir="$PGENDIR/cnn_system_ps7_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_ps7_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_cnn_top_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_cnn_top_0_0" RelGenDir="$PGENDIR/cnn_system_cnn_top_0_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_cnn_top_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_hp1_imp_auto_pc_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_hp1_imp_auto_pc_0" RelGenDir="$PGENDIR/cnn_system_axi_ic_hp1_imp_auto_pc_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_hp1_imp_auto_pc_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_dma_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_dma_0_0" RelGenDir="$PGENDIR/cnn_system_axi_dma_0_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_dma_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_hp1_imp_xbar_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_hp1_imp_xbar_0" RelGenDir="$PGENDIR/cnn_system_axi_ic_hp1_imp_xbar_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_hp1_imp_xbar_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_hp1_imp_auto_us_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_hp1_imp_auto_us_1" RelGenDir="$PGENDIR/cnn_system_axi_ic_hp1_imp_auto_us_1">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_hp1_imp_auto_us_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_hp1_imp_auto_pc_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_hp1_imp_auto_pc_1" RelGenDir="$PGENDIR/cnn_system_axi_ic_hp1_imp_auto_pc_1">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_hp1_imp_auto_pc_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_axi_ic_hp1_imp_auto_us_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_axi_ic_hp1_imp_auto_us_0" RelGenDir="$PGENDIR/cnn_system_axi_ic_hp1_imp_auto_us_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_axi_ic_hp1_imp_auto_us_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="cnn_system_rst_gen_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/cnn_system_rst_gen_0" RelGenDir="$PGENDIR/cnn_system_rst_gen_0">
+      <Config>
+        <Option Name="TopModule" Val="cnn_system_rst_gen_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -159,18 +258,361 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="22">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1" ParallelReportGen="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
           <Desc>Vivado Synthesis Defaults</Desc>
         </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
+    <Run Id="cnn_system_axi_ic_ctrl_imp_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_ctrl_imp_xbar_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_ctrl_imp_xbar_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_ctrl_imp_xbar_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_xbar_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_xbar_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_ctrl_imp_auto_pc_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_ctrl_imp_auto_pc_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_ctrl_imp_auto_pc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_ctrl_imp_auto_pc_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_auto_pc_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_auto_pc_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_ps7_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_ps7_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_ps7_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_ps7_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_ps7_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_ps7_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_cnn_top_0_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_cnn_top_0_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_cnn_top_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_cnn_top_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_cnn_top_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_cnn_top_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_pc_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_hp1_imp_auto_pc_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_pc_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_hp1_imp_auto_pc_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_dma_0_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_dma_0_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_dma_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_dma_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_dma_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_dma_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_xbar_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_hp1_imp_xbar_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_xbar_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_hp1_imp_xbar_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_xbar_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_xbar_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_us_1_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_hp1_imp_auto_us_1" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_us_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_hp1_imp_auto_us_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_pc_1_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_hp1_imp_auto_pc_1" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_pc_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_hp1_imp_auto_pc_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_us_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_axi_ic_hp1_imp_auto_us_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_us_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_axi_ic_hp1_imp_auto_us_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_rst_gen_0_synth_1" Type="Ft3:Synth" SrcSet="cnn_system_rst_gen_0" Part="xc7z020clg400-1" ConstrsSet="cnn_system_rst_gen_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/cnn_system_rst_gen_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_rst_gen_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_rst_gen_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" LaunchOptions="-jobs 4 " AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_ctrl_imp_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_ctrl_imp_xbar_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_ctrl_imp_xbar_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_xbar_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_xbar_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_ctrl_imp_auto_pc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_ctrl_imp_auto_pc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_ctrl_imp_auto_pc_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_auto_pc_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_ctrl_imp_auto_pc_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_ps7_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_ps7_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_ps7_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_ps7_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_ps7_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_cnn_top_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_cnn_top_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_cnn_top_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_cnn_top_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_cnn_top_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_pc_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_pc_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_hp1_imp_auto_pc_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_dma_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_dma_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_dma_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_dma_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_dma_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_xbar_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_xbar_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_hp1_imp_xbar_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_xbar_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_xbar_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_us_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_us_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_hp1_imp_auto_us_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_1_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_pc_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_pc_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_hp1_imp_auto_pc_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_pc_1_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_axi_ic_hp1_imp_auto_us_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_axi_ic_hp1_imp_auto_us_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_axi_ic_hp1_imp_auto_us_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_axi_ic_hp1_imp_auto_us_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2025"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="cnn_system_rst_gen_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="cnn_system_rst_gen_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="cnn_system_rst_gen_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/cnn_system_rst_gen_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/cnn_system_rst_gen_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2025">
           <Desc>Default settings for Implementation.</Desc>

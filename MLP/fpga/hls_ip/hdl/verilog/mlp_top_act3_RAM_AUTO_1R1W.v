@@ -9,18 +9,27 @@ module mlp_top_act3_RAM_AUTO_1R1W (
     address0, ce0,
     d0, we0, 
     q0, 
+      
+    address1, ce1,
+    
+    q1, 
      
     reset, clk);
 
 parameter DataWidth = 15;
-parameter AddressWidth = 4;
-parameter AddressRange = 16;
+parameter AddressWidth = 5;
+parameter AddressRange = 32;
  
 input[AddressWidth-1:0] address0;
 input ce0;
 input[DataWidth-1:0] d0;
 input we0; 
 output reg[DataWidth-1:0] q0; 
+ 
+input[AddressWidth-1:0] address1;
+input ce1;
+
+output reg[DataWidth-1:0] q1; 
 
 input reset;
 input clk;
@@ -44,6 +53,18 @@ begin
 
     end
 end 
+ 
+  
+
+
+
+always @(posedge clk) 
+begin 
+    if (ce1) begin
+        q1 <= ram[address1];
+    end
+end 
+
  
  
 

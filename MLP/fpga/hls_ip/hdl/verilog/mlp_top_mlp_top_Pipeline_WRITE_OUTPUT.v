@@ -18,7 +18,13 @@ module mlp_top_mlp_top_Pipeline_WRITE_OUTPUT (
         act4_ce0,
         act4_q0,
         m_axis_output_TDATA,
-        m_axis_output_TVALID
+        m_axis_output_TVALID,
+        m_axis_output_TKEEP,
+        m_axis_output_TSTRB,
+        m_axis_output_TUSER,
+        m_axis_output_TLAST,
+        m_axis_output_TID,
+        m_axis_output_TDEST
 );
 
 parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
@@ -35,6 +41,12 @@ output   act4_ce0;
 input  [15:0] act4_q0;
 output  [31:0] m_axis_output_TDATA;
 output   m_axis_output_TVALID;
+output  [3:0] m_axis_output_TKEEP;
+output  [3:0] m_axis_output_TSTRB;
+output  [0:0] m_axis_output_TUSER;
+output  [0:0] m_axis_output_TLAST;
+output  [0:0] m_axis_output_TID;
+output  [0:0] m_axis_output_TDEST;
 
 reg ap_idle;
 reg m_axis_output_TVALID;
@@ -46,23 +58,22 @@ reg    ap_enable_reg_pp0_iter1;
 reg    ap_idle_pp0;
 reg    ap_block_state2_pp0_stage0_iter1;
 reg    ap_block_pp0_stage0_subdone;
-wire   [0:0] icmp_ln114_fu_74_p2;
+wire   [0:0] icmp_ln63_fu_117_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
 reg    m_axis_output_TDATA_blk_n;
 wire    ap_block_pp0_stage0;
 reg    ap_block_pp0_stage0_11001;
-wire   [0:0] p_last_fu_91_p2;
-reg   [0:0] p_last_reg_129;
-wire   [63:0] zext_ln114_fu_86_p1;
-reg   [3:0] o_fu_42;
-wire   [3:0] add_ln114_fu_80_p2;
+wire   [0:0] pkt_last_fu_134_p2;
+reg   [0:0] pkt_last_reg_165;
+wire   [63:0] zext_ln63_fu_129_p1;
+reg   [3:0] o_fu_62;
+wire   [3:0] add_ln63_fu_123_p2;
 wire    ap_loop_init;
 reg   [3:0] ap_sig_allocacmp_o_1;
 reg    ap_block_pp0_stage0_01001;
 reg    act4_ce0_local;
-wire   [16:0] tmp_fu_102_p3;
 reg    ap_done_reg;
 wire    ap_continue_int;
 reg    ap_done_int;
@@ -77,7 +88,7 @@ wire    ap_ce_reg;
 initial begin
 #0 ap_CS_fsm = 1'd1;
 #0 ap_enable_reg_pp0_iter1 = 1'b0;
-#0 o_fu_42 = 4'd0;
+#0 o_fu_62 = 4'd0;
 #0 ap_done_reg = 1'b0;
 end
 
@@ -130,17 +141,17 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        if (((icmp_ln114_fu_74_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
-            o_fu_42 <= add_ln114_fu_80_p2;
+        if (((icmp_ln63_fu_117_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+            o_fu_62 <= add_ln63_fu_123_p2;
         end else if ((ap_loop_init == 1'b1)) begin
-            o_fu_42 <= 4'd0;
+            o_fu_62 <= 4'd0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        p_last_reg_129 <= p_last_fu_91_p2;
+        pkt_last_reg_165 <= pkt_last_fu_134_p2;
     end
 end
 
@@ -153,7 +164,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((icmp_ln114_fu_74_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((icmp_ln63_fu_117_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b1;
     end else begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b0;
@@ -196,7 +207,7 @@ always @ (*) begin
     if (((ap_loop_init == 1'b1) & (1'b0 == ap_block_pp0_stage0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_sig_allocacmp_o_1 = 4'd0;
     end else begin
-        ap_sig_allocacmp_o_1 = o_fu_42;
+        ap_sig_allocacmp_o_1 = o_fu_62;
     end
 end
 
@@ -227,11 +238,11 @@ always @ (*) begin
     endcase
 end
 
-assign act4_address0 = zext_ln114_fu_86_p1;
+assign act4_address0 = zext_ln63_fu_129_p1;
 
 assign act4_ce0 = act4_ce0_local;
 
-assign add_ln114_fu_80_p2 = (ap_sig_allocacmp_o_1 + 4'd1);
+assign add_ln63_fu_123_p2 = (ap_sig_allocacmp_o_1 + 4'd1);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -263,14 +274,24 @@ assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
 assign ap_ready = ap_ready_sig;
 
-assign icmp_ln114_fu_74_p2 = ((ap_sig_allocacmp_o_1 == 4'd10) ? 1'b1 : 1'b0);
+assign icmp_ln63_fu_117_p2 = ((ap_sig_allocacmp_o_1 == 4'd10) ? 1'b1 : 1'b0);
 
-assign m_axis_output_TDATA = tmp_fu_102_p3;
+assign m_axis_output_TDATA = act4_q0;
 
-assign p_last_fu_91_p2 = ((ap_sig_allocacmp_o_1 == 4'd9) ? 1'b1 : 1'b0);
+assign m_axis_output_TDEST = 'bx;
 
-assign tmp_fu_102_p3 = {{p_last_reg_129}, {act4_q0}};
+assign m_axis_output_TID = 'bx;
 
-assign zext_ln114_fu_86_p1 = ap_sig_allocacmp_o_1;
+assign m_axis_output_TKEEP = 4'd15;
+
+assign m_axis_output_TLAST = pkt_last_reg_165;
+
+assign m_axis_output_TSTRB = 'bx;
+
+assign m_axis_output_TUSER = 'bx;
+
+assign pkt_last_fu_134_p2 = ((ap_sig_allocacmp_o_1 == 4'd9) ? 1'b1 : 1'b0);
+
+assign zext_ln63_fu_129_p1 = ap_sig_allocacmp_o_1;
 
 endmodule //mlp_top_mlp_top_Pipeline_WRITE_OUTPUT

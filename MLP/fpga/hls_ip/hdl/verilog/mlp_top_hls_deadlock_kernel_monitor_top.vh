@@ -10,14 +10,14 @@ wire [2:0] inst_idle_sigs;
 wire [0:0] inst_block_sigs;
 wire kernel_block;
 
-assign axis_block_sigs[0] = ~grp_mlp_top_Pipeline_READ_INPUT_fu_272.s_axis_input_TDATA_blk_n;
-assign axis_block_sigs[1] = ~grp_mlp_top_Pipeline_WRITE_OUTPUT_fu_375.m_axis_output_TDATA_blk_n;
+assign axis_block_sigs[0] = ~grp_mlp_top_Pipeline_READ_INPUT_fu_180.s_axis_input_TDATA_blk_n;
+assign axis_block_sigs[1] = ~grp_mlp_top_Pipeline_WRITE_OUTPUT_fu_287.m_axis_output_TDATA_blk_n;
 
 assign inst_block_sigs[0] = 1'b0;
 
 assign inst_idle_sigs[0] = 1'b0;
-assign inst_idle_sigs[1] = grp_mlp_top_Pipeline_READ_INPUT_fu_272.ap_idle;
-assign inst_idle_sigs[2] = grp_mlp_top_Pipeline_WRITE_OUTPUT_fu_375.ap_idle;
+assign inst_idle_sigs[1] = grp_mlp_top_Pipeline_READ_INPUT_fu_180.ap_idle;
+assign inst_idle_sigs[2] = grp_mlp_top_Pipeline_WRITE_OUTPUT_fu_287.ap_idle;
 
 mlp_top_hls_deadlock_idx0_monitor mlp_top_hls_deadlock_idx0_monitor_U (
     .clock(kernel_monitor_clock),

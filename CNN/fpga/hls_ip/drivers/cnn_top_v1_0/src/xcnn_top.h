@@ -45,13 +45,11 @@ typedef struct {
 #else
     u16 DeviceId;
 #endif
-    u64 Control_BaseAddress;
     u64 Ctrl_BaseAddress;
 } XCnn_top_Config;
 #endif
 
 typedef struct {
-    u64 Control_BaseAddress;
     u64 Ctrl_BaseAddress;
     u32 IsReady;
 } XCnn_top;
@@ -101,18 +99,6 @@ u32 XCnn_top_IsReady(XCnn_top *InstancePtr);
 void XCnn_top_EnableAutoRestart(XCnn_top *InstancePtr);
 void XCnn_top_DisableAutoRestart(XCnn_top *InstancePtr);
 
-void XCnn_top_Set_m_axi_w_conv1(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_w_conv1(XCnn_top *InstancePtr);
-void XCnn_top_Set_m_axi_b_conv1(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_b_conv1(XCnn_top *InstancePtr);
-void XCnn_top_Set_m_axi_w_conv2(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_w_conv2(XCnn_top *InstancePtr);
-void XCnn_top_Set_m_axi_b_conv2(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_b_conv2(XCnn_top *InstancePtr);
-void XCnn_top_Set_m_axi_w_fc(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_w_fc(XCnn_top *InstancePtr);
-void XCnn_top_Set_m_axi_b_fc(XCnn_top *InstancePtr, u64 Data);
-u64 XCnn_top_Get_m_axi_b_fc(XCnn_top *InstancePtr);
 
 void XCnn_top_InterruptGlobalEnable(XCnn_top *InstancePtr);
 void XCnn_top_InterruptGlobalDisable(XCnn_top *InstancePtr);

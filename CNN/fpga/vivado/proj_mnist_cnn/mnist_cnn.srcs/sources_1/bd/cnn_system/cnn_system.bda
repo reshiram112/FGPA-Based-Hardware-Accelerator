@@ -226,50 +226,14 @@
             },
             "V5": {
                 "VT": "AC",
-                "BA": "0x0000000000000000",
-                "HA": "0x000000001FFFFFFF",
-                "BP": "C_BASEADDR",
-                "HP": "C_HIGHADDR",
-                "MA": "Data_m_axi_weights",
-                "MX": "/cnn_top_0",
-                "MI": "m_axi_weights",
-                "MS": "SEG_ps7_HP0_DDR_LOWOCM",
-                "MV": "xilinx.com:hls:cnn_top:1.0",
-                "SX": "/ps7",
-                "SI": "S_AXI_HP0",
-                "SS": "HP0_DDR_LOWOCM",
-                "SV": "xilinx.com:ip:processing_system7:5.5",
-                "TM": "both",
-                "TU": "memory"
-            },
-            "V6": {
-                "VT": "AC",
                 "BA": "0x40000000",
                 "HA": "0x4000FFFF",
-                "BP": "C_S_AXI_CONTROL_BASEADDR",
-                "HP": "C_S_AXI_CONTROL_HIGHADDR",
-                "MA": "Data",
-                "MX": "/ps7",
-                "MI": "M_AXI_GP0",
-                "MS": "SEG_cnn_top_0_Reg",
-                "MV": "xilinx.com:ip:processing_system7:5.5",
-                "SX": "/cnn_top_0",
-                "SI": "s_axi_control",
-                "SS": "Reg",
-                "SV": "xilinx.com:hls:cnn_top:1.0",
-                "TM": "both",
-                "TU": "register"
-            },
-            "V7": {
-                "VT": "AC",
-                "BA": "0x40010000",
-                "HA": "0x4001FFFF",
                 "BP": "C_S_AXI_CTRL_BASEADDR",
                 "HP": "C_S_AXI_CTRL_HIGHADDR",
                 "MA": "Data",
                 "MX": "/ps7",
                 "MI": "M_AXI_GP0",
-                "MS": "SEG_cnn_top_0_Reg_1",
+                "MS": "SEG_cnn_top_0_Reg",
                 "MV": "xilinx.com:ip:processing_system7:5.5",
                 "SX": "/cnn_top_0",
                 "SI": "s_axi_ctrl",
@@ -278,7 +242,7 @@
                 "TM": "both",
                 "TU": "register"
             },
-            "V8": {
+            "V6": {
                 "VT": "AC",
                 "BA": "0x41E00000",
                 "HA": "0x41E0FFFF",
@@ -323,16 +287,6 @@
             },
             {
                 "src": "V6",
-                "trg": "V2",
-                "EH": "2"
-            },
-            {
-                "src": "V7",
-                "trg": "V2",
-                "EH": "2"
-            },
-            {
-                "src": "V8",
                 "trg": "V2",
                 "EH": "2"
             }

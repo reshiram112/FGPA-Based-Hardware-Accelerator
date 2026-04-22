@@ -22,7 +22,7 @@ XCnn_top_Config *XCnn_top_LookupConfig(UINTPTR BaseAddress) {
 	int Index;
 
 	for (Index = (u32)0x0; XCnn_top_ConfigTable[Index].Name != NULL; Index++) {
-		if (!BaseAddress || XCnn_top_ConfigTable[Index].Control_BaseAddress == BaseAddress) {
+		if (!BaseAddress || XCnn_top_ConfigTable[Index].Ctrl_BaseAddress == BaseAddress) {
 			ConfigPtr = &XCnn_top_ConfigTable[Index];
 			break;
 		}

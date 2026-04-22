@@ -14,22 +14,6 @@ module mlp_top_mlp_top_Pipeline_READ_INPUT (
         ap_idle,
         ap_ready,
         s_axis_input_TVALID,
-        input_7_address0,
-        input_7_ce0,
-        input_7_we0,
-        input_7_d0,
-        input_6_address0,
-        input_6_ce0,
-        input_6_we0,
-        input_6_d0,
-        input_5_address0,
-        input_5_ce0,
-        input_5_we0,
-        input_5_d0,
-        input_4_address0,
-        input_4_ce0,
-        input_4_we0,
-        input_4_d0,
         input_3_address0,
         input_3_ce0,
         input_3_we0,
@@ -47,7 +31,13 @@ module mlp_top_mlp_top_Pipeline_READ_INPUT (
         input_r_we0,
         input_r_d0,
         s_axis_input_TDATA,
-        s_axis_input_TREADY
+        s_axis_input_TREADY,
+        s_axis_input_TKEEP,
+        s_axis_input_TSTRB,
+        s_axis_input_TUSER,
+        s_axis_input_TLAST,
+        s_axis_input_TID,
+        s_axis_input_TDEST
 );
 
 parameter    ap_ST_fsm_pp0_stage0 = 1'd1;
@@ -59,40 +49,30 @@ output   ap_done;
 output   ap_idle;
 output   ap_ready;
 input   s_axis_input_TVALID;
-output  [6:0] input_7_address0;
-output   input_7_ce0;
-output   input_7_we0;
-output  [15:0] input_7_d0;
-output  [6:0] input_6_address0;
-output   input_6_ce0;
-output   input_6_we0;
-output  [15:0] input_6_d0;
-output  [6:0] input_5_address0;
-output   input_5_ce0;
-output   input_5_we0;
-output  [15:0] input_5_d0;
-output  [6:0] input_4_address0;
-output   input_4_ce0;
-output   input_4_we0;
-output  [15:0] input_4_d0;
-output  [6:0] input_3_address0;
+output  [7:0] input_3_address0;
 output   input_3_ce0;
 output   input_3_we0;
 output  [15:0] input_3_d0;
-output  [6:0] input_2_address0;
+output  [7:0] input_2_address0;
 output   input_2_ce0;
 output   input_2_we0;
 output  [15:0] input_2_d0;
-output  [6:0] input_1_address0;
+output  [7:0] input_1_address0;
 output   input_1_ce0;
 output   input_1_we0;
 output  [15:0] input_1_d0;
-output  [6:0] input_r_address0;
+output  [7:0] input_r_address0;
 output   input_r_ce0;
 output   input_r_we0;
 output  [15:0] input_r_d0;
 input  [31:0] s_axis_input_TDATA;
 output   s_axis_input_TREADY;
+input  [3:0] s_axis_input_TKEEP;
+input  [3:0] s_axis_input_TSTRB;
+input  [0:0] s_axis_input_TUSER;
+input  [0:0] s_axis_input_TLAST;
+input  [0:0] s_axis_input_TID;
+input  [0:0] s_axis_input_TDEST;
 
 reg ap_idle;
 reg s_axis_input_TREADY;
@@ -103,40 +83,32 @@ wire    ap_enable_reg_pp0_iter0;
 reg    ap_enable_reg_pp0_iter1;
 reg    ap_idle_pp0;
 reg    ap_block_pp0_stage0_subdone;
-wire   [0:0] icmp_ln101_fu_194_p2;
+wire   [0:0] icmp_ln49_fu_154_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
 reg    s_axis_input_TDATA_blk_n;
 wire    ap_block_pp0_stage0_grp1;
-wire   [2:0] trunc_ln101_fu_206_p1;
-reg   [2:0] trunc_ln101_reg_276;
+wire   [1:0] trunc_ln49_fu_166_p1;
+reg   [1:0] trunc_ln49_reg_224;
 reg    ap_block_pp0_stage0_11001;
-reg   [6:0] lshr_ln_reg_280;
-wire   [63:0] zext_ln101_fu_243_p1;
+reg   [7:0] lshr_ln_reg_228;
+wire   [63:0] zext_ln49_fu_195_p1;
 reg   [9:0] i_fu_72;
-wire   [9:0] add_ln101_fu_200_p2;
+wire   [9:0] add_ln49_fu_160_p2;
 wire    ap_loop_init;
 reg   [9:0] ap_sig_allocacmp_i_1;
 wire    ap_block_pp0_stage0;
 reg    ap_block_pp0_stage0_11001_grp1;
-reg    input_6_we0_local;
-wire   [15:0] p_data_fu_254_p1;
-reg    input_6_ce0_local;
-reg    input_5_we0_local;
-reg    input_5_ce0_local;
-reg    input_4_we0_local;
-reg    input_4_ce0_local;
-reg    input_3_we0_local;
-reg    input_3_ce0_local;
 reg    input_2_we0_local;
+wire   [15:0] raw_fu_206_p1;
 reg    input_2_ce0_local;
 reg    input_1_we0_local;
 reg    input_1_ce0_local;
 reg    input_r_we0_local;
 reg    input_r_ce0_local;
-reg    input_7_we0_local;
-reg    input_7_ce0_local;
+reg    input_3_we0_local;
+reg    input_3_ce0_local;
 reg    ap_done_reg;
 wire    ap_continue_int;
 reg    ap_done_int;
@@ -204,8 +176,8 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        if (((icmp_ln101_fu_194_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
-            i_fu_72 <= add_ln101_fu_200_p2;
+        if (((icmp_ln49_fu_154_p2 == 1'd0) & (ap_enable_reg_pp0_iter0 == 1'b1))) begin
+            i_fu_72 <= add_ln49_fu_160_p2;
         end else if ((ap_loop_init == 1'b1)) begin
             i_fu_72 <= 10'd0;
         end
@@ -214,13 +186,13 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_pp0_stage0_11001) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        lshr_ln_reg_280 <= {{ap_sig_allocacmp_i_1[9:3]}};
-        trunc_ln101_reg_276 <= trunc_ln101_fu_206_p1;
+        lshr_ln_reg_228 <= {{ap_sig_allocacmp_i_1[9:2]}};
+        trunc_ln49_reg_224 <= trunc_ln49_fu_166_p1;
     end
 end
 
 always @ (*) begin
-    if (((icmp_ln101_fu_194_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((icmp_ln49_fu_154_p2 == 1'd1) & (1'b0 == ap_block_pp0_stage0_subdone) & (ap_enable_reg_pp0_iter0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b1;
     end else begin
         ap_condition_exit_pp0_iter0_stage0 = 1'b0;
@@ -236,7 +208,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((ap_start_int == 1'b0) & (ap_idle_pp0 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
+    if (((ap_idle_pp0 == 1'b1) & (ap_start_int == 1'b0) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         ap_idle = 1'b1;
     end else begin
         ap_idle = 1'b0;
@@ -276,7 +248,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd1))) begin
+    if (((trunc_ln49_reg_224 == 2'd1) & (1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         input_1_we0_local = 1'b1;
     end else begin
         input_1_we0_local = 1'b0;
@@ -292,7 +264,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd2))) begin
+    if (((trunc_ln49_reg_224 == 2'd2) & (1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         input_2_we0_local = 1'b1;
     end else begin
         input_2_we0_local = 1'b0;
@@ -308,74 +280,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd3))) begin
+    if (((trunc_ln49_reg_224 == 2'd3) & (1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         input_3_we0_local = 1'b1;
     end else begin
         input_3_we0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        input_4_ce0_local = 1'b1;
-    end else begin
-        input_4_ce0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd4))) begin
-        input_4_we0_local = 1'b1;
-    end else begin
-        input_4_we0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        input_5_ce0_local = 1'b1;
-    end else begin
-        input_5_ce0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd5))) begin
-        input_5_we0_local = 1'b1;
-    end else begin
-        input_5_we0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        input_6_ce0_local = 1'b1;
-    end else begin
-        input_6_ce0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd6))) begin
-        input_6_we0_local = 1'b1;
-    end else begin
-        input_6_we0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
-        input_7_ce0_local = 1'b1;
-    end else begin
-        input_7_ce0_local = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd7))) begin
-        input_7_we0_local = 1'b1;
-    end else begin
-        input_7_we0_local = 1'b0;
     end
 end
 
@@ -388,7 +296,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0) & (trunc_ln101_reg_276 == 3'd0))) begin
+    if (((trunc_ln49_reg_224 == 2'd0) & (1'b0 == ap_block_pp0_stage0_11001_grp1) & (ap_enable_reg_pp0_iter1 == 1'b1) & (1'b1 == ap_CS_fsm_pp0_stage0))) begin
         input_r_we0_local = 1'b1;
     end else begin
         input_r_we0_local = 1'b0;
@@ -422,7 +330,7 @@ always @ (*) begin
     endcase
 end
 
-assign add_ln101_fu_200_p2 = (ap_sig_allocacmp_i_1 + 10'd1);
+assign add_ln49_fu_160_p2 = (ap_sig_allocacmp_i_1 + 10'd1);
 
 assign ap_CS_fsm_pp0_stage0 = ap_CS_fsm[32'd0];
 
@@ -452,76 +360,44 @@ assign ap_loop_exit_ready = ap_condition_exit_pp0_iter0_stage0;
 
 assign ap_ready = ap_ready_sig;
 
-assign icmp_ln101_fu_194_p2 = ((ap_sig_allocacmp_i_1 == 10'd784) ? 1'b1 : 1'b0);
+assign icmp_ln49_fu_154_p2 = ((ap_sig_allocacmp_i_1 == 10'd784) ? 1'b1 : 1'b0);
 
-assign input_1_address0 = zext_ln101_fu_243_p1;
+assign input_1_address0 = zext_ln49_fu_195_p1;
 
 assign input_1_ce0 = input_1_ce0_local;
 
-assign input_1_d0 = p_data_fu_254_p1;
+assign input_1_d0 = raw_fu_206_p1;
 
 assign input_1_we0 = input_1_we0_local;
 
-assign input_2_address0 = zext_ln101_fu_243_p1;
+assign input_2_address0 = zext_ln49_fu_195_p1;
 
 assign input_2_ce0 = input_2_ce0_local;
 
-assign input_2_d0 = p_data_fu_254_p1;
+assign input_2_d0 = raw_fu_206_p1;
 
 assign input_2_we0 = input_2_we0_local;
 
-assign input_3_address0 = zext_ln101_fu_243_p1;
+assign input_3_address0 = zext_ln49_fu_195_p1;
 
 assign input_3_ce0 = input_3_ce0_local;
 
-assign input_3_d0 = p_data_fu_254_p1;
+assign input_3_d0 = raw_fu_206_p1;
 
 assign input_3_we0 = input_3_we0_local;
 
-assign input_4_address0 = zext_ln101_fu_243_p1;
-
-assign input_4_ce0 = input_4_ce0_local;
-
-assign input_4_d0 = p_data_fu_254_p1;
-
-assign input_4_we0 = input_4_we0_local;
-
-assign input_5_address0 = zext_ln101_fu_243_p1;
-
-assign input_5_ce0 = input_5_ce0_local;
-
-assign input_5_d0 = p_data_fu_254_p1;
-
-assign input_5_we0 = input_5_we0_local;
-
-assign input_6_address0 = zext_ln101_fu_243_p1;
-
-assign input_6_ce0 = input_6_ce0_local;
-
-assign input_6_d0 = p_data_fu_254_p1;
-
-assign input_6_we0 = input_6_we0_local;
-
-assign input_7_address0 = zext_ln101_fu_243_p1;
-
-assign input_7_ce0 = input_7_ce0_local;
-
-assign input_7_d0 = p_data_fu_254_p1;
-
-assign input_7_we0 = input_7_we0_local;
-
-assign input_r_address0 = zext_ln101_fu_243_p1;
+assign input_r_address0 = zext_ln49_fu_195_p1;
 
 assign input_r_ce0 = input_r_ce0_local;
 
-assign input_r_d0 = p_data_fu_254_p1;
+assign input_r_d0 = raw_fu_206_p1;
 
 assign input_r_we0 = input_r_we0_local;
 
-assign p_data_fu_254_p1 = s_axis_input_TDATA[15:0];
+assign raw_fu_206_p1 = s_axis_input_TDATA[15:0];
 
-assign trunc_ln101_fu_206_p1 = ap_sig_allocacmp_i_1[2:0];
+assign trunc_ln49_fu_166_p1 = ap_sig_allocacmp_i_1[1:0];
 
-assign zext_ln101_fu_243_p1 = lshr_ln_reg_280;
+assign zext_ln49_fu_195_p1 = lshr_ln_reg_228;
 
 endmodule //mlp_top_mlp_top_Pipeline_READ_INPUT

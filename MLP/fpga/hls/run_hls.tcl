@@ -75,13 +75,13 @@ csynth_design
 # ── 7. Export IP for Vivado ───────────────────────────────────
 # Creates an IP-XACT package in mlp_top/solution/impl/ip/
 set hls_ip_out "[file normalize ${hls_src_dir}/../hls_ip]"
-puts "Exporting IP to: ${hls_ip_out}"
+puts "Exporting IP to: ${hls_ip_out}.zip"
 export_design -format ip_catalog -description "MNIST MLP Accelerator" \
-    -vendor "xilinx.com" -library "hls" -version "1.0" \
-    -output "${hls_ip_out}"
+    -vendor "xilinx.com" -library "hls" -version "1.1" \
+    -output "${hls_ip_out}.zip"
 
 puts "\n=== HLS DONE ==="
-puts "IP exported to: [file normalize ../hls_ip]"
+puts "IP exported to: [file normalize ../hls_ip.zip]"
 puts "Next: run fpga/vivado/create_project.tcl in Vivado"
 
 close_project

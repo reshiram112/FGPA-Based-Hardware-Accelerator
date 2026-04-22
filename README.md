@@ -29,8 +29,8 @@ We have implemented two completely different neural network architectures from s
 
 The Vivado block design handles the integration of the Zynq Processing System (ARM) and the custom HLS Neural Network IP:
 * **AXI4-Stream & DMA**: Images are streamed from DDR Memory to the Neural Network IP via an AXI DMA block. Predictions are streamed back out.
-* **AXI4-Lite**: Used by the ARM processor to configure the hardware (AP_START signals) and to write the DDR memory addresses of the neural network's pre-trained weights directly into the IP's registers.
-* **AXI4 High-Performance (HP) Ports**: The Neural Network IP acts as a bus master, performing high-speed burst reads from DDR RAM to fetch weights during inference.
+* **AXI4-Lite**: Used by the ARM processor to configure the hardware (AP_START signals) to begin the pipeline.
+* **Hardcoded Weights (BRAM)**: Unlike dynamic architectures, the neural network weights are fundamentally baked directly into the C++ source code as `static const` arrays. During HLS synthesis, these are physically mapped directly into the FPGA's internal Block RAM (BRAM) logic cells, mimicking BNN-style zero-overhead weight access. This eliminates the need for external DDR High-Performance (HP) master ports and memory bottlenecks.
 
 ---
 
@@ -75,10 +75,11 @@ vivado -mode batch -source fpga/vivado/create_project.tcl
 
 *(Optional) You can open the generated project in the Vivado GUI (`.xpr` file) to visually inspect the Zynq PS+PL architecture.*
 
-### Step 4: Hardware Deployment (PYNQ)
-We have optimized deployment into a **Single-File Zero-Configuration** workflow. The pre-trained weights, hardware bitstream (`.bit`), and IP register maps (`.hwh`) are all securely embedded directly inside the Jupyter Notebook as Base64 strings.
+### Step 4: Hardware Deployment (Interactive PYNQ Dashboard)
+We have optimized deployment into a **Single-File Zero-Configuration** workflow. The hardware bitstream (`.bit`) and IP register maps (`.hwh`) are securely embedded directly inside the Jupyter Notebook as Base64 strings. Because the weights are hardcoded into the hardware itself, there is no weight loading required at runtime!
 
 1. Boot your PYNQ-Z2 board and open its Jupyter Notebook server.
-2. Upload **only** the `fpga/pynq/mnist_inference.ipynb` (or `mnist_cnn_inference.ipynb`) script.
-3. Upload your `test_image.png` file.
-4. Run the Jupyter Notebook! It will automatically decode and write the hardware bitstream to the FPGA, configure the AXI-Lite weight registers, and execute pure hardware inference on your test image.
+2. Upload **only** the single `fpga/pynq/mnist_inference.ipynb` (or `mnist_cnn_inference.ipynb`) script.
+3. Run the Jupyter Notebook. It will automatically extract and flash the hardware bitstream.
+4. An **interactive `ipywidgets` dashboard** will appear directly in the notebook output! 
+5. Click the **Upload** button to supply any test image. The hardware will perform a warmup and execute a 1,000-inference benchmarking loop, giving you real-time metrics on System Latency, FPS Throughput, and FPGA Power Estimation.

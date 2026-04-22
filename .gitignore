@@ -19,3 +19,4 @@ show_cnn.tcl
 show_mlp.tcl
 hs_err_*.log
 *.pyc
+hls_ip/

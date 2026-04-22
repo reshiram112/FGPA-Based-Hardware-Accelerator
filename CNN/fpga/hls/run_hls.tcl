@@ -35,6 +35,7 @@ csynth_design
 # ── 4. Export IP for Vivado ───────────────────────────────────
 set hls_ip_out "[file normalize ${hls_src_dir}/../hls_ip]"
 puts "Exporting IP to: ${hls_ip_out}"
+# export_design will generate an export.zip inside solution/impl/ip, we'll extract it in the powershell script
 export_design -format ip_catalog -description "MNIST CNN Accelerator" \
     -vendor "xilinx.com" -library "hls" -version "1.0" \
     -output "${hls_ip_out}.zip"

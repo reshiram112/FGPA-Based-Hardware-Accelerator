@@ -14,7 +14,6 @@ int XCnn_top_CfgInitialize(XCnn_top *InstancePtr, XCnn_top_Config *ConfigPtr) {
     Xil_AssertNonvoid(InstancePtr != NULL);
     Xil_AssertNonvoid(ConfigPtr != NULL);
 
-    InstancePtr->Control_BaseAddress = ConfigPtr->Control_BaseAddress;
     InstancePtr->Ctrl_BaseAddress = ConfigPtr->Ctrl_BaseAddress;
     InstancePtr->IsReady = XIL_COMPONENT_IS_READY;
 
@@ -75,120 +74,6 @@ void XCnn_top_DisableAutoRestart(XCnn_top *InstancePtr) {
     Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
 
     XCnn_top_WriteReg(InstancePtr->Ctrl_BaseAddress, XCNN_TOP_CTRL_ADDR_AP_CTRL, 0);
-}
-
-void XCnn_top_Set_m_axi_w_conv1(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV1_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV1_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_w_conv1(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV1_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV1_DATA + 4) << 32;
-    return Data;
-}
-
-void XCnn_top_Set_m_axi_b_conv1(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV1_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV1_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_b_conv1(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV1_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV1_DATA + 4) << 32;
-    return Data;
-}
-
-void XCnn_top_Set_m_axi_w_conv2(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV2_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV2_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_w_conv2(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV2_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_CONV2_DATA + 4) << 32;
-    return Data;
-}
-
-void XCnn_top_Set_m_axi_b_conv2(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV2_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV2_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_b_conv2(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV2_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_CONV2_DATA + 4) << 32;
-    return Data;
-}
-
-void XCnn_top_Set_m_axi_w_fc(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_FC_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_FC_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_w_fc(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_FC_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_W_FC_DATA + 4) << 32;
-    return Data;
-}
-
-void XCnn_top_Set_m_axi_b_fc(XCnn_top *InstancePtr, u64 Data) {
-    Xil_AssertVoid(InstancePtr != NULL);
-    Xil_AssertVoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_FC_DATA, (u32)(Data));
-    XCnn_top_WriteReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_FC_DATA + 4, (u32)(Data >> 32));
-}
-
-u64 XCnn_top_Get_m_axi_b_fc(XCnn_top *InstancePtr) {
-    u64 Data;
-
-    Xil_AssertNonvoid(InstancePtr != NULL);
-    Xil_AssertNonvoid(InstancePtr->IsReady == XIL_COMPONENT_IS_READY);
-
-    Data = XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_FC_DATA);
-    Data += (u64)XCnn_top_ReadReg(InstancePtr->Control_BaseAddress, XCNN_TOP_CONTROL_ADDR_M_AXI_B_FC_DATA + 4) << 32;
-    return Data;
 }
 
 void XCnn_top_InterruptGlobalEnable(XCnn_top *InstancePtr) {
