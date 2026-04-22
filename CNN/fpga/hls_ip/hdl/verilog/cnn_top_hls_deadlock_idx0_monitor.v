@@ -3,8 +3,8 @@
 module cnn_top_hls_deadlock_idx0_monitor ( // for module cnn_top_cnn_top_inst
     input wire clock,
     input wire reset,
-    input wire [1:0] axis_block_sigs,
-    input wire [2:0] inst_idle_sigs,
+    input wire [7:0] axis_block_sigs,
+    input wire [8:0] inst_idle_sigs,
     input wire [0:0] inst_block_sigs,
     output wire block
 );
@@ -13,6 +13,12 @@ module cnn_top_hls_deadlock_idx0_monitor ( // for module cnn_top_cnn_top_inst
 reg monitor_find_block;
 wire idx1_block;
 wire idx2_block;
+wire idx3_block;
+wire idx4_block;
+wire idx5_block;
+wire idx6_block;
+wire idx7_block;
+wire idx8_block;
 wire sub_parallel_block;
 wire all_sub_parallel_has_block;
 wire all_sub_single_has_block;
@@ -22,8 +28,14 @@ wire seq_is_axis_block;
 assign block = monitor_find_block;
 assign idx1_block = axis_block_sigs[0];
 assign idx2_block = axis_block_sigs[1];
+assign idx3_block = axis_block_sigs[2];
+assign idx4_block = axis_block_sigs[3];
+assign idx5_block = axis_block_sigs[4];
+assign idx6_block = axis_block_sigs[5];
+assign idx7_block = axis_block_sigs[6];
+assign idx8_block = axis_block_sigs[7];
 assign all_sub_parallel_has_block = 1'b0;
-assign all_sub_single_has_block = 1'b0 | (idx1_block & (axis_block_sigs[0])) | (idx2_block & (axis_block_sigs[1]));
+assign all_sub_single_has_block = 1'b0 | (idx1_block & (axis_block_sigs[0])) | (idx2_block & (axis_block_sigs[1])) | (idx3_block & (axis_block_sigs[2])) | (idx4_block & (axis_block_sigs[3])) | (idx5_block & (axis_block_sigs[4])) | (idx6_block & (axis_block_sigs[5])) | (idx7_block & (axis_block_sigs[6])) | (idx8_block & (axis_block_sigs[7]));
 assign cur_axis_has_block = 1'b0;
 assign seq_is_axis_block = all_sub_parallel_has_block | all_sub_single_has_block | cur_axis_has_block;
 

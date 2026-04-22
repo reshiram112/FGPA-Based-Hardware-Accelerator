@@ -16,9 +16,9 @@ module mlp_top_act3_RAM_AUTO_1R1W (
      
     reset, clk);
 
-parameter DataWidth = 15;
-parameter AddressWidth = 5;
-parameter AddressRange = 32;
+parameter DataWidth = 16;
+parameter AddressWidth = 7;
+parameter AddressRange = 128;
  
 input[AddressWidth-1:0] address0;
 input ce0;

@@ -11,9 +11,9 @@ use ieee.std_logic_unsigned.all;
 entity mlp_top_act2_RAM_AUTO_1R1W is 
     generic(
         MEM_TYPE        : string    := "auto"; 
-        DataWidth       : integer   := 15; 
-        AddressWidth    : integer   := 6;
-        AddressRange    : integer   := 64
+        DataWidth       : integer   := 16; 
+        AddressWidth    : integer   := 8;
+        AddressRange    : integer   := 256
     ); 
     port (
         address0    : in std_logic_vector(AddressWidth-1 downto 0); 

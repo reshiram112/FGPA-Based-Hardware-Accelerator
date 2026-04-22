@@ -4,7 +4,7 @@
     "xci_name": "cnn_system_cnn_top_0_0",
     "cell_name": "cnn_top_0",
     "component_reference": "xilinx.com:hls:cnn_top:1.0",
-    "ip_revision": "2114576155",
+    "ip_revision": "2114577724",
     "gen_directory": "../../../../../../mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_cnn_top_0_0",
     "parameters": {
       "component_parameters": {
@@ -12,8 +12,8 @@
         "clk_period": [ { "value": "10", "enabled": false, "usage": "all" } ],
         "machine": [ { "value": "64", "enabled": false, "usage": "all" } ],
         "combinational": [ { "value": "0", "enabled": false, "usage": "all" } ],
-        "latency": [ { "value": "20557", "enabled": false, "usage": "all" } ],
-        "II": [ { "value": "20558", "enabled": false, "usage": "all" } ]
+        "latency": [ { "value": "37628", "enabled": false, "usage": "all" } ],
+        "II": [ { "value": "37629", "enabled": false, "usage": "all" } ]
       },
       "model_parameters": {
         "C_S_AXI_CTRL_ADDR_WIDTH": [ { "value": "4", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -34,7 +34,7 @@
       },
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
-        "IPREVISION": [ { "value": "2114576155" } ],
+        "IPREVISION": [ { "value": "2114577724" } ],
         "MANAGED": [ { "value": "TRUE" } ],
         "OUTPUTDIR": [ { "value": "../../../../../../mnist_cnn.gen/sources_1/bd/cnn_system/ip/cnn_system_cnn_top_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],

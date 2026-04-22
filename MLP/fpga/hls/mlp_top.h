@@ -15,6 +15,9 @@ typedef ap_fixed<32,12, AP_RND_ZERO, AP_SAT>  accum_t;
 #define L3   128
 #define L4    10
 
+// Total weights: W1+b1+W2+b2+W3+b3+W4+b4
+// 784*512+512 + 512*256+256 + 256*128+128 + 128*10+10
+// = 401920+512 + 131072+256 + 32768+128 + 1280+10 = 567946
 typedef ap_axiu<32, 1, 1, 1> axis_t;
 
 void mlp_top(
