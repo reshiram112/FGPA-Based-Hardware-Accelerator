@@ -39,7 +39,7 @@ set_property -dict [list \
     CONFIG.PCW_USB0_PERIPHERAL_ENABLE {1} \
     CONFIG.PCW_SD0_PERIPHERAL_ENABLE {1} \
     CONFIG.PCW_UART1_PERIPHERAL_ENABLE {1} \
-    CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
+    CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {125} \
     CONFIG.PCW_EN_CLK0_PORT {1} \
     CONFIG.PCW_EN_RST0_PORT {1} \
 ] [get_bd_cells ps7]
@@ -52,9 +52,9 @@ set dma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0]
 set_property -dict [list \
     CONFIG.c_include_sg {0} \
     CONFIG.c_sg_length_width {23} \
-    CONFIG.c_m_axi_mm2s_data_width {32} \
+    CONFIG.c_m_axi_mm2s_data_width {64} \
     CONFIG.c_m_axis_mm2s_tdata_width {32} \
-    CONFIG.c_m_axi_s2mm_data_width {32} \
+    CONFIG.c_m_axi_s2mm_data_width {64} \
     CONFIG.c_s_axis_s2mm_tdata_width {32} \
 ] [get_bd_cells axi_dma_0]
 
@@ -143,6 +143,9 @@ set_property top ${bd_name}_wrapper [current_fileset]
 update_compile_order -fileset sources_1
 
 # ── 14. Synthesise, implement, generate bitstream ─────────────
+set_property strategy Flow_PerfOptimized_high [get_runs synth_1]
+set_property strategy Performance_ExplorePostRoutePhysOpt [get_runs impl_1]
+
 launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 

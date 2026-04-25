@@ -7,7 +7,7 @@
 set project_name  "cnn_top"
 set solution_name "solution"
 set part          "xc7z020clg400-1"   ;# PYNQ-Z2
-set clock_period  "10"                 ;# 10 ns = 100 MHz
+set clock_period  "8"                    ;# 8 ns = 125 MHz
 
 # Absolute path to the HLS sources directory
 set hls_src_dir  "[file normalize [file dirname [info script]]]"
