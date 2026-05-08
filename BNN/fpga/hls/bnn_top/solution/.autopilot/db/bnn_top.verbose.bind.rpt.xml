@@ -1,0 +1,55 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'bnn_top'" level="0">
+<item name = "Date">Sat May  9 04:49:36 2026
+</item>
+<item name = "Version">2025.1 (Build 6135595 on May 21 2025)</item>
+<item name = "Project">bnn_top</item>
+<item name = "Solution">solution (Vivado IP Flow Target)</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00 ns, 10.703 ns, 2.70 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">148860, 148860, 1.593 ms, 1.593 ms, 148861, 148861, no</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_bnn_top_Pipeline_RD_IN_fu_104">bnn_top_Pipeline_RD_IN, 66, 66, 0.660 us, 0.660 us, 65, 65, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L1_W_L1_IN_fu_123">bnn_top_Pipeline_L1_W_L1_IN, 16389, 16389, 0.175 ms, 0.175 ms, 16385, 16385, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L1_B_fu_143">bnn_top_Pipeline_L1_B, 259, 259, 2.590 us, 2.590 us, 257, 257, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L2_W_L2_IN_fu_162">bnn_top_Pipeline_L2_W_L2_IN, 65541, 65541, 0.701 ms, 0.701 ms, 65537, 65537, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L2_B_fu_182">bnn_top_Pipeline_L2_B, 259, 259, 2.590 us, 2.590 us, 257, 257, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L3_W_L3_IN_fu_201">bnn_top_Pipeline_L3_W_L3_IN, 65541, 65541, 0.701 ms, 0.701 ms, 65537, 65537, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L3_B_fu_221">bnn_top_Pipeline_L3_B, 259, 259, 2.590 us, 2.590 us, 257, 257, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L4_W_L4_IN_fu_240">bnn_top_Pipeline_L4_W_L4_IN, 516, 516, 5.523 us, 5.523 us, 513, 513, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_L4_B_fu_261">bnn_top_Pipeline_L4_B, 5, 5, 50.000 ns, 50.000 ns, 3, 3, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+<column name="grp_bnn_top_Pipeline_WR_OUT_fu_281">bnn_top_Pipeline_WR_OUT, 4, 4, 40.000 ns, 40.000 ns, 3, 3, loop auto-rewind stp (delay=0 clock cycles(s))</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

@@ -1,0 +1,151 @@
+
+
+================================================================
+== Vitis HLS Report for 'bnn_top_Pipeline_WR_OUT'
+================================================================
+* Date:           Sat May  9 04:49:40 2026
+
+* Version:        2025.1 (Build 6135595 on May 21 2025)
+* Project:        bnn_top
+* Solution:       solution (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.741 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max    | min | max |                      Type                      |
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |        4|        4|  40.000 ns|  40.000 ns|    3|    3|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- WR_OUT  |        2|        2|         2|          1|          1|     2|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     51|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       0|     45|    -|
+|Register         |        -|    -|       6|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|       6|     96|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |add_ln97_fu_122_p2              |         +|   0|  0|  10|           2|           1|
+    |ap_block_pp0_stage0_01001_grp1  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln97_fu_116_p2             |      icmp|   0|  0|  11|           2|           3|
+    |pkt_last_fu_128_p2              |      icmp|   0|  0|  10|           2|           1|
+    |pkt_data_fu_139_p3              |    select|   0|  0|  16|           1|          16|
+    |ap_enable_pp0                   |       xor|   0|  0|   2|           1|           2|
+    +--------------------------------+----------+----+---+----+------------+------------+
+    |Total                           |          |   0|  0|  51|           9|          24|
+    +--------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_done_int                |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1    |   9|          2|    1|          2|
+    |ap_sig_allocacmp_o_1       |   9|          2|    2|          4|
+    |m_axis_output_TDATA_blk_n  |   9|          2|    1|          2|
+    |o_fu_62                    |   9|          2|    2|          4|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      |  45|         10|    7|         14|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  1|   0|    1|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |o_fu_62                  |  2|   0|    2|          0|
+    |pkt_last_reg_169         |  1|   0|    1|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    |  6|   0|    6|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+-------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |      Source Object      |    C Type    |
++----------------------+-----+-----+------------+-------------------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_WR_OUT|  return value|
+|m_axis_output_TREADY  |   in|    1|        axis|   m_axis_output_V_data_V|       pointer|
+|m_axis_output_TDATA   |  out|   32|        axis|   m_axis_output_V_data_V|       pointer|
+|act4_1_load           |   in|   16|     ap_none|              act4_1_load|        scalar|
+|act4_load             |   in|   16|     ap_none|                act4_load|        scalar|
+|m_axis_output_TVALID  |  out|    1|        axis|   m_axis_output_V_dest_V|       pointer|
+|m_axis_output_TDEST   |  out|    1|        axis|   m_axis_output_V_dest_V|       pointer|
+|m_axis_output_TKEEP   |  out|    4|        axis|   m_axis_output_V_keep_V|       pointer|
+|m_axis_output_TSTRB   |  out|    4|        axis|   m_axis_output_V_strb_V|       pointer|
+|m_axis_output_TUSER   |  out|    1|        axis|   m_axis_output_V_user_V|       pointer|
+|m_axis_output_TLAST   |  out|    1|        axis|   m_axis_output_V_last_V|       pointer|
+|m_axis_output_TID     |  out|    1|        axis|     m_axis_output_V_id_V|       pointer|
++----------------------+-----+-----+------------+-------------------------+--------------+
+

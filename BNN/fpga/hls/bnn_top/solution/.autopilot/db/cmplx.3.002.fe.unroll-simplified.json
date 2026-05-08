@@ -1,0 +1,20 @@
+{
+  "0": {
+    "basicblocks": 56,
+    "calls": "",
+    "control_depth": 2,
+    "def_use_depth": 26,
+    "file": "bnn_top.cpp",
+    "fileloc": 7,
+    "instructions": 1090,
+    "loads": {
+      "L": 21
+    },
+    "memory_accesses": 44,
+    "name": "bnn_top",
+    "stores": {
+      "L": 11
+    },
+    "total_instructions": 2056
+  }
+}

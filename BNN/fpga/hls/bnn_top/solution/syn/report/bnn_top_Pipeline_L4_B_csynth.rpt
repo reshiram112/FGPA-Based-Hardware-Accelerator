@@ -1,0 +1,185 @@
+
+
+================================================================
+== Vitis HLS Report for 'bnn_top_Pipeline_L4_B'
+================================================================
+* Date:           Sat May  9 04:49:40 2026
+
+* Version:        2025.1 (Build 6135595 on May 21 2025)
+* Project:        bnn_top
+* Solution:       solution (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.212 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval |                    Pipeline                    |
+    |   min   |   max   |    min    |    max    | min | max |                      Type                      |
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+    |        5|        5|  50.000 ns|  50.000 ns|    3|    3|  loop auto-rewind stp (delay=0 clock cycles(s))|
+    +---------+---------+-----------+-----------+-----+-----+------------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- L4_B    |        3|        3|         3|          1|          1|     2|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|    212|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       0|     63|    -|
+|Register         |        -|    -|      29|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      29|    275|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |acc_fu_216_p2              |         +|   0|  0|  34|          27|          27|
+    |add_ln89_fu_148_p2         |         +|   0|  0|  10|           2|           1|
+    |add_ln92_fu_210_p2         |         +|   0|  0|  33|          26|          26|
+    |add_ln93_fu_266_p2         |         +|   0|  0|  23|          16|          16|
+    |and_ln93_1_fu_286_p2       |       and|   0|  0|   2|           1|           1|
+    |and_ln93_2_fu_328_p2       |       and|   0|  0|   2|           1|           1|
+    |and_ln93_3_fu_346_p2       |       and|   0|  0|   2|           1|           1|
+    |and_ln93_fu_256_p2         |       and|   0|  0|   2|           1|           1|
+    |ap_block_pp0_stage0_11001  |       and|   0|  0|   2|           1|           1|
+    |icmp_ln89_fu_142_p2        |      icmp|   0|  0|  11|           2|           3|
+    |icmp_ln92_fu_154_p2        |      icmp|   0|  0|  10|           2|           1|
+    |icmp_ln93_fu_160_p2        |      icmp|   0|  0|  10|           2|           1|
+    |or_ln93_1_fu_322_p2        |        or|   0|  0|   2|           1|           1|
+    |or_ln93_2_fu_352_p2        |        or|   0|  0|   2|           1|           1|
+    |or_ln93_3_fu_334_p2        |        or|   0|  0|   2|           1|           1|
+    |or_ln93_fu_298_p2          |        or|   0|  0|   2|           1|           1|
+    |act4_3_fu_365_p3           |    select|   0|  0|  16|           1|          16|
+    |select_ln92_fu_175_p3      |    select|   0|  0|  16|           1|          16|
+    |select_ln93_fu_358_p3      |    select|   0|  0|  17|           1|          15|
+    |ap_enable_pp0              |       xor|   0|  0|   2|           1|           2|
+    |xor_ln93_1_fu_310_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln93_2_fu_316_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln93_3_fu_292_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln93_4_fu_304_p2       |       xor|   0|  0|   2|           1|           1|
+    |xor_ln93_5_fu_340_p2       |       xor|   0|  0|   2|           1|           2|
+    |xor_ln93_fu_280_p2         |       xor|   0|  0|   2|           1|           2|
+    +---------------------------+----------+----+---+----+------------+------------+
+    |Total                      |          |   0|  0| 212|          96|         144|
+    +---------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------+----+-----------+-----+-----------+
+    |           Name           | LUT| Input Size| Bits| Total Bits|
+    +--------------------------+----+-----------+-----+-----------+
+    |act4_1_o                  |   9|          2|   16|         32|
+    |act4_o                    |   9|          2|   16|         32|
+    |ap_done_int               |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1   |   9|          2|    1|          2|
+    |ap_sig_allocacmp_o_2      |   9|          2|    2|          4|
+    |o_fu_86                   |   9|          2|    2|          4|
+    |s_axis_input_TDATA_blk_n  |   9|          2|    1|          2|
+    +--------------------------+----+-----------+-----+-----------+
+    |Total                     |  63|         14|   39|         78|
+    +--------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------+----+----+-----+-----------+
+    |                    Name                   | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------+----+----+-----+-----------+
+    |add_ln93_reg_393                           |  16|   0|   16|          0|
+    |and_ln93_2_reg_398                         |   1|   0|    1|          0|
+    |ap_CS_fsm                                  |   1|   0|    1|          0|
+    |ap_block_pp0_stage0_subdone_grp0_done_reg  |   1|   0|    1|          0|
+    |ap_done_reg                                |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                    |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2                    |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg           |   1|   0|    1|          0|
+    |icmp_ln92_reg_384                          |   1|   0|    1|          0|
+    |icmp_ln93_reg_389                          |   1|   0|    1|          0|
+    |icmp_ln93_reg_389_pp0_iter1_reg            |   1|   0|    1|          0|
+    |o_fu_86                                    |   2|   0|    2|          0|
+    |or_ln93_2_reg_403                          |   1|   0|    1|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+    |Total                                      |  29|   0|   29|          0|
+    +-------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+-----------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++---------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  bnn_top_Pipeline_L4_B|  return value|
+|s_axis_input_TVALID  |   in|    1|        axis|  s_axis_input_V_data_V|       pointer|
+|s_axis_input_TDATA   |   in|   32|        axis|  s_axis_input_V_data_V|       pointer|
+|act4_i               |   in|   16|     ap_ovld|                   act4|       pointer|
+|act4_o               |  out|   16|     ap_ovld|                   act4|       pointer|
+|act4_o_ap_vld        |  out|    1|     ap_ovld|                   act4|       pointer|
+|act4_1_i             |   in|   16|     ap_ovld|                 act4_1|       pointer|
+|act4_1_o             |  out|   16|     ap_ovld|                 act4_1|       pointer|
+|act4_1_o_ap_vld      |  out|    1|     ap_ovld|                 act4_1|       pointer|
+|s_axis_input_TREADY  |  out|    1|        axis|  s_axis_input_V_dest_V|       pointer|
+|s_axis_input_TDEST   |   in|    1|        axis|  s_axis_input_V_dest_V|       pointer|
+|s_axis_input_TKEEP   |   in|    4|        axis|  s_axis_input_V_keep_V|       pointer|
+|s_axis_input_TSTRB   |   in|    4|        axis|  s_axis_input_V_strb_V|       pointer|
+|s_axis_input_TUSER   |   in|    1|        axis|  s_axis_input_V_user_V|       pointer|
+|s_axis_input_TLAST   |   in|    1|        axis|  s_axis_input_V_last_V|       pointer|
+|s_axis_input_TID     |   in|    1|        axis|    s_axis_input_V_id_V|       pointer|
++---------------------+-----+-----+------------+-----------------------+--------------+
+

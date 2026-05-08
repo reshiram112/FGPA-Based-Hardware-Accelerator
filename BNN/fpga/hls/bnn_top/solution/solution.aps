@@ -1,0 +1,22 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <name>
+        <value string="solution"/>
+    </name>
+    <project>
+        <value string="bnn_top"/>
+    </project>
+    <flowTarget value="vivado"/>
+    <targetInfo>
+        <TargetInfo value="xc7z020:-clg400:-1"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock name="default" period="10" default="false"/>
+    </clockList>
+    <config>
+        <config_export description="BNN Accelerator" format="ip_catalog" library="hls" output="C:/Users/Akshay/OneDrive/Desktop/FGPA-Based-Hardware-Accelerator/BNN/fpga/hls_ip.zip" vendor="xilinx.com" version="1.0"/>
+    </config>
+</AutoPilot:solution>
+
