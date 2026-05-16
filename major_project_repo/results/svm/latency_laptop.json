@@ -1,0 +1,18 @@
+{
+    "model": "SVM",
+    "n_runs": 500,
+    "warmup_runs": 50,
+    "latency_mean_us": 84.539,
+    "latency_median_us": 85.084,
+    "latency_min_us": 76.0,
+    "latency_max_us": 155.459,
+    "latency_std_us": 5.04,
+    "latency_p95_us": 89.098,
+    "latency_p99_us": 99.799,
+    "latency_mean_ms": 0.0845,
+    "throughput_inf_per_s": 11828.8,
+    "cpu_percent": 7.14,
+    "ram_used_mb": 436.7,
+    "ram_delta_mb": 0.0,
+    "wall_time_s": 0.0423
+}

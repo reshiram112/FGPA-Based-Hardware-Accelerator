@@ -1,0 +1,18 @@
+{
+    "model": "Audio_MLP",
+    "n_runs": 500,
+    "warmup_runs": 50,
+    "latency_mean_us": 21.997,
+    "latency_median_us": 21.334,
+    "latency_min_us": 20.542,
+    "latency_max_us": 71.833,
+    "latency_std_us": 2.531,
+    "latency_p95_us": 23.167,
+    "latency_p99_us": 26.176,
+    "latency_mean_ms": 0.022,
+    "throughput_inf_per_s": 45461.7,
+    "cpu_percent": 7.15,
+    "ram_used_mb": 411.3,
+    "ram_delta_mb": 0.0,
+    "wall_time_s": 0.011
+}

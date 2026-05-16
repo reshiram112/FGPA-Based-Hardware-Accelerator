@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automotive ML Inference — Laptop CPU Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- ── Background orbs ── -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <div class="page-wrapper">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="header-badge">
+        <div class="badge-dot"></div>
+        4 Models Active
+      </div>
+      <h1 class="header-title">
+        <span class="title-bnn">Automotive</span> ML Inference
+      </h1>
+      <p class="header-sub">CNN · Audio MLP · SVM · BNN Pothole &nbsp;|&nbsp; PYNQ-Z2 Baseline Benchmarking</p>
+    </header>
+
+    <!-- ── Main 3-column grid ── -->
+    <main class="main-grid">
+
+      <!-- ════ LEFT COLUMN — Upload ════ -->
+      <section class="card upload-card" id="upload-section">
+        <div class="card-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+          Upload Input
+        </div>
+        <h2 class="card-title">Select File</h2>
+        <p class="card-desc">
+          Upload a <strong>traffic sign / pothole image</strong> (.jpg/.png),
+          <strong>audio clip</strong> (.wav), or
+          <strong>lane sensor CSV</strong> (.csv).
+          The model is selected automatically.
+        </p>
+
+        <div class="dropzone" id="dropzone">
+          <div class="dropzone-inner" id="dropzone-inner">
+            <!-- Default icon (image) -->
+            <div class="dropzone-icon" id="dz-icon-image">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <!-- Audio icon -->
+            <div class="dropzone-icon audio-icon hidden" id="dz-icon-audio">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            </div>
+            <!-- CSV icon -->
+            <div class="dropzone-icon csv-icon hidden" id="dz-icon-csv">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <p class="dropzone-text" id="dz-text">Drag &amp; drop file here<br/><span>or click to browse</span><br/><small style="color:var(--text-muted);font-size:11px">image / audio / .csv / .zip burst</small></p>
+          </div>
+          <img id="preview-img" class="preview-img hidden" alt="File preview" />
+          <input type="file" id="file-input" accept="image/*,audio/*,.csv,.zip" hidden />
+        </div>
+
+        <button class="btn-infer" id="infer-btn" disabled>
+          <span id="btn-text">Run Inference</span>
+          <span id="btn-spinner" class="spinner hidden"></span>
+        </button>
+
+        <!-- Processing steps -->
+        <div class="steps-panel hidden" id="steps-panel">
+          <div class="step" id="step-1"><span class="step-dot"></span><span class="step-label">Routing input to correct model…</span></div>
+          <div class="step" id="step-2"><span class="step-dot"></span><span class="step-label">Extracting features…</span></div>
+          <div class="step" id="step-3"><span class="step-dot"></span><span class="step-label">Running inference (100 runs)…</span></div>
+          <div class="step" id="step-4"><span class="step-dot"></span><span class="step-label">Measuring CPU / RAM…</span></div>
+          <div class="step" id="step-5"><span class="step-dot"></span><span class="step-label">Generating results…</span></div>
+        </div>
+
+        <!-- Sample input buttons -->
+        <div class="sample-row" id="sample-row">
+          <div class="sample-row-label">Sample inputs</div>
+          <div class="sample-buttons">
+            <button class="btn-sample" data-sample="images/speed_20.png"      data-label="Speed 20">Speed 20</button>
+            <button class="btn-sample" data-sample="images/stop.png"          data-label="Stop">Stop</button>
+            <button class="btn-sample" data-sample="images/no_entry.png"      data-label="No Entry">No Entry</button>
+            <button class="btn-sample" data-sample="images/road_work.png"     data-label="Road Work">Road Work</button>
+            <button class="btn-sample" data-sample="images/keep_right.png"    data-label="Keep Right">Keep Right</button>
+            <button class="btn-sample" data-sample="images/pothole_0.png"     data-label="Pothole">Pothole A</button>
+            <button class="btn-sample" data-sample="images/pothole_1.png"     data-label="Pothole">Pothole B</button>
+            <button class="btn-sample" data-sample="images/pothole_2.png"     data-label="Pothole">Pothole C</button>
+            <button class="btn-sample" data-sample="audio/siren.wav"          data-label="Siren WAV">Siren</button>
+            <button class="btn-sample" data-sample="audio/non_siren.wav"      data-label="Non-Siren WAV">Non-Siren</button>
+            <button class="btn-sample" data-sample="csv/lane_keep_1.csv"      data-label="Lane Keep CSV">Lane Keep CSV</button>
+            <button class="btn-sample" data-sample="csv/lane_change_1.csv"    data-label="Lane Change CSV">Lane Change CSV</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ MIDDLE COLUMN — Prediction ════ -->
+      <section class="card result-card" id="result-section">
+        <div class="card-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Prediction
+        </div>
+        <h2 class="card-title">Result</h2>
+
+        <!-- Waiting state -->
+        <div class="result-waiting" id="result-waiting">
+          <div class="pulse-ring">
+            <div class="pulse-digit">?</div>
+          </div>
+          <p>Upload a file and run inference</p>
+        </div>
+
+        <!-- Result state (hidden until inference completes) -->
+        <div class="result-content hidden" id="result-content">
+
+          <!-- Model badge -->
+          <div id="model-badge-wrap"></div>
+
+          <!-- Confidence ring + label -->
+          <div class="prediction-hero">
+            <div class="prediction-ring-wrap">
+              <svg class="confidence-ring" viewBox="0 0 120 120" id="conf-svg">
+                <circle class="ring-bg"   cx="60" cy="60" r="52"/>
+                <circle class="ring-fill" cx="60" cy="60" r="52" id="ring-fill"/>
+              </svg>
+              <!-- For short text labels we use smaller font; set dynamically -->
+              <span class="prediction-digit" id="pred-digit" style="font-size:20px;text-align:center;padding:4px;">—</span>
+            </div>
+            <div class="prediction-meta">
+              <div class="meta-label" id="pred-meta-label">Predicted Class</div>
+              <div class="confidence-value" id="conf-value">—</div>
+              <div class="meta-label">Confidence</div>
+              <div class="prediction-label-text hidden" id="pred-label-text"></div>
+              <div class="prediction-expected hidden" id="pred-expected-text" style="margin-top:12px;font-size:13px;font-weight:600;padding:6px 12px;background:rgba(255,255,255,0.05);border-radius:6px;display:inline-block;"></div>
+            </div>
+          </div>
+
+          <!-- What the model sees -->
+          <div class="ai-vision-block" id="ai-vision-block">
+            <div class="ai-vision-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span id="ai-vision-label-text">What the model sees (32×32)</span>
+            </div>
+            <!-- Image preview -->
+            <img id="ai-vision-img" class="ai-vision-img hidden" alt="32x32 preview" />
+            <!-- Audio waveform placeholder -->
+            <div class="audio-wave-placeholder hidden" id="audio-wave">
+              <div class="wave-bar" style="height:30%"></div>
+              <div class="wave-bar" style="height:60%"></div>
+              <div class="wave-bar" style="height:45%"></div>
+              <div class="wave-bar" style="height:80%"></div>
+              <div class="wave-bar" style="height:55%"></div>
+              <div class="wave-bar" style="height:70%"></div>
+              <div class="wave-bar" style="height:40%"></div>
+              <div class="wave-bar" style="height:90%"></div>
+              <div class="wave-bar" style="height:50%"></div>
+              <div class="wave-bar" style="height:65%"></div>
+              <div class="wave-bar" style="height:35%"></div>
+              <div class="wave-bar" style="height:75%"></div>
+            </div>
+            <!-- CSV feature table -->
+            <div class="hidden" id="csv-feature-block">
+              <table class="feature-table" id="feature-table">
+                <thead><tr><th>Feature</th><th>Value</th></tr></thead>
+                <tbody id="feature-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ RIGHT COLUMN — Metrics ════ -->
+      <section class="card metrics-card" id="metrics-section">
+        <div class="card-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          System Metrics
+        </div>
+        <h2 class="card-title">Performance</h2>
+
+        <div class="metrics-waiting" id="metrics-waiting">
+          <p>Metrics will appear after inference</p>
+        </div>
+
+        <div class="metrics-content hidden" id="metrics-content">
+          <div class="metric-row">
+            <div class="metric-card">
+              <div class="metric-icon">⚡</div>
+              <div class="metric-val" id="v-latency">—</div>
+              <div class="metric-name">Avg Latency</div>
+              <div class="metric-sub" id="v-latency-range">—</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">🚀</div>
+              <div class="metric-val" id="v-fps">—</div>
+              <div class="metric-name">Throughput</div>
+              <div class="metric-sub">inferences / sec</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-card">
+              <div class="metric-icon">🖥️</div>
+              <div class="metric-val" id="v-cpu">—</div>
+              <div class="metric-name">CPU Usage</div>
+              <div class="metric-sub">
+                <div class="mini-bar-bg"><div class="mini-bar-fill" id="v-cpu-bar"></div></div>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">💾</div>
+              <div class="metric-val" id="v-ram">—</div>
+              <div class="metric-name">RAM Usage</div>
+              <div class="metric-sub">this process</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-wide" style="margin-bottom:12px;">
+            <div class="metric-icon">📊</div>
+            <div>
+              <div class="metric-val" id="v-p95">—</div>
+              <div class="metric-name">P95 Latency</div>
+            </div>
+            <div>
+              <div class="metric-val" id="v-p99">—</div>
+              <div class="metric-name">P99 Latency</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-wide" style="margin-bottom:12px;">
+            <div class="metric-icon">🔋</div>
+            <div class="metric-val">15–45 W</div>
+            <div>
+              <div class="metric-name">Est. CPU Power Draw</div>
+              <div class="metric-sub">Typical laptop TDP · vs PYNQ-Z2 ≈ 3–5 W</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-wide runs-card">
+            <span class="runs-label">Benchmark runs</span>
+            <span class="runs-val" id="v-runs">100</span>
+            <span class="runs-label">warm-up runs</span>
+            <span class="runs-val">10</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ── Output probabilities section ── -->
+    <section class="card prob-card hidden" id="prob-section">
+      <div class="card-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+        Output Probabilities
+      </div>
+      <h2 class="card-title" id="prob-section-title">Softmax Distribution</h2>
+
+      <!-- For images: dual CNN + BNN panels -->
+      <div class="dual-result hidden" id="dual-result-wrap">
+        <!-- CNN top-5 -->
+        <div class="dual-result-panel primary">
+          <div class="model-badge cnn">CNN &middot; Traffic Signs</div>
+          <div class="prob-grid-top5" id="cnn-top5-grid">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+        <!-- BNN binary -->
+        <div class="dual-result-panel">
+          <div class="model-badge bnn">BNN &middot; Pothole Detector</div>
+          <div class="binary-prob-grid" id="bnn-binary-grid">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- For audio/CSV: single binary panel -->
+      <div class="hidden" id="binary-result-wrap">
+        <div class="binary-prob-grid" id="binary-prob-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      Automotive ML Inference Dashboard &nbsp;·&nbsp; CNN (GTSRB) · Audio MLP (UrbanSound8K) · SVM (NGSIM Lane) · BNN Pothole<br/>
+      Laptop CPU baseline &nbsp;·&nbsp; Compare against PYNQ-Z2 FPGA deployment
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

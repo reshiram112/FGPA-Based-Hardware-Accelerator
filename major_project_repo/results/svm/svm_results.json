@@ -1,0 +1,13 @@
+{
+    "model": "SVM",
+    "dataset": "NGSIM (Processed Lane Data)",
+    "kernel": "linear",
+    "best_params": {
+        "C": 0.1,
+        "kernel": "linear"
+    },
+    "test_accuracy": 81.7,
+    "precision": 77.5801,
+    "recall": 88.4381,
+    "f1": 82.654
+}

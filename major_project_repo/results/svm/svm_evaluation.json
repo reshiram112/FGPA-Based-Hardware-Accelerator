@@ -1,0 +1,22 @@
+{
+    "model": "SVM",
+    "dataset": "NGSIM",
+    "Accuracy": 84.4,
+    "Balanced_Accuracy": 84.4516,
+    "Precision": 81.6729,
+    "Recall": 88.1339,
+    "Specificity": 80.7692,
+    "F1": 84.7805,
+    "MCC": 0.6904,
+    "Cohen_Kappa": 0.6883,
+    "FPR": 19.2308,
+    "FNR": 11.8661,
+    "TP": 869,
+    "TN": 819,
+    "FP": 195,
+    "FN": 117,
+    "ROC_AUC": 0.9302,
+    "Avg_Prec": 0.9329,
+    "Log_Loss": 0.3731,
+    "Brier": 0.1159
+}

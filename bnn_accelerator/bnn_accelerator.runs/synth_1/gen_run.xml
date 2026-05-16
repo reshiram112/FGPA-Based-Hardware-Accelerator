@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1778265552">
+  <File Type="PA-TCL" Name="bnn_accelerator_design_wrapper.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="bnn_accelerator_design_wrapper_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="bnn_accelerator_design_wrapper_reports.tcl"/>
+  <File Type="RDS-RDS" Name="bnn_accelerator_design_wrapper.vds"/>
+  <File Type="RDS-UTIL" Name="bnn_accelerator_design_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="bnn_accelerator_design_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="bnn_accelerator_design_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="bnn_accelerator_design_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="bnn_accelerator_design_wrapper_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/weight_extraction/verilog_headers/bnn_pothole_weights.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/weight_extraction/verilog_headers/bnn_pothole_bn_params.vh">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/verilog_modules/bnn_accelerator.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/bnn_accelerator_design/bnn_accelerator_design.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PGENDIR/sources_1/bd/bnn_accelerator_design/hdl/bnn_accelerator_design_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="bnn_accelerator_design_wrapper"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_bnn_accelerator_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_rst_ps7_0_50M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_smc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_mem_intercon_imp_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_mem_intercon_imp_auto_us_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_mem_intercon_imp_auto_us_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="bnn_accelerator_design_axi_mem_intercon_imp_auto_pc_0"/>
+</GenRun>

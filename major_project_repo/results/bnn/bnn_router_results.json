@@ -1,0 +1,6 @@
+{
+    "model": "BNN Router",
+    "dataset": "Synthetic Packet Metadata",
+    "epochs": 20,
+    "test_accuracy": 100.0
+}

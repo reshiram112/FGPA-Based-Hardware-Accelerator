@@ -1,0 +1,22 @@
+{
+    "model": "Audio_MLP",
+    "dataset": "UrbanSound8K",
+    "Accuracy": 98.1707,
+    "Balanced_Accuracy": 98.1707,
+    "Precision": 97.5904,
+    "Recall": 98.7805,
+    "Specificity": 97.561,
+    "F1": 98.1818,
+    "MCC": 0.9635,
+    "Cohen_Kappa": 0.9634,
+    "FPR": 2.439,
+    "FNR": 1.2195,
+    "TP": 81,
+    "TN": 80,
+    "FP": 2,
+    "FN": 1,
+    "ROC_AUC": 0.9877,
+    "Avg_Prec": 0.9925,
+    "Log_Loss": 0.1586,
+    "Brier": 0.0194
+}

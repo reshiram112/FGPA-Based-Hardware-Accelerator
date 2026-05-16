@@ -1,0 +1,18 @@
+{
+    "model": "BNN_Pothole",
+    "n_runs": 500,
+    "warmup_runs": 50,
+    "latency_mean_us": 475.587,
+    "latency_median_us": 472.208,
+    "latency_min_us": 324.75,
+    "latency_max_us": 707.958,
+    "latency_std_us": 51.918,
+    "latency_p95_us": 556.704,
+    "latency_p99_us": 604.753,
+    "latency_mean_ms": 0.4756,
+    "throughput_inf_per_s": 2102.7,
+    "cpu_percent": 19.85,
+    "ram_used_mb": 434.5,
+    "ram_delta_mb": 0.19,
+    "wall_time_s": 0.2379
+}

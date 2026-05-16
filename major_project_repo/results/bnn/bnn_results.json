@@ -1,0 +1,6 @@
+{
+    "model": "BNN",
+    "dataset": "Synthetic Audio Features",
+    "epochs": 10,
+    "test_accuracy": 50.0
+}

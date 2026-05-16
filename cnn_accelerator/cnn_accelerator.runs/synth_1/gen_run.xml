@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1778289223" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/cnn_accelerator_design_wrapper.dcp">
+  <File Type="PA-TCL" Name="cnn_accelerator_design_wrapper.tcl"/>
+  <File Type="REPORTS-TCL" Name="cnn_accelerator_design_wrapper_reports.tcl"/>
+  <File Type="RDS-RDS" Name="cnn_accelerator_design_wrapper.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="cnn_accelerator_design_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="cnn_accelerator_design_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="cnn_accelerator_design_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="cnn_accelerator_design_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="cnn_accelerator_design_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="cnn_accelerator_design_wrapper_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/verilog_modules/cnn_accelerator.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/cnn_accelerator_design/cnn_accelerator_design.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PGENDIR/sources_1/bd/cnn_accelerator_design/hdl/cnn_accelerator_design_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/weight_extraction/verilog_headers/cnn_weights.vh">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+        <Attr Name="IsVisible" Val="1"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../Downloads/major_project_repo 3/major_project_repo/verilog_modules/conv_weights.mem">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="cnn_accelerator_design_wrapper"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/cnn_accelerator_design_wrapper.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="cnn_accelerator_design_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="cnn_accelerator_design_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="cnn_accelerator_design_rst_ps7_0_50M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="cnn_accelerator_design_axi_mem_intercon_imp_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="cnn_accelerator_design_cnn_accelerator_0_0"/>
+</GenRun>

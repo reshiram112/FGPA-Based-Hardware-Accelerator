@@ -1,0 +1,15 @@
+{
+    "model": "CNN",
+    "dataset": "GTSRB",
+    "Accuracy": 93.5221,
+    "Balanced_Accuracy": 92.775,
+    "Macro_Precision": 93.5482,
+    "Macro_Recall": 92.775,
+    "Macro_F1": 92.696,
+    "Weighted_Precision": 94.2684,
+    "Weighted_Recall": 93.5221,
+    "Weighted_F1": 93.5851,
+    "MCC": 0.933,
+    "Cohen_Kappa": 0.9328,
+    "Top5_Accuracy": 99.5792
+}
