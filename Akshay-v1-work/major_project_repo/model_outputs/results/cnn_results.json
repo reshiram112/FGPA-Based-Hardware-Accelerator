@@ -1,0 +1,6 @@
+{
+    "model": "CNN",
+    "dataset": "GTSRB (Traffic Signs)",
+    "epochs": 2,
+    "test_accuracy": 92.17036470288191
+}

@@ -1,0 +1,27 @@
+{
+  "bundle_dir": "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final",
+  "staged_files": [
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\final_integration_inference.ipynb",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\integration_runtime.py",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\model_notebooks\\bnn_can_inference.ipynb",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\model_notebooks\\cnn_traffic_sign_inference.ipynb",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\model_notebooks\\svm_lane_inference.ipynb",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\model_notebooks\\mlp_siren_inference.ipynb",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\bnn\\bnn_accelerator.bit",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\bnn\\bnn_accelerator.hwh",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\bnn\\bnn_can_feature_stats.npz",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\cnn\\cnn_accelerator.bit",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\cnn\\cnn_accelerator.hwh",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\cnn\\fc_weights.npz",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\cnn\\cnn_benchmark_data.npy",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\cnn\\cnn_weights.bin",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\svm\\svm_accelerator.bit",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\svm\\svm_accelerator.hwh",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\mlp\\feature_stats.npz",
+    "C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\Integration\\_bundle_check_final\\models\\mlp\\mlp_weights.bin"
+  ],
+  "missing_files": [
+    "mlp:bit: C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\siren_mlp\\fpga\\pynq\\mlp_vivado_files\\mlp_accelerator.bit",
+    "mlp:hwh: C:\\Users\\TA17084\\fpga_radioml_mlp\\Akshay-v1-work\\siren_mlp\\fpga\\pynq\\mlp_vivado_files\\mlp_accelerator.hwh"
+  ]
+}

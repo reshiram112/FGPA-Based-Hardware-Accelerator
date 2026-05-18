@@ -1,0 +1,6 @@
+{
+    "model": "MLP Router",
+    "dataset": "Synthetic Metadata",
+    "epochs": 10,
+    "test_accuracy": 39.0
+}

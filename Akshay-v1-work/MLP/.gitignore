@@ -1,0 +1,12 @@
+
+# Vivado/HLS build artifacts
+fpga/vivado/proj_mnist_mlp/mnist_mlp.cache/
+fpga/vivado/proj_mnist_mlp/mnist_mlp.gen/
+fpga/vivado/proj_mnist_mlp/mnist_mlp.hw/
+fpga/vivado/proj_mnist_mlp/mnist_mlp.runs/
+fpga/vivado/proj_mnist_mlp/mnist_mlp.srcs/
+mlp_top/
+fpga/hls_project/
+data/
+logs/
+*.jou

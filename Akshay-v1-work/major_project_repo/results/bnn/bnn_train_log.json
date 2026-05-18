@@ -1,0 +1,7 @@
+{
+    "model": "BNN_Pothole",
+    "dataset": "Pothole Image Patches",
+    "patches_per_class": 1558,
+    "epochs": 30,
+    "train_accuracy": 86.0577
+}

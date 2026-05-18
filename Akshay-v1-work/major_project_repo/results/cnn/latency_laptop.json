@@ -1,0 +1,18 @@
+{
+    "model": "CNN",
+    "n_runs": 500,
+    "warmup_runs": 50,
+    "latency_mean_us": 214.184,
+    "latency_median_us": 213.833,
+    "latency_min_us": 153.583,
+    "latency_max_us": 346.0,
+    "latency_std_us": 25.021,
+    "latency_p95_us": 254.725,
+    "latency_p99_us": 290.746,
+    "latency_mean_ms": 0.2142,
+    "throughput_inf_per_s": 4668.9,
+    "cpu_percent": 17.9,
+    "ram_used_mb": 410.7,
+    "ram_delta_mb": 0.38,
+    "wall_time_s": 0.1072
+}

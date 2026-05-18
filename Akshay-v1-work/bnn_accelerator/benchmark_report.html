@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BNN Benchmark Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1520; color: #c9d8ea; padding: 40px; display: flex; justify-content: center; }
+  .page { width: 100%; max-width: 560px; }
+  .section { background: #162030; border: 1px solid #1e3050; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
+  .sec-label { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; margin-bottom: 16px; }
+  .device-sub { font-size: .72em; color: #3a5878; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
+  .device-name { display: flex; align-items: center; gap: 10px; font-size: 1.05em; font-weight: 700; color: #dce8f4; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: #38bdf8; flex-shrink: 0; }
+  .badge { font-size: .67em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; background: #0f2540; border: 1px solid #1e4070; color: #38bdf8; }
+  .tbl-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #1e3050; margin-bottom: 2px; }
+  .col-h { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; }
+  .col-h.val-h { color: #38bdf8; }
+  .row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #111e2e; }
+  .row:last-child { border-bottom: none; }
+  .metric { font-size: .88em; color: #7090b0; }
+  .val { font-family: 'Courier New', Courier, monospace; font-size: .9em; color: #dce8f4; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="section">
+  <div class="sec-label">Device</div>
+  <div class="device-sub">Platform</div>
+  <div class="device-name">
+    <div class="dot"></div>
+    FPGA &nbsp;<span class="badge">CPU</span>
+  </div>
+</div>
+<div class="section">
+  <div class="sec-label">Latency &amp; Throughput</div>
+  <div class="tbl-head"><span class="col-h">Metric</span><span class="col-h val-h">CPU</span></div>
+  <div class="row"><span class="metric">Mean latency</span><span class="val">TBD</span></div>
+  <div class="row"><span class="metric">Std deviation</span><span class="val">TBD</span></div>
+  <div class="row"><span class="metric">Min latency</span><span class="val">TBD</span></div>
+  <div class="row"><span class="metric">Max latency</span><span class="val">TBD</span></div>
+  <div class="row"><span class="metric">Throughput</span><span class="val">TBD</span></div>
+</div>
+</div>
+</body>
+</html>

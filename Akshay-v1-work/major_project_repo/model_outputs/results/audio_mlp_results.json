@@ -1,0 +1,6 @@
+{
+    "model": "Audio_MLP",
+    "dataset": "UrbanSound8K (Siren vs Non-Siren)",
+    "epochs": 40,
+    "test_accuracy": 96.95121951219512
+}

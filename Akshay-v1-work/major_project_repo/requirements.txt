@@ -1,0 +1,10 @@
+torch
+torchvision
+torchaudio
+scikit-learn
+joblib
+numpy
+pynq
+pandas
+torchaudio
+librosa

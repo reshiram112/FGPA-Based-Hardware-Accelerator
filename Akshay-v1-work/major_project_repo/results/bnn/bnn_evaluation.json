@@ -1,0 +1,26 @@
+{
+    "model": "BNN_Pothole",
+    "dataset": "Pothole Image Patches",
+    "classes": [
+        "Normal Road",
+        "Pothole"
+    ],
+    "Accuracy": 85.2564,
+    "Balanced_Accuracy": 85.4417,
+    "Precision": 90.2439,
+    "Recall": 80.1858,
+    "Specificity": 90.6977,
+    "F1": 84.918,
+    "MCC": 0.7107,
+    "Cohen_Kappa": 0.706,
+    "FPR": 9.3023,
+    "FNR": 19.8142,
+    "TP": 259,
+    "TN": 273,
+    "FP": 28,
+    "FN": 64,
+    "ROC_AUC": 0.8492,
+    "Avg_Prec": 0.8639,
+    "Log_Loss": 0.4499,
+    "Brier": 0.1248
+}
