@@ -218,34 +218,57 @@ _CNN_CLASS_NAMES = {
 def _load_cnn():
     bit = _CNN_DIR / "cnn_accelerator.bit"
     hwh = _CNN_DIR / "cnn_accelerator.hwh"
+    fc  = _CNN_DIR / "cnn_fc_weights.npz"
     if not bit.exists():
         raise FileNotFoundError(f"CNN bitfile not found: {bit}")
     if not hwh.exists():
         raise FileNotFoundError(f"CNN .hwh not found: {hwh}")
+    if not fc.exists():
+        raise FileNotFoundError(f"CNN FC weights not found: {fc}")
     overlay = _load_overlay(str(bit))
     dma     = overlay.axi_dma_0
-    _state["cnn"] = dict(overlay=overlay, dma=dma)
+    fc_data = np.load(fc)
+    _state["cnn"] = dict(
+        overlay=overlay,
+        dma=dma,
+        fc1_w=fc_data["fc1_w"],
+        fc1_b=fc_data["fc1_b"],
+        fc2_w=fc_data["fc2_w"],
+        fc2_b=fc_data["fc2_b"],
+    )
     print("[cnn] overlay loaded")
 
 
 def infer_cnn(payload: bytes):
     from PIL import Image as PILImage
-    st  = _state["cnn"]
+    st = _state["cnn"]
     img = PILImage.open(io.BytesIO(payload)).convert("RGB").resize((32, 32))
-    arr = np.array(img) / 255.0
-    q8  = np.array([int(v * 256) & 0xFFFF for v in arr.flatten()], dtype=np.uint32)
+    arr = np.array(img, dtype=np.float32) / 255.0
+    arr = (arr - 0.5) / 0.5
+    arr = np.transpose(arr, (2, 0, 1))
+    q8 = np.array([int(v * 256) & 0xFFFF for v in arr.flatten()], dtype=np.uint32)
     in_buf  = allocate(shape=(3072,), dtype=np.uint32)
-    out_buf = allocate(shape=(1,),    dtype=np.uint32)
+    out_buf = allocate(shape=(2048,), dtype=np.uint32)
     np.copyto(in_buf, q8)
-    t0 = time.perf_counter()
+    in_buf.flush()
+    t0_hw = time.perf_counter()
     st["dma"].sendchannel.transfer(in_buf)
     st["dma"].recvchannel.transfer(out_buf)
     st["dma"].sendchannel.wait()
     st["dma"].recvchannel.wait()
-    ms   = (time.perf_counter() - t0) * 1000.0
-    pred = int(out_buf[0])
-    in_buf.freebuffer(); out_buf.freebuffer()
-    return _CNN_CLASS_NAMES.get(pred, f"Class {pred}"), pred, ms
+    t1_hw = time.perf_counter()
+    out_buf.invalidate()
+    hw_feat = np.array(out_buf, dtype=np.int16).astype(np.float32) / 256.0
+    t0_sw = time.perf_counter()
+    fc1_out = np.maximum(0, np.dot(hw_feat, st["fc1_w"].T) + st["fc1_b"])
+    fc2_out = np.dot(fc1_out, st["fc2_w"].T) + st["fc2_b"]
+    pred = int(np.argmax(fc2_out))
+    t1_sw = time.perf_counter()
+    in_buf.freebuffer()
+    out_buf.freebuffer()
+    hw_ms = (t1_hw - t0_hw) * 1000.0
+    total_ms = hw_ms + ((t1_sw - t0_sw) * 1000.0)
+    return _CNN_CLASS_NAMES.get(pred, f"Class {pred}"), pred, hw_ms, total_ms
 
 
 # =============================================================================
@@ -497,8 +520,14 @@ def handle_client(conn: socket.socket, addr):
                     label, cid, ms = infer_mlp(payload)
                     resp = {"prediction": label.upper(), "class_id": cid, "latency_ms": round(ms, 3)}
                 elif model_key == "cnn":
-                    label, cid, ms = infer_cnn(payload)
-                    resp = {"prediction": label, "class_id": cid, "latency_ms": round(ms, 3)}
+                    label, cid, hw_ms, total_ms = infer_cnn(payload)
+                    resp = {
+                        "prediction": label,
+                        "class_id": cid,
+                        "latency_ms": round(total_ms, 3),
+                        "hw_latency_ms": round(hw_ms, 3),
+                        "total_latency_ms": round(total_ms, 3),
+                    }
                 elif model_key == "bnn":
                     label, cid, ms = infer_bnn(payload)
                     resp = {"prediction": label, "class_id": cid, "latency_ms": round(ms, 3)}

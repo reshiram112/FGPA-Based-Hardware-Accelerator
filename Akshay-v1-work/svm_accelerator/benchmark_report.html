@@ -2,45 +2,491 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SVM Benchmark Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVM Lane Change Benchmark Report</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1520; color: #c9d8ea; padding: 40px; display: flex; justify-content: center; }
-  .page { width: 100%; max-width: 560px; }
-  .section { background: #162030; border: 1px solid #1e3050; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
-  .sec-label { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; margin-bottom: 16px; }
-  .device-sub { font-size: .72em; color: #3a5878; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
-  .device-name { display: flex; align-items: center; gap: 10px; font-size: 1.05em; font-weight: 700; color: #dce8f4; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: #38bdf8; flex-shrink: 0; }
-  .badge { font-size: .67em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; background: #0f2540; border: 1px solid #1e4070; color: #38bdf8; }
-  .tbl-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #1e3050; margin-bottom: 2px; }
-  .col-h { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; }
-  .col-h.val-h { color: #38bdf8; }
-  .row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #111e2e; }
-  .row:last-child { border-bottom: none; }
-  .metric { font-size: .88em; color: #7090b0; }
-  .val { font-family: 'Courier New', Courier, monospace; font-size: .9em; color: #dce8f4; font-weight: 700; }
+  :root {
+    --bg: #0b1220;
+    --panel: #131d31;
+    --panel-2: #1b2740;
+    --line: #29405f;
+    --text: #e6eefb;
+    --muted: #94a8c7;
+    --accent: #60a5fa;
+    --accent-2: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.16), transparent 28%),
+      linear-gradient(180deg, #08111d 0%, var(--bg) 100%);
+    color: var(--text);
+  }
+  h1 {
+    margin: 0 0 12px;
+    color: #d9ecff;
+    letter-spacing: 0.02em;
+  }
+  h2 {
+    margin: 0 0 14px;
+    color: #cfe5ff;
+  }
+  h3 {
+    margin: 0 0 10px;
+    color: #d9ecff;
+    font-size: 1rem;
+  }
+  p { line-height: 1.6; }
+  code {
+    color: #d8e9ff;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+  .hero {
+    max-width: 960px;
+    margin: 0 auto 20px;
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 10px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.22);
+    color: #d8ebff;
+    font-size: 0.92rem;
+  }
+  .subtle { color: var(--muted); }
+  .card {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(19, 29, 49, 0.96), rgba(13, 22, 38, 0.98));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+  }
+  th {
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.04);
+    font-weight: 600;
+  }
+  td {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .note {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .bar-label {
+    width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    min-width: 34px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.16);
+    border: 1px solid rgba(96, 165, 250, 0.26);
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .bar-outer {
+    flex: 1;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 18px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6);
+  }
+  .bar-pct {
+    width: 64px;
+    text-align: right;
+    color: var(--muted);
+  }
+  .upload-shell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  #sample-upload {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .upload-button, .predict-button, .secondary-button {
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .upload-button, .predict-button {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: white;
+  }
+  .secondary-button {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .upload-button:hover, .predict-button:hover, .secondary-button:hover {
+    transform: translateY(-1px);
+  }
+  .predict-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .feature-list {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+  }
+  .feature-list li {
+    margin: 4px 0;
+  }
+  .preview-box {
+    margin: 0;
+    min-height: 220px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(6, 12, 22, 0.65);
+    color: #dcecff;
+    overflow: auto;
+    white-space: pre-wrap;
+  }
+  .result-box {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(6, 12, 22, 0.72);
+  }
+  .result-box.success {
+    border-color: rgba(34, 197, 94, 0.55);
+    background: rgba(14, 35, 25, 0.72);
+  }
+  .result-box.error {
+    border-color: rgba(239, 68, 68, 0.55);
+    background: rgba(47, 18, 18, 0.72);
+  }
+  .result-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .result-copy {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 760px) {
+    body { padding: 20px 14px 32px; }
+    .card { padding: 18px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .bar-row { flex-direction: column; align-items: stretch; }
+    .bar-label, .bar-pct { width: auto; }
+  }
+
 </style>
 </head>
 <body>
-<div class="page">
-<div class="section">
-  <div class="sec-label">Device</div>
-  <div class="device-sub">Platform</div>
-  <div class="device-name">
-    <div class="dot"></div>
-    FPGA &nbsp;<span class="badge">PYNQ-Z2</span>
+<section class="hero">
+  <h1>&#128202; SVM Lane Change Benchmark Report</h1>
+  <p class="subtle">
+    Benchmarking a 10-feature highway lane-change classifier on CPU.
+  </p>
+  <div class="chip-row">
+    <span class="chip">NGSIM (10 features) -&gt; Linear SVM</span>
+    <span class="chip">float64 + StandardScaler</span>
+    <span class="chip">CPU</span>
+    <span class="chip">scikit-learn 1.8.0</span>
+    <span class="chip">1,000 inferences</span>
+  </div>
+  <p>Model: <code>svm_model.pkl</code> | Task: <strong>highway lane change prediction (binary)</strong></p>
+</section>
+
+<div class="card">
+  <h2>&#128241; CPU </h2>
+  <table><tr><th>Metric</th><th>Value</th></tr><tr><td>Mean latency</td><td>1.38 ms</td></tr><tr><td>P99 latency</td><td>3.44 ms</td></tr><tr><td>Max latency</td><td>50.71 ms</td></tr><tr><td>Throughput</td><td>725 inf/s</td></tr></table>
+  <p class="note">
+  </p>
+</div>
+
+<div class="card" style="margin-top:20px">
+  <h2>&#128202; Class Distribution (1,000 random inputs)</h2>
+  <div class="bar-row"><span class="bar-label"><span class="badge">KL</span>keep_lane</span><div class="bar-outer"><div class="bar-fill" style="width:180px"></div></div><span class="bar-pct">45.1%</span></div>
+  <div class="bar-row"><span class="bar-label"><span class="badge">CL</span>change_lane</span><div class="bar-outer"><div class="bar-fill" style="width:219px"></div></div><span class="bar-pct">54.9%</span></div>
+  <p class="note">
+    Random pre-scaled inputs are used only for the latency benchmark, so this class split is not an accuracy metric.
+  </p>
+</div>
+
+
+<div class="card" style="margin-top:20px;max-width:960px">
+  <h2>&#128229; Upload a Sample</h2>
+  <p class="subtle">
+    Upload one sample as <code>.json</code>, <code>.csv</code>, or <code>.txt</code> to run
+    the embedded SVM directly in the browser.
+  </p>
+  <div class="upload-shell">
+    <label class="upload-button" for="sample-upload">Choose sample</label>
+    <input id="sample-upload" type="file" accept=".json,.csv,.txt,application/json,text/plain,text/csv">
+    <button id="predict-button" class="predict-button" type="button" disabled>Predict</button>
+    <button id="template-button" class="secondary-button" type="button">Download template</button>
+  </div>
+  <p class="note">
+    Supported formats: JSON object with feature names, JSON array with 10 values,
+    CSV header + values row, or a single numeric CSV row.
+  </p>
+  <div class="feature-grid">
+    <div>
+      <h3>Expected feature order</h3>
+      <ol class="feature-list">
+        <li><code>v_Vel</code></li><li><code>v_Acc</code></li><li><code>Space_Headway</code></li><li><code>Time_Headway</code></li><li><code>Local_Y</code></li><li><code>vel_x_acc</code></li><li><code>headway_ratio</code></li><li><code>time_space_ratio</code></li><li><code>vel_squared</code></li><li><code>acc_squared</code></li>
+      </ol>
+    </div>
+    <div>
+      <h3>Loaded sample preview</h3>
+      <pre id="sample-preview" class="preview-box">No sample loaded yet.</pre>
+    </div>
+  </div>
+  <div id="prediction-result" class="result-box neutral">
+    <div class="result-title">Prediction ready when you upload a sample.</div>
+    <div class="result-copy">The webpage will scale the features, apply the trained linear SVM, and show the predicted class plus decision score.</div>
   </div>
 </div>
-<div class="section">
-  <div class="sec-label">Latency &amp; Throughput</div>
-  <div class="tbl-head"><span class="col-h">Metric</span><span class="col-h val-h">FPGA</span></div>
-  <div class="row"><span class="metric">Mean latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Std deviation</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Min latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Max latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Throughput</span><span class="val">TBD</span></div>
-</div>
-</div>
+
+<script>
+const browserModel = {"feature_names": ["v_Vel", "v_Acc", "Space_Headway", "Time_Headway", "Local_Y", "vel_x_acc", "headway_ratio", "time_space_ratio", "vel_squared", "acc_squared"], "coef": [1.3536201735559785, -0.0501615559724609, 0.03712003193149438, -0.06938085698590629, 0.9025140771871736, 0.05941782059059048, -0.007973946208866729, 0.12894887773075017, -0.5399081467401752, -0.07441546218967943], "intercept": 0.1422525839356448, "mean": [16.25391875, 0.4018075, 46.886897499999996, 25.96428125, 137.22456300000002, 8.9143214875, 3757866.7463294296, 0.864502502252578, 425.7445478875, 20.967669675], "scale": [12.710415931664016, 4.5613836067517655, 122.76692699756109, 109.34767291423445, 46.4145933249127, 111.92065176010802, 46277607.3304289, 3.939184844242234, 481.0148647872099, 41.36117389503715], "classes": [0, 1], "class_names": ["keep_lane", "change_lane"], "class_badges": ["KL", "CL"]};
+const templateCsv = "v_Vel,v_Acc,Space_Headway,Time_Headway,Local_Y,vel_x_acc,headway_ratio,time_space_ratio,vel_squared,acc_squared\n16.253919,0.401807,46.886897,25.964281,137.224563,8.914321,3757866.746329,0.864503,425.744548,20.967670\n";
+const fileInput = document.getElementById('sample-upload');
+const predictButton = document.getElementById('predict-button');
+const templateButton = document.getElementById('template-button');
+const previewBox = document.getElementById('sample-preview');
+const predictionBox = document.getElementById('prediction-result');
+let loadedSample = null;
+
+function setPredictionState(kind, title, copy) {
+  predictionBox.className = `result-box ${kind}`;
+  predictionBox.innerHTML = `
+    <div class="result-title">${title}</div>
+    <div class="result-copy">${copy}</div>
+  `;
+}
+
+function toNumber(value, label) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    throw new Error(`Feature "${label}" must be numeric.`);
+  }
+  return parsed;
+}
+
+function valuesFromObject(obj) {
+  return browserModel.feature_names.map((name) => {
+    if (!(name in obj)) {
+      throw new Error(`Missing feature "${name}".`);
+    }
+    return toNumber(obj[name], name);
+  });
+}
+
+function valuesFromArray(arr) {
+  if (arr.length !== browserModel.feature_names.length) {
+    throw new Error(`Expected ${browserModel.feature_names.length} values, got ${arr.length}.`);
+  }
+  return arr.map((value, index) => toNumber(value, browserModel.feature_names[index]));
+}
+
+function parseCsvText(text) {
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (!lines.length) {
+    throw new Error('The uploaded file is empty.');
+  }
+
+  const splitLine = (line) => line.split(',').map((cell) => cell.trim());
+  const firstRow = splitLine(lines[0]);
+  const hasHeader = firstRow.some((cell) => cell !== '' && Number.isNaN(Number(cell)));
+
+  if (hasHeader) {
+    if (lines.length < 2) {
+      throw new Error('The header row needs one values row beneath it.');
+    }
+    const secondRow = splitLine(lines[1]);
+    if (secondRow.length < firstRow.length) {
+      throw new Error('The values row is shorter than the header row.');
+    }
+    const obj = {};
+    firstRow.forEach((key, index) => {
+      obj[key] = secondRow[index];
+    });
+    return valuesFromObject(obj);
+  }
+
+  return valuesFromArray(firstRow);
+}
+
+function parseSampleText(text) {
+  const trimmed = text.trim();
+  if (!trimmed) {
+    throw new Error('The uploaded file is empty.');
+  }
+
+  if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+    const parsed = JSON.parse(trimmed);
+    if (Array.isArray(parsed)) {
+      if (parsed.length && typeof parsed[0] === 'object' && !Array.isArray(parsed[0])) {
+        return valuesFromObject(parsed[0]);
+      }
+      return valuesFromArray(parsed);
+    }
+    return valuesFromObject(parsed);
+  }
+
+  return parseCsvText(trimmed);
+}
+
+function formatPreview(values) {
+  return browserModel.feature_names
+    .map((name, index) => `${name}: ${values[index].toFixed(6)}`)
+    .join('\n');
+}
+
+function runPrediction(values) {
+  let decision = browserModel.intercept;
+  for (let i = 0; i < values.length; i += 1) {
+    const scaled = (values[i] - browserModel.mean[i]) / (browserModel.scale[i] || 1);
+    decision += scaled * browserModel.coef[i];
+  }
+
+  const classIndex = decision >= 0 ? 1 : 0;
+  const probabilityLike = 1 / (1 + Math.exp(-decision));
+  return {
+    classId: browserModel.classes[classIndex],
+    className: browserModel.class_names[classIndex],
+    badge: browserModel.class_badges[classIndex],
+    decision,
+    probabilityLike,
+  };
+}
+
+async function loadUploadedSample(file) {
+  const text = await file.text();
+  const values = parseSampleText(text);
+  loadedSample = {
+    fileName: file.name,
+    values,
+  };
+  previewBox.textContent = formatPreview(values);
+  predictButton.disabled = false;
+  setPredictionState(
+    'neutral',
+    `Loaded sample: ${file.name}`,
+    'Sample parsed successfully. Click Predict to run the embedded SVM.'
+  );
+}
+
+fileInput.addEventListener('change', async () => {
+  const file = fileInput.files && fileInput.files[0];
+  predictButton.disabled = true;
+  loadedSample = null;
+
+  if (!file) {
+    previewBox.textContent = 'No sample loaded yet.';
+    setPredictionState('neutral', 'Prediction ready when you upload a sample.', 'The webpage will scale the features, apply the trained linear SVM, and show the predicted class plus decision score.');
+    return;
+  }
+
+  try {
+    await loadUploadedSample(file);
+  } catch (error) {
+    previewBox.textContent = 'Could not parse the uploaded sample.';
+    setPredictionState('error', 'Upload failed', error.message);
+  }
+});
+
+predictButton.addEventListener('click', () => {
+  if (!loadedSample) {
+    setPredictionState('error', 'No sample loaded', 'Upload a sample file before running prediction.');
+    return;
+  }
+
+  try {
+    const prediction = runPrediction(loadedSample.values);
+    const margin = Math.abs(prediction.decision);
+    setPredictionState(
+      'success',
+      `${prediction.badge} ${prediction.className}`,
+      `Predicted class id: ${prediction.classId} | Decision score: ${prediction.decision.toFixed(4)} | Margin: ${margin.toFixed(4)} | Sigmoid(score): ${prediction.probabilityLike.toFixed(4)}`
+    );
+  } catch (error) {
+    setPredictionState('error', 'Prediction failed', error.message);
+  }
+});
+
+templateButton.addEventListener('click', () => {
+  const blob = new Blob([templateCsv], { type: 'text/csv;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'svm_sample_template.csv';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
+});
+</script>
 </body>
 </html>

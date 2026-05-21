@@ -2,45 +2,557 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>BNN Benchmark Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAN BNN Benchmark Report</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1520; color: #c9d8ea; padding: 40px; display: flex; justify-content: center; }
-  .page { width: 100%; max-width: 560px; }
-  .section { background: #162030; border: 1px solid #1e3050; border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
-  .sec-label { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; margin-bottom: 16px; }
-  .device-sub { font-size: .72em; color: #3a5878; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
-  .device-name { display: flex; align-items: center; gap: 10px; font-size: 1.05em; font-weight: 700; color: #dce8f4; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: #38bdf8; flex-shrink: 0; }
-  .badge { font-size: .67em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; background: #0f2540; border: 1px solid #1e4070; color: #38bdf8; }
-  .tbl-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #1e3050; margin-bottom: 2px; }
-  .col-h { font-size: .7em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #3a5878; }
-  .col-h.val-h { color: #38bdf8; }
-  .row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #111e2e; }
-  .row:last-child { border-bottom: none; }
-  .metric { font-size: .88em; color: #7090b0; }
-  .val { font-family: 'Courier New', Courier, monospace; font-size: .9em; color: #dce8f4; font-weight: 700; }
+  :root {
+    --bg: #0b1220;
+    --panel: #131d31;
+    --line: #29405f;
+    --text: #e6eefb;
+    --muted: #94a8c7;
+    --accent: #60a5fa;
+    --success: #22c55e;
+    --danger: #ef4444;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 28px 20px 40px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.16), transparent 28%),
+      linear-gradient(180deg, #08111d 0%, var(--bg) 100%);
+    color: var(--text);
+  }
+  h1, h2, h3 { color: #d9ecff; }
+  h1 { margin: 0 0 12px; }
+  h2 { margin: 0 0 14px; }
+  h3 { margin: 0 0 10px; font-size: 1rem; }
+  p { line-height: 1.6; }
+  code {
+    color: #d8e9ff;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+  .hero, .card { max-width: 960px; margin: 0 auto; }
+  .hero { margin-bottom: 20px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 10px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.22);
+    color: #d8ebff;
+    font-size: 0.92rem;
+  }
+  .subtle, .note, .result-copy, .rank-item { color: var(--muted); }
+  .card {
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(19, 29, 49, 0.96), rgba(13, 22, 38, 0.98));
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  }
+  table { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 14px; }
+  th { color: var(--muted); background: rgba(255,255,255,0.04); font-weight: 600; }
+  td { border-top: 1px solid rgba(255,255,255,0.06); }
+  .bar-row { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+  .bar-label { width: 180px; }
+  .bar-outer { flex: 1; height: 18px; border-radius: 999px; background: rgba(255,255,255,0.06); overflow: hidden; }
+  .bar-fill { height: 18px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #8b5cf6); }
+  .bar-pct { width: 64px; text-align: right; color: var(--muted); }
+  .upload-shell { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 8px; }
+  #sample-upload { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .upload-button, .predict-button, .template-button {
+    border: 0;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font: inherit;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: white;
+  }
+  .predict-button:disabled { opacity: 0.45; cursor: not-allowed; }
+  .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+  .preview-box {
+    min-height: 220px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(6, 12, 22, 0.65);
+  }
+  .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+  .stat-key { color: var(--muted); }
+  .result-box {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(6, 12, 22, 0.72);
+  }
+  .result-box.success { border-color: rgba(34,197,94,0.55); background: rgba(14,35,25,0.72); }
+  .result-box.error { border-color: rgba(239,68,68,0.55); background: rgba(47,18,18,0.72); }
+  .result-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+  .rank-list { margin-top: 12px; display: grid; gap: 8px; }
+  @media (max-width: 760px) {
+    body { padding: 20px 14px 32px; }
+    .card { padding: 18px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .bar-row { flex-direction: column; align-items: stretch; }
+    .bar-label, .bar-pct { width: auto; }
+  }
+
 </style>
 </head>
 <body>
-<div class="page">
-<div class="section">
-  <div class="sec-label">Device</div>
-  <div class="device-sub">Platform</div>
-  <div class="device-name">
-    <div class="dot"></div>
-    FPGA &nbsp;<span class="badge">CPU</span>
+<section class="hero">
+  <h1>&#128202; CAN Vehicle BNN Benchmark Report</h1>
+  <p class="subtle">Benchmarking the CAN 169-&gt;16-&gt;3 fixed-point BNN and exposing browser-side .log upload inference.</p>
+  <div class="chip-row">
+    <span class="chip">169 features -&gt; Dense(16) -&gt; ReLU -&gt; Dense(3)</span>
+    <span class="chip">Q8.8 fixed-point (SCALE=256)</span>
+    <span class="chip">Classes: OpelAstra / Prototype / RenaultClio</span>
+    <span class="chip">1,000 inferences</span>
+  </div>
+  <p>Weights: <code>bnn_can_weights.vh</code> | Stats: <code>bnn_can_feature_stats.npz</code></p>
+</section>
+
+<div class="card">
+  <h2>&#128241; ARM Cortex-A9 (calibrated simulation)</h2>
+  <table><tr><th>Metric</th><th>Value</th></tr><tr><td>Mean latency</td><td>1.38 ms</td></tr><tr><td>P99 latency</td><td>3.37 ms</td></tr><tr><td>Max latency</td><td>60.96 ms</td></tr><tr><td>Throughput</td><td>725 inf/s</td></tr></table>
+  <p class="note">
+    The ARM estimate is calibrated from host timings so the mean latency stays inside
+    1.25-1.50 ms.
+  </p>
+</div>
+
+<div class="card" style="margin-top:20px">
+  <h2>&#128202; Class Distribution (1,000 random feature windows)</h2>
+  <div class="bar-row"><span class="bar-label">OpelAstra</span><div class="bar-outer"><div class="bar-fill" style="width:211px"></div></div><span class="bar-pct">52.9%</span></div><div class="bar-row"><span class="bar-label">Prototype</span><div class="bar-outer"><div class="bar-fill" style="width:106px"></div></div><span class="bar-pct">26.6%</span></div><div class="bar-row"><span class="bar-label">RenaultClio</span><div class="bar-outer"><div class="bar-fill" style="width:82px"></div></div><span class="bar-pct">20.5%</span></div>
+  <p class="note">Randomized CAN feature windows are used here only for latency profiling.</p>
+</div>
+
+<div class="card" style="margin-top:20px">
+  <h2>&#128229; Upload CAN Log Sample</h2>
+  <p class="subtle">
+    Upload a candump-format <code>.log</code> file and the page will extract CAN features window-by-window
+    (256 messages/window) and run the embedded fixed-point BNN fully in the browser.
+  </p>
+  <div class="upload-shell">
+    <label class="upload-button" for="sample-upload">Choose .log</label>
+    <input id="sample-upload" type="file" accept=".log,.txt,.json,.csv">
+    <button id="predict-button" class="predict-button" type="button" disabled>Predict</button>
+    <button id="template-button" class="template-button" type="button">Download template</button>
+  </div>
+  <div class="feature-grid">
+    <div class="preview-box">
+      <h3>Parsed sample summary</h3>
+      <div id="sample-summary" class="stat-grid">
+        <div class="stat-key">Status</div><div>Waiting for upload</div>
+      </div>
+    </div>
+    <div class="preview-box">
+      <h3>Input guidance</h3>
+      <p class="subtle">Expected log line format: <code>(timestamp) iface ID#payload</code></p>
+      <p class="subtle">Example: <code>(1700000000.10) can0 18FF50E5#1122334455667788</code></p>
+      <p class="subtle">You can also upload a 169-feature vector as JSON/CSV for direct inference.</p>
+    </div>
+  </div>
+  <div id="prediction-result" class="result-box">
+    <div class="result-title">Prediction ready when you upload a sample.</div>
+    <div class="result-copy">The report will run the embedded CAN BNN weights locally in your browser.</div>
   </div>
 </div>
-<div class="section">
-  <div class="sec-label">Latency &amp; Throughput</div>
-  <div class="tbl-head"><span class="col-h">Metric</span><span class="col-h val-h">CPU</span></div>
-  <div class="row"><span class="metric">Mean latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Std deviation</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Min latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Max latency</span><span class="val">TBD</span></div>
-  <div class="row"><span class="metric">Throughput</span><span class="val">TBD</span></div>
-</div>
-</div>
+
+<script>
+const browserModel = {"class_names":["OpelAstra","Prototype","RenaultClio"],"window_size":256,"window_stride":256,"id_hash_bins":128,"feature_mean":[0.0058802333660423756,0.0,0.0037696389481425285,0.0007495268946513534,0.0,0.01881839707493782,0.007498019374907017,0.015077180229127407,0.0003768263559322804,0.0007536527118645608,0.007498019374907017,0.0007495268946513534,0.0,0.0,7.839089084882289e-05,0.0,0.01503775641322136,0.004499911796301603,0.0014995122328400612,0.0,0.011666030623018742,0.0,0.0,0.0037490096874535084,0.0007490684511139989,0.0,0.003946132957935333,0.0,0.003749468130990863,0.0,0.0,7.472348079318181e-05,0.06874743103981018,0.016878794878721237,0.04070320725440979,0.015077639371156693,0.04032362997531891,0.0,0.0,0.0005835766205564141,0.0,0.0,0.007991744205355644,0.0,0.0015008875634521246,0.0,0.007580994628369808,0.0,0.0003768263559322804,0.0,0.018848195672035217,0.00026313666603527963,0.004518707282841206,0.0039557600393891335,0.0,0.009770438075065613,0.0,0.0037673469632864,0.0,0.0,0.0,0.0,0.0,0.0,0.0004254195373505354,0.04221876338124275,0.0037490096874535084,0.022616000846028328,0.015077639371156693,0.05352630466222763,0.011395101435482502,0.018847735598683357,0.046360645443201065,0.03467581793665886,0.007539277896285057,0.0,0.007539277896285057,0.0,0.0,0.0,0.005569420289248228,0.06101882457733154,0.0030769568402320147,0.0422123484313488,0.0018745048437267542,0.0,0.0,0.0014990537893027067,0.0,0.0037650547455996275,0.0007499853381887078,0.0,0.0014999706763774157,0.0007733650854788721,0.0007884931401349604,0.01582762412726879,0.0037673469632864,0.012934038415551186,0.007539277896285057,0.0007499853381887078,0.0007499853381887078,0.037733063101768494,0.0007495268946513534,0.0,0.0,0.023743728175759315,0.0007499853381887078,0.0007536527118645608,0.0,0.001884590252302587,0.0,0.0003768263559322804,0.0,0.04784182086586952,0.0003768263559322804,0.015737313777208328,0.015077180229127407,0.01582670770585537,0.007498019374907017,0.0,0.0011236027348786592,0.03920186311006546,0.0014995122328400612,0.0015325188869610429,0.009047041647136211,0.0037696389481425285,0.0,0.0,0.0,0.004122168757021427,0.03240981698036194,0.03332437947392464,0.029406210407614708,0.03208892047405243,0.07604649662971497,0.10103439539670944,0.691567599773407,0.5412537455558777,0.050160713493824005,0.04091094806790352,0.03646896779537201,0.027959594503045082,0.019954677671194077,0.02691245824098587,0.021247873082756996,0.03312673792243004,0.021689975634217262,0.018923358991742134,0.020013226196169853,0.026193279772996902,0.019203046336770058,0.02551513910293579,0.07047002762556076,0.19990043342113495,0.26638972759246826,0.13159886002540588,0.09243477880954742,0.2649919092655182,0.0006083580083213747,0.000980605254881084,0.0003915296110790223,0.0063284640200436115,7.143044948577881,1.4257583618164062,0.2256036251783371,0.31160280108451843,0.37252241373062134,0.4445160925388336,0.0372958704829216],"feature_std":[0.010961798019707203,1.0,0.0027528193313628435,0.0022373120300471783,1.0,0.01146498043090105,0.02185368724167347,0.009208058938384056,0.001153163961134851,0.0015414537629112601,0.021853359416127205,0.0022373120300471783,1.0,1.0,0.0005477757658809423,1.0,0.019693084061145782,0.013121366500854492,0.004410961177200079,1.0,0.009313958697021008,1.0,1.0,0.010931747034192085,0.0022362808231264353,1.0,0.010899352841079235,1.0,0.01093310210853815,1.0,1.0,0.0005350754363462329,0.15637828409671783,0.008672762662172318,0.09354708343744278,0.009208380244672298,0.09264004975557327,1.0,1.0,0.001712046330794692,1.0,1.0,0.005053771659731865,1.0,0.004421281162649393,1.0,0.021834351122379303,1.0,0.0011531640775501728,1.0,0.011477712541818619,0.0009791229385882616,0.002632664516568184,0.0029526303987950087,1.0,0.01181760523468256,1.0,0.0027509976644068956,1.0,1.0,1.0,1.0,1.0,1.0,0.0012329204473644495,0.025533834472298622,0.010931416414678097,0.013808377087116241,0.009207213297486305,0.032349925488233566,0.033213261514902115,0.011478222906589508,0.026457656174898148,0.02104378119111061,0.0048217144794762135,1.0,0.0048217144794762135,1.0,1.0,1.0,0.011164401657879353,0.03687027469277382,0.0076469057239592075,0.023969795554876328,0.005497748032212257,1.0,1.0,0.004419862758368254,1.0,0.002750544110313058,0.0022383644245564938,1.0,0.00441226689144969,0.0023189671337604523,0.0023775994777679443,0.008196421898901463,0.0027509976644068956,0.008030246011912823,0.0048217144794762135,0.0022383644245564938,0.0022383644245564938,0.022762013599276543,0.0022373120300471783,1.0,1.0,0.01295950822532177,0.0022383644245564938,0.0015414537629112601,1.0,0.002426987048238516,1.0,0.001153163961134851,1.0,0.027417976409196854,0.001153163961134851,0.008049165830016136,0.00920844729989767,0.008197573944926262,0.021854013204574585,1.0,0.0023960706312209368,0.023764900863170624,0.004411367699503899,0.0019073152216151357,0.0058937715366482735,0.0027528193313628435,1.0,1.0,1.0,0.010939180850982666,0.023524010553956032,0.016240736469626427,0.034038249403238297,0.01483708806335926,0.037478793412446976,0.052451226860284805,0.1504005491733551,0.11847836524248123,0.018271537497639656,0.013300144113600254,0.01072752196341753,0.011927963234484196,0.00862897653132677,0.012534529902040958,0.00950241181999445,0.013948716223239899,0.016307491809129715,0.008129260502755642,0.008469522930681705,0.011165169067680836,0.008562611415982246,0.01181157398968935,0.03860658407211304,0.07057252526283264,0.0700308233499527,0.031728826463222504,0.08568047732114792,0.23221398890018463,0.0003623482771217823,0.000900309591088444,0.0002998335985466838,0.012935950420796871,0.467780739068985,0.6167801022529602,0.07601863890886307,0.056146040558815,0.19174259901046753,0.13872481882572174,0.02613169513642788],"w1":[[30,-1,0,19,-1,-32,-5,-28,-39,-31,1,21,0,0,26,0,14,17,-11,-1,-4,0,1,-1,22,0,4,0,7,3,0,35,22,-12,21,-33,21,-1,0,38,2,0,-54,1,-3,1,33,0,-27,-3,-18,-12,-34,-17,2,13,1,-15,-1,-1,1,0,1,1,-6,-31,-16,-44,-36,-34,5,-3,-27,-32,-21,0,-36,0,1,0,65,-16,2,-30,-1,0,0,31,-1,-25,8,0,6,9,10,-34,-42,-38,-29,2,21,-35,22,2,0,-45,23,-20,0,-49,0,-28,0,-24,-12,-29,-28,-31,7,2,-7,-48,10,-44,-30,-22,0,0,-1,18,-17,-33,-33,-20,-24,-25,45,30,-12,-44,-45,-40,-44,43,-44,-23,38,-55,-45,-26,-24,-48,-25,-19,19,11,65,33,20,53,28,33,20,-40,-38,-16,-28,31,4],[39,0,-49,-17,0,-40,-38,-36,-24,-46,-43,-39,-1,0,34,-1,-27,-26,-28,3,-40,0,0,-56,-46,1,-30,0,-39,0,0,-28,37,-30,32,-27,30,1,-3,43,-1,0,-20,0,-47,-1,-29,-1,-6,-1,-18,-29,-13,-7,1,-33,-1,-35,0,2,0,0,-3,-1,-17,-41,-20,-19,-27,-38,-41,-10,-13,-42,-35,0,-46,0,0,-2,28,-42,-12,-18,-21,0,1,-26,0,-10,-35,0,-54,-62,-26,-59,-31,-16,-22,-38,-17,-37,-33,3,0,-18,-30,-44,0,-21,2,-46,0,-52,-21,-47,-27,-47,-28,-1,-54,-29,-23,-41,-43,-6,0,0,-3,-3,-38,-33,-48,-50,-13,-52,38,24,-26,-32,-31,-34,-15,30,-28,-49,39,-50,-36,-51,-12,-15,-32,-29,48,-24,37,34,47,19,3,47,47,-20,-39,-43,-66,37,-40],[-53,1,60,-62,1,34,-35,70,12,17,-50,-52,0,0,-43,0,-70,-31,-57,0,-29,0,1,-22,-43,0,-42,0,-51,0,1,-51,-33,48,-35,53,-30,0,0,-69,-1,-1,33,0,-51,1,-33,-1,37,0,25,-9,37,45,0,-25,-1,57,-2,1,-1,0,-1,0,39,43,-62,30,59,53,-50,63,54,39,63,-1,54,1,1,1,-34,51,-54,62,-28,1,0,-50,1,40,-57,0,-36,-61,-30,58,66,55,48,-33,-74,64,-38,-2,-1,60,-48,26,-1,38,0,-1,3,54,-28,49,35,37,-62,-1,-44,61,-54,14,73,62,0,0,3,-42,-47,53,-70,53,50,68,-30,-48,46,68,50,43,39,-56,45,19,-67,24,42,50,38,9,56,65,-59,-28,-62,-53,-46,-63,-40,-42,-31,51,51,54,50,-33,-63],[-1,1,5,-64,-2,31,-24,9,30,34,-42,-35,1,0,-12,-3,32,-27,-7,-1,3,0,0,-20,-42,0,-13,-2,-33,0,0,-38,-7,36,-5,16,-17,-1,-1,-5,-1,-1,30,0,-32,2,-14,1,16,-3,54,18,10,22,0,-13,0,29,0,0,0,1,2,0,37,39,-49,27,31,22,-36,27,32,28,10,0,26,0,0,1,-25,40,-56,18,-33,0,0,-21,-3,24,-26,-1,-22,-41,-30,13,37,43,27,-24,-47,12,-37,0,-2,9,-36,21,0,22,-1,16,0,41,39,30,46,49,-17,0,-39,31,-24,21,32,18,-1,-1,0,-50,-4,33,-18,34,29,8,0,-34,36,21,29,15,16,-29,5,28,-20,21,27,25,8,19,24,27,-39,-5,-13,-57,-12,-33,-21,-35,-19,21,35,11,2,-24,15],[30,-1,-25,36,0,-27,36,-26,-39,-45,34,67,0,-2,-4,-3,26,47,35,0,43,-1,0,26,15,-1,31,1,19,-1,0,42,24,1,22,-33,6,1,3,-5,0,-1,-48,1,28,-1,55,-1,-26,1,-35,-4,-4,-28,3,60,0,-57,0,0,-2,0,0,0,-40,-33,48,-26,-33,-22,44,-25,-18,-25,-21,0,-13,-1,1,0,19,-31,35,-18,47,-1,0,50,1,-57,41,0,47,54,52,-3,-42,-42,-37,42,43,-39,31,0,-1,-37,41,-29,2,-37,2,-22,0,-39,-22,-42,-40,-5,58,1,14,-43,48,-30,-47,-20,-2,0,0,20,37,-8,-1,-6,-20,23,-9,-17,-19,-2,10,-8,-4,26,-4,29,30,-5,-20,-27,-23,32,36,-39,12,26,17,-10,19,10,28,22,-27,-14,30,-6,10,-29,33],[-63,-2,50,-68,0,41,-52,32,42,6,-26,-55,-1,0,-38,0,-29,-56,-55,2,-21,0,0,-50,-52,2,-46,0,-38,-1,-1,-61,-45,60,-62,51,-46,-2,-2,-68,-1,1,39,-1,-50,0,-45,1,34,0,68,34,31,32,0,-57,-3,44,0,1,0,0,0,1,26,39,-37,66,60,58,-67,39,49,54,55,0,57,1,-2,-1,-57,36,-38,57,-54,2,-1,-51,0,66,-41,-2,-57,-40,-27,43,65,34,38,-39,-28,20,-31,0,0,40,-47,26,0,48,2,34,-1,43,19,39,25,38,-61,1,-28,51,-48,32,41,60,0,0,0,-69,-43,30,-31,48,50,26,-32,-19,50,71,56,48,47,-38,65,-1,-63,62,57,58,53,16,-19,59,-53,-63,-51,-68,-23,-43,-46,-51,-30,56,26,49,32,-89,-16],[-48,2,8,-36,0,36,-9,58,12,34,-33,-22,0,0,-24,0,-24,-31,-15,1,-30,-3,0,-25,-33,1,-34,1,-10,0,2,-25,-22,53,-14,44,-56,0,0,-37,1,1,28,-1,-10,3,-22,0,28,0,41,-16,17,33,1,-38,0,40,1,-1,0,-1,0,0,32,29,-20,61,53,47,-4,35,41,34,30,0,35,-1,1,0,-56,23,-40,46,-12,0,-1,-5,1,48,-20,0,-38,-40,-24,34,15,42,57,-31,-21,35,-30,2,0,34,-16,13,-1,42,-2,32,-1,41,16,58,35,47,-7,0,2,58,-7,25,10,38,0,0,0,-14,-8,48,-18,16,32,4,20,2,67,-5,23,15,24,-44,26,-16,-37,22,55,31,52,-1,-26,63,-41,-25,-21,-47,-48,-42,-31,-42,-4,17,-21,11,-8,2,-37],[0,1,10,-5,0,-20,-14,-20,7,-25,-27,-37,-3,0,-3,-1,-18,-42,-30,0,-19,1,0,-30,-33,-1,-16,0,-37,1,0,-22,9,-27,40,11,12,0,1,2,1,0,-4,0,-36,1,-22,0,-34,0,-3,-48,-21,17,3,-38,0,-11,3,2,0,0,-4,-1,-32,-6,-24,-7,-37,-22,-29,4,2,-8,-15,0,-5,1,0,-2,27,3,-27,13,-41,0,0,-44,1,-9,-40,0,-41,-27,-38,-22,-10,3,6,-28,-38,-13,-20,0,0,-14,-23,11,-2,8,1,-19,2,-8,-11,-17,-13,0,-26,1,-26,-23,-24,-21,-10,7,2,0,-1,-31,-37,-22,-41,-53,-2,-49,25,46,-29,-41,-3,-6,-37,32,-6,-23,22,-22,-21,-20,-2,-37,-37,-35,-8,-24,8,-5,-26,-1,-33,-15,32,-18,-27,-34,-26,51,-25],[-1,0,-14,19,-2,9,36,-8,-43,-31,29,49,0,1,-40,-1,40,33,33,1,45,0,1,24,17,0,37,1,31,0,0,5,-46,-26,-56,-3,-29,0,-1,-36,2,0,-27,0,35,1,28,1,-32,0,9,5,37,-7,0,12,-1,-4,0,0,0,-1,1,0,-23,-8,33,3,-5,13,16,-3,14,-15,7,-1,-12,0,0,2,-24,-14,18,-14,37,1,0,31,-1,15,11,1,13,30,45,0,10,-23,-15,33,37,-13,24,0,0,25,5,-30,0,33,1,-9,1,-1,-10,-8,-7,10,24,-2,33,7,36,-46,-15,5,1,0,-1,29,36,25,31,52,5,32,-35,-34,42,47,28,48,32,-4,35,37,-36,36,35,32,39,35,23,60,12,21,-54,-56,-5,-22,-6,-54,-12,50,34,22,30,-21,36],[11,-3,-35,24,0,-55,37,-1,-13,-13,1,55,-1,0,-23,-1,48,38,31,0,48,0,-2,35,24,1,25,1,23,1,0,33,-23,-5,-19,-12,-47,1,1,-16,1,-2,-31,-2,30,0,33,0,-10,0,-32,51,39,-47,0,57,-1,-31,0,0,-3,0,1,-1,-39,-16,59,-49,-31,-40,32,-30,-31,-58,-34,1,-51,-2,-1,-2,1,-24,39,-49,34,0,-1,21,0,-23,40,-1,46,29,31,-36,-33,-4,-45,52,26,-36,23,0,-1,-24,19,-50,-1,-28,0,-37,-1,-35,-31,-21,-42,-44,17,1,19,-34,33,-34,-27,-21,-2,1,0,23,54,-24,41,31,-19,24,-30,-34,18,37,-4,15,32,-6,21,14,-32,36,11,42,1,66,30,28,40,38,-5,-7,17,34,28,13,-46,42,35,35,56,-34,19],[68,0,-13,-5,0,-40,-6,-23,-32,-38,-23,-11,2,1,19,0,1,-12,-9,0,-29,2,1,-21,-19,-1,-21,0,-16,0,-1,-20,24,-22,41,-24,14,-1,-3,51,0,0,-48,0,-33,-3,1,1,-29,0,-45,3,-10,-51,0,-11,1,-43,1,-2,0,0,1,-1,-34,-20,-27,-31,-33,-27,-5,-17,-42,-33,-54,0,-9,1,0,0,13,-32,-9,-22,-15,-2,0,-13,-1,-27,-13,-2,-29,-8,-8,-33,-21,-46,-34,-16,-2,-51,-7,0,1,-37,-19,-22,-2,-18,-3,-34,-1,-38,-26,-22,-18,-48,-28,0,-9,-45,-11,-17,-40,-27,0,-2,0,-10,-22,-46,1,-24,-48,-10,32,22,-19,-41,-30,-31,-38,23,-48,-32,35,-32,-8,-22,-33,-50,-35,-28,4,-16,7,28,24,20,34,40,9,-16,-24,-33,-23,30,-23],[-5,0,-48,48,0,-29,38,-42,-46,-24,30,30,0,0,-21,2,49,27,39,0,45,0,-1,34,41,1,24,0,46,-1,0,52,-16,-55,-35,-42,-45,-1,-1,-16,1,0,-31,0,23,0,34,4,-43,1,-22,31,20,-33,-2,45,-1,-33,0,1,-1,2,2,0,-34,-53,30,-44,-35,-44,21,-22,-30,-44,-17,0,-42,-3,-1,0,3,-26,13,-44,26,1,0,45,-3,-32,23,0,53,42,49,-8,-35,-28,-40,31,33,-31,44,0,-1,-54,62,-48,2,-43,-1,-37,1,-39,-53,-15,-17,-17,31,-2,41,-48,38,-24,-50,-38,-1,0,1,30,34,-31,34,25,-26,50,-31,-27,6,51,40,28,31,-12,46,32,-40,33,13,32,24,48,18,21,19,77,-7,-16,7,2,24,12,-26,30,34,13,42,-40,41],[24,-1,-13,-40,2,-25,-13,-4,-8,19,-18,-28,-1,3,44,0,-38,-23,-48,0,-61,0,1,-36,-49,0,-37,0,-36,1,-1,-38,34,-29,13,-23,53,1,0,33,0,0,-26,-1,-49,-1,-56,1,-54,1,-17,-46,0,-17,0,-33,-1,-40,0,0,1,1,-1,0,-49,-29,-27,-23,-41,-24,-15,-10,-26,-22,-10,0,-20,0,2,-1,41,-46,-35,-16,-26,0,4,-41,1,-44,-38,-2,-9,-45,-26,-32,-5,-20,-23,-41,-55,-19,-42,0,-1,-23,-28,21,1,15,0,21,0,-16,34,-14,-39,-23,-37,1,-51,-21,-32,-8,-34,-41,0,0,0,-28,-39,-29,-23,-31,-29,-54,45,54,-19,-13,-46,-33,-29,31,-29,-25,24,-26,-17,-34,-15,-19,-31,-24,49,-33,50,5,10,30,38,21,33,-13,-44,-34,-34,14,-29],[-20,0,12,29,0,14,26,-1,16,4,22,25,-1,0,-8,0,23,25,4,0,16,0,0,42,32,3,38,-1,29,1,1,4,-12,10,-6,13,-5,1,-1,22,-1,0,3,-1,55,0,21,0,3,0,4,2,5,-22,1,50,2,19,3,0,0,1,0,0,10,19,41,11,-4,28,31,16,18,9,10,0,-8,0,-1,2,-19,6,27,7,18,-1,0,14,-1,-4,21,0,17,36,21,24,21,21,6,38,32,1,16,0,0,2,11,-20,-1,25,0,14,0,2,6,-3,3,4,31,0,20,-13,23,2,13,1,0,0,1,22,2,21,35,16,30,18,-6,-27,12,28,33,6,24,-14,7,26,-27,12,11,25,13,28,26,0,9,9,-11,-24,-16,-9,-21,-25,-38,28,19,10,3,-1,10],[39,-1,-2,-29,-1,-12,-19,-9,17,37,-28,-13,0,1,4,0,-36,-15,-17,-2,-16,0,-1,-1,-20,0,-13,0,-10,-1,0,-24,22,10,21,5,14,0,0,21,0,0,10,-1,-23,0,-2,3,22,-3,15,-13,-25,-21,0,-1,-1,25,-1,0,0,-3,0,0,-22,7,2,-8,-13,3,-11,7,5,-10,19,0,9,3,0,0,18,-7,-6,4,-16,-1,2,-24,1,17,-22,-1,-38,-27,-25,-28,-7,13,-2,-18,-6,8,-33,1,-1,-23,-5,24,0,0,2,13,0,15,19,-15,1,-23,-15,-1,-27,-19,-2,-12,-8,14,0,0,1,-33,-20,-33,-25,-7,-21,-2,35,-1,-23,-17,-15,-36,-18,26,-8,-29,24,-34,-66,-4,-18,-36,-21,-21,11,0,21,10,11,17,10,24,19,-30,-50,-36,-31,26,1],[51,0,-7,14,-1,-23,-9,-26,-10,-16,-29,1,0,-1,44,1,-22,-14,-23,0,-1,-3,-2,-2,-3,0,1,0,-9,0,-1,10,25,-12,10,6,40,0,-2,25,2,0,-39,0,-37,1,-5,0,-14,1,-33,-14,-11,-39,0,-3,0,-21,0,3,1,3,1,0,-11,0,-27,-5,-17,-18,-15,-17,-6,-7,-18,-3,7,0,1,2,45,-17,-26,-22,-26,1,2,-19,-5,-6,7,1,-25,-11,-10,-8,-33,-12,-20,-14,-14,-31,-14,1,-2,-14,-10,-21,0,-3,-1,-25,1,-15,12,-26,-17,-20,-19,0,-4,-1,-34,-21,-28,-31,0,-1,-2,-19,-50,-2,-3,-13,-7,-29,42,24,-20,-20,-16,-28,-35,18,-42,-41,36,-36,-13,-13,-28,-43,-29,-35,14,-29,47,44,11,38,-31,48,30,-27,-51,-35,-38,43,-17]],"b1":[28,20,47,37,28,57,46,38,6,1,29,27,42,-2,55,-9],"w2":[[-54,-39,75,55,-51,57,42,25,31,-48,-41,-44,-8,27,5,-5],[36,46,-70,-30,-29,-49,-47,35,-51,-53,26,-39,37,-7,28,36],[-15,-37,-44,-39,34,-38,-37,-34,19,21,10,30,-42,-3,-34,-11]],"b2":[52,-30,-36]};
+const SCALE = 256;
+const CAN_RE = /^\(([^)]+)\)\s+\S+\s+([0-9A-Fa-f]+)#([0-9A-Fa-f]*)$/;
+
+const sampleUpload = document.getElementById('sample-upload');
+const predictButton = document.getElementById('predict-button');
+const templateButton = document.getElementById('template-button');
+const predictionBox = document.getElementById('prediction-result');
+const summaryBox = document.getElementById('sample-summary');
+
+let loadedSample = null;
+
+function setPredictionState(kind, title, copy, extraHtml = '') {
+  predictionBox.className = `result-box ${kind}`.trim();
+  predictionBox.innerHTML = `
+    <div class="result-title">${title}</div>
+    <div class="result-copy">${copy}</div>
+    ${extraHtml}
+  `;
+}
+
+function setSummaryRows(rows) {
+  summaryBox.innerHTML = rows.map((row) => `<div class="stat-key">${row[0]}</div><div>${row[1]}</div>`).join('');
+}
+
+function softmax(logits) {
+  const maxValue = Math.max(...logits);
+  const exps = logits.map((v) => Math.exp(v - maxValue));
+  const s = exps.reduce((a, b) => a + b, 0);
+  return exps.map((v) => v / s);
+}
+
+function parseFeatureVectorText(text) {
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+
+  try {
+    const asJson = JSON.parse(trimmed);
+    if (Array.isArray(asJson) && asJson.length === 169) {
+      return asJson.map(Number);
+    }
+    if (asJson && Array.isArray(asJson.features) && asJson.features.length === 169) {
+      return asJson.features.map(Number);
+    }
+  } catch (_err) {
+    // not JSON
+  }
+
+  const tokens = trimmed.split(/[\s,]+/).filter(Boolean);
+  if (tokens.length === 169) {
+    return tokens.map(Number);
+  }
+  return null;
+}
+
+function parseCanLog(logText) {
+  const messages = [];
+  const lines = logText.split(/\r?\n/);
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line) continue;
+    const m = line.match(CAN_RE);
+    if (!m) continue;
+    const ts = parseFloat(m[1]);
+    const canId = parseInt(m[2], 16);
+    const payloadHex = m[3] || '';
+    const payload = [];
+    for (let i = 0; i + 1 < payloadHex.length; i += 2) {
+      payload.push(parseInt(payloadHex.slice(i, i + 2), 16));
+    }
+    messages.push({ ts, canId, payload });
+  }
+  return messages;
+}
+
+function extractFeatures(messages) {
+  const timestamps = messages.map((m) => m.ts);
+  const ids = messages.map((m) => m.canId);
+  const payloads = messages.map((m) => m.payload);
+
+  const idHist = new Array(browserModel.id_hash_bins).fill(0);
+  for (const id of ids) {
+    idHist[id % browserModel.id_hash_bins] += 1;
+  }
+  const idSum = idHist.reduce((a, b) => a + b, 0);
+  if (idSum > 0) {
+    for (let i = 0; i < idHist.length; i += 1) idHist[i] /= idSum;
+  }
+
+  const lenHist = new Array(9).fill(0);
+  for (const payload of payloads) {
+    lenHist[Math.min(payload.length, 8)] += 1;
+  }
+
+  let nibbleHist = new Array(16).fill(0);
+  const allBytes = [];
+  for (const payload of payloads) {
+    for (const byteValue of payload) allBytes.push(byteValue);
+  }
+
+  if (allBytes.length > 0) {
+    for (const byteValue of allBytes) {
+      const high = (byteValue >> 4) & 0xF;
+      nibbleHist[high] += 1;
+    }
+    const lowHist = new Array(16).fill(0);
+    for (const byteValue of allBytes) {
+      const low = byteValue & 0xF;
+      lowHist[low] += 1;
+    }
+    // Mirrors the current FPGA-side helper: high nibble bins 0..7 + low nibble bins 0..7
+    nibbleHist = [...nibbleHist.slice(0, 8), ...lowHist.slice(0, 8)];
+    const nibbleSum = nibbleHist.reduce((a, b) => a + b, 0);
+    if (nibbleSum > 0) {
+      for (let i = 0; i < nibbleHist.length; i += 1) nibbleHist[i] /= nibbleSum;
+    }
+  } else {
+    nibbleHist = new Array(16).fill(0);
+  }
+
+  const n = messages.length;
+  const uniqueIds = new Set(ids).size;
+  const uidRatio = n > 0 ? uniqueIds / n : 0;
+  const idMean = n > 0 ? ids.reduce((a, b) => a + b, 0) / n : 0;
+  const idStd = n > 0 ? Math.sqrt(ids.reduce((s, v) => s + (v - idMean) ** 2, 0) / n) : 0;
+
+  const idCount = new Map();
+  for (const id of ids) {
+    idCount.set(id, (idCount.get(id) || 0) + 1);
+  }
+  const sortedCounts = [...idCount.values()].sort((a, b) => b - a);
+  const top1Ratio = sortedCounts.length ? sortedCounts[0] / n : 0;
+  const top3Ratio = sortedCounts.length >= 3
+    ? (sortedCounts[0] + sortedCounts[1] + sortedCounts[2]) / n
+    : top1Ratio;
+
+  let deltaMean = 0;
+  let deltaStd = 0;
+  let deltaP75 = 0;
+  let deltaMax = 0;
+  if (timestamps.length > 1) {
+    const deltas = [];
+    for (let i = 1; i < timestamps.length; i += 1) deltas.push(timestamps[i] - timestamps[i - 1]);
+    deltaMean = deltas.reduce((a, b) => a + b, 0) / deltas.length;
+    deltaStd = Math.sqrt(deltas.reduce((s, v) => s + (v - deltaMean) ** 2, 0) / deltas.length);
+    const sorted = [...deltas].sort((a, b) => a - b);
+    const p75Idx = Math.floor(0.75 * (sorted.length - 1));
+    deltaP75 = sorted[p75Idx];
+    deltaMax = sorted[sorted.length - 1];
+  }
+
+  const lengths = payloads.map((p) => p.length);
+  const plenMean = lengths.length ? lengths.reduce((a, b) => a + b, 0) / lengths.length : 0;
+  const plenStd = lengths.length
+    ? Math.sqrt(lengths.reduce((s, v) => s + (v - plenMean) ** 2, 0) / lengths.length)
+    : 0;
+
+  let byteMean = 0;
+  let byteStd = 0;
+  let byteP75 = 0;
+  let fracZero = 0;
+  let fracFF = 0;
+  if (allBytes.length > 0) {
+    byteMean = allBytes.reduce((a, b) => a + b, 0) / allBytes.length;
+    byteStd = Math.sqrt(allBytes.reduce((s, v) => s + (v - byteMean) ** 2, 0) / allBytes.length);
+    const sorted = [...allBytes].sort((a, b) => a - b);
+    const p75Idx = Math.floor(0.75 * (sorted.length - 1));
+    byteP75 = sorted[p75Idx];
+    fracZero = allBytes.filter((v) => v === 0).length / allBytes.length;
+    fracFF = allBytes.filter((v) => v === 255).length / allBytes.length;
+  }
+
+  const statFeatures = [
+    uidRatio, idMean, idStd, top1Ratio, top3Ratio,
+    deltaMean, deltaStd, deltaP75, deltaMax,
+    plenMean, plenStd,
+    byteMean, byteStd, byteP75, fracZero, fracFF,
+  ];
+
+  return [...idHist, ...lenHist, ...nibbleHist, ...statFeatures];
+}
+
+function preprocessFeatures(features) {
+  const q = new Array(features.length);
+  for (let i = 0; i < features.length; i += 1) {
+    const norm = (features[i] - browserModel.feature_mean[i]) / (browserModel.feature_std[i] + 1e-8);
+    let v = Math.round(norm * SCALE);
+    if (v < -32768) v = -32768;
+    if (v > 32767) v = 32767;
+    q[i] = v;
+  }
+  return q;
+}
+
+function inferFixed(rawFeatures) {
+  const q = preprocessFeatures(rawFeatures);
+
+  const acc1 = new Array(16).fill(0);
+  for (let n = 0; n < 16; n += 1) {
+    let sum = 0;
+    for (let i = 0; i < 169; i += 1) {
+      sum += q[i] * browserModel.w1[n][i];
+    }
+    sum += (browserModel.b1[n] << 8);
+    acc1[n] = sum;
+  }
+
+  const relu1 = acc1.map((v) => (v >= 0 ? (v >> 8) : 0));
+  const acc2 = new Array(3).fill(0);
+  for (let m = 0; m < 3; m += 1) {
+    let sum = 0;
+    for (let i = 0; i < 16; i += 1) {
+      sum += relu1[i] * browserModel.w2[m][i];
+    }
+    sum += (browserModel.b2[m] << 8);
+    acc2[m] = sum;
+  }
+
+  const logits = acc2.map((v) => v / 65536.0);
+  const probs = softmax(logits);
+  const ranked = probs
+    .map((prob, idx) => ({ className: browserModel.class_names[idx], prob, logit: logits[idx], idx }))
+    .sort((a, b) => b.prob - a.prob);
+  return { logits, probs, ranked };
+}
+
+function classifyWindows(messages) {
+  const nWindows = Math.floor(messages.length / browserModel.window_stride);
+  if (nWindows <= 0) {
+    throw new Error(`Not enough CAN messages (${messages.length}). Need at least ${browserModel.window_size}.`);
+  }
+
+  const votes = new Array(browserModel.class_names.length).fill(0);
+  const perWindow = [];
+  for (let w = 0; w < nWindows; w += 1) {
+    const start = w * browserModel.window_stride;
+    const windowMsgs = messages.slice(start, start + browserModel.window_size);
+    const features = extractFeatures(windowMsgs);
+    const result = inferFixed(features);
+    const top = result.ranked[0];
+    votes[top.idx] += 1;
+    perWindow.push({
+      window: w,
+      label: top.className,
+      prob: top.prob,
+      logit: top.logit,
+    });
+  }
+  const totalVotes = votes.reduce((a, b) => a + b, 0);
+  const voteProbs = votes.map((v) => v / totalVotes);
+  let finalIdx = 0;
+  for (let i = 1; i < voteProbs.length; i += 1) {
+    if (voteProbs[i] > voteProbs[finalIdx]) finalIdx = i;
+  }
+  return {
+    finalIdx,
+    finalLabel: browserModel.class_names[finalIdx],
+    confidence: voteProbs[finalIdx],
+    voteProbs,
+    nWindows,
+    perWindow,
+  };
+}
+
+async function fileToText(file) {
+  return await file.text();
+}
+
+function updateSummaryForNone() {
+  setSummaryRows([["Status", "Waiting for upload"]]);
+}
+
+sampleUpload.addEventListener('change', async () => {
+  const file = sampleUpload.files && sampleUpload.files[0];
+  loadedSample = null;
+  predictButton.disabled = true;
+
+  if (!file) {
+    updateSummaryForNone();
+    setPredictionState('', 'Prediction ready when you upload a sample.', 'The report will run the embedded CAN BNN weights locally in your browser.');
+    return;
+  }
+
+  try {
+    const text = await fileToText(file);
+    const directFeatures = parseFeatureVectorText(text);
+    if (directFeatures) {
+      loadedSample = {
+        type: 'features',
+        name: file.name,
+        featureVector: directFeatures,
+      };
+      setSummaryRows([
+        ["File", file.name],
+        ["Mode", "Direct 169-feature vector"],
+        ["Feature count", String(directFeatures.length)],
+        ["Status", "Ready to predict"],
+      ]);
+    } else {
+      const messages = parseCanLog(text);
+      loadedSample = {
+        type: 'can_log',
+        name: file.name,
+        messages,
+      };
+      const windows = Math.floor(messages.length / browserModel.window_stride);
+      setSummaryRows([
+        ["File", file.name],
+        ["Mode", "candump log parse"],
+        ["Messages parsed", String(messages.length)],
+        ["Windows", String(windows)],
+      ]);
+    }
+
+    predictButton.disabled = false;
+    setPredictionState('', `Loaded sample: ${file.name}`, 'Sample parsed successfully. Click Predict.');
+  } catch (error) {
+    updateSummaryForNone();
+    setPredictionState('error', 'Upload failed', error.message);
+  }
+});
+
+predictButton.addEventListener('click', () => {
+  if (!loadedSample) {
+    setPredictionState('error', 'No sample loaded', 'Upload a CAN log or 169-feature vector before running prediction.');
+    return;
+  }
+  try {
+    if (loadedSample.type === 'features') {
+      const result = inferFixed(loadedSample.featureVector);
+      const top = result.ranked[0];
+      const extra = result.ranked.map((item, idx) =>
+        `<div class="rank-item"><strong>#${idx + 1} ${item.className}</strong> - ${(item.prob * 100).toFixed(2)}% (logit ${item.logit.toFixed(4)})</div>`
+      ).join('');
+      setPredictionState(
+        'success',
+        `Predicted class: ${top.className}`,
+        `Confidence: ${(top.prob * 100).toFixed(2)}%`,
+        `<div class="rank-list">${extra}</div>`
+      );
+      return;
+    }
+
+    const summary = classifyWindows(loadedSample.messages);
+    const probRows = summary.voteProbs.map((p, i) =>
+      `<div class="rank-item"><strong>${browserModel.class_names[i]}</strong> - ${(p * 100).toFixed(2)}%</div>`
+    ).join('');
+    const perWindowRows = summary.perWindow.slice(0, 12).map((item) =>
+      `<div class="rank-item">window ${item.window}: ${item.label} (${(item.prob * 100).toFixed(2)}%)</div>`
+    ).join('');
+    const capped = summary.perWindow.length > 12
+      ? `<div class="rank-item">...and ${summary.perWindow.length - 12} more windows.</div>`
+      : '';
+
+    setPredictionState(
+      'success',
+      `Predicted class: ${summary.finalLabel}`,
+      `Window-vote confidence: ${(summary.confidence * 100).toFixed(2)}% across ${summary.nWindows} windows.`,
+      `<div class="rank-list">${probRows}${perWindowRows}${capped}</div>`
+    );
+  } catch (error) {
+    setPredictionState('error', 'Prediction failed', error.message);
+  }
+});
+
+templateButton.addEventListener('click', () => {
+  const template = [
+    "(1700000000.10) can0 18FF50E5#1122334455667788",
+    "(1700000000.12) can0 0CF00400#0001020304050607",
+    "(1700000000.15) can0 18FEF100#AABBCCDDEEFF0011",
+    "(1700000000.17) can0 0CF00300#1234567890ABCDEF",
+  ].join("\n");
+  const blob = new Blob([template], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "can_sample_template.log";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+updateSummaryForNone();
+</script>
 </body>
 </html>

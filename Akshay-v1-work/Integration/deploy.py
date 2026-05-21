@@ -8,7 +8,7 @@ Usage
 What it does
 ------------
 1. Stages all files into  deploy_bundle/  (copies the integration notebook,
-   integration_runtime.py, stream_server.py, and all four model notebooks
+   integration_runtime.py, streaming servers, and all four model notebooks
    into the bundle).
 2. SCPs the entire  deploy_bundle/  folder to the board.
 
@@ -56,8 +56,9 @@ STAGE_MAP = [
     ("model_notebooks/cnn_accelerator_script.ipynb", "model_notebooks/cnn_accelerator_script.ipynb"),
     ("model_notebooks/svm_accelerator_script.ipynb", "model_notebooks/svm_accelerator_script.ipynb"),
     ("model_notebooks/mlp_inference_pynq.ipynb",     "model_notebooks/mlp_inference_pynq.ipynb"),
-    # Streaming server (board-side)
+    # Streaming servers (board-side)
     ("stream_server.py",                             "stream_server.py"),
+    ("stream_server_cnn.py",                         "stream_server_cnn.py"),
 ]
 
 

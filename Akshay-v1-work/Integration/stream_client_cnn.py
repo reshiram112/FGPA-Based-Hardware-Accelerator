@@ -61,8 +61,13 @@ def run_file(host, path, loop=False):
             if "error" in resp:
                 print(f"  [{i}]  ERROR: {resp['error']}")
             else:
+                total_ms = resp.get("total_latency_ms", resp.get("latency_ms", "?"))
+                hw_ms = resp.get("hw_latency_ms")
+                lat_text = f"total {total_ms} ms"
+                if hw_ms is not None:
+                    lat_text += f", hw {hw_ms} ms"
                 print(f"  [{i}]  -> {resp.get('prediction','?'):<35}  "
-                      f"(FPGA {resp.get('latency_ms','?')} ms, RTT {rtt:.0f} ms)")
+                      f"({lat_text}, RTT {rtt:.0f} ms)")
             if not loop:
                 break
             time.sleep(0.5)
@@ -96,8 +101,13 @@ def run_cam(host, interval=0.5):
                 if "error" in resp:
                     last_pred = f"ERROR: {resp['error']}"
                 else:
+                    total_ms = resp.get("total_latency_ms", resp.get("latency_ms", "?"))
+                    hw_ms = resp.get("hw_latency_ms")
+                    lat_text = f"total {total_ms} ms"
+                    if hw_ms is not None:
+                        lat_text += f", hw {hw_ms} ms"
                     last_pred = (f"{resp.get('prediction','?')}  "
-                                 f"({resp.get('latency_ms','?')} ms FPGA, {rtt:.0f} ms RTT)")
+                                 f"({lat_text}, {rtt:.0f} ms RTT)")
                 print(f"  Frame {frame_n:5d}  -> {last_pred}")
             # Overlay label on preview window
             disp = frame.copy()

@@ -1,190 +1,293 @@
+// cnn_top.cpp -- AXI-Stream CNN accelerator kernel for Vitis HLS
+//
+// Architecture : 5-layer GTSRB CNN backbone
+//                PL: Conv1-5 + MaxPool1-3   (this kernel)
+//                PS: FC head                 (cnn_inference_pynq.ipynb)
+//
+// Weights stored in on-chip BRAM/LUTRAM ROMs via cnn_weights_data.h
+// (generated once by: python generate_weights.py)
+//
+// Stream IN  : 3*32*32 = 3072 Q6.10 int16 words (one pixel per 32-bit word)
+// Stream OUT : 128*4*4 = 2048 Q6.10 int16 words (TLAST on last word)
+//
+// Interface  : AXI-Stream data  +  AXI-Lite control (ap_ctrl_hs)
+// ---------------------------------------------------------------------------
+
 #include "cnn_top.h"
+#include "cnn_weights_data.h"   // static const int16_t cnn_w1..5, cnn_b1..5
 
-// Parameters
-#define IMG_CH 1
-#define IMG_H 28
-#define IMG_W 28
+// ------------- Architecture constants -------------------------------------
+#define IMG_CH    3
+#define IMG_H    32
+#define IMG_W    32
 
-#define CONV1_CH 8
-#define CONV1_K 3
-#define POOL1_K 2
+#define CONV1_CH  32
+#define CONV2_CH  32
+#define CONV3_CH  64
+#define CONV4_CH  64
+#define CONV5_CH 128
 
-#define CONV2_CH 16
-#define CONV2_K 3
-#define POOL2_K 2
+#define K       3
+#define PAD     1       // same-padding for all conv layers
+#define POOL_K  2
 
-#define P1_H (IMG_H/POOL1_K)
-#define P1_W (IMG_W/POOL1_K)
-#define P2_H (P1_H/POOL2_K)
-#define P2_W (P1_W/POOL2_K)
+#define P1_H  (IMG_H  / POOL_K)   // 16
+#define P1_W  (IMG_W  / POOL_K)   // 16
+#define P2_H  (P1_H   / POOL_K)   //  8
+#define P2_W  (P1_W   / POOL_K)   //  8
+#define P3_H  (P2_H   / POOL_K)   //  4
+#define P3_W  (P2_W   / POOL_K)   //  4
 
-#define FC_IN (CONV2_CH * P2_H * P2_W) // 16*7*7 = 784
-#define FC_OUT 10
+#define N_OUT (CONV5_CH * P3_H * P3_W)  // 2048
 
-// Weight counts
-#define N_W1  (CONV1_CH * IMG_CH * CONV1_K * CONV1_K)  // 72
-#define N_B1  (CONV1_CH)                                // 8
-#define N_W2  (CONV2_CH * CONV1_CH * CONV2_K * CONV2_K)// 1152
-#define N_B2  (CONV2_CH)                                // 16
-#define N_WFC (FC_OUT * FC_IN)                          // 7840
-#define N_BFC (FC_OUT)                                  // 10
+// ------------- Helpers (same pattern as mlp_top.cpp) ---------------------
+
+// Read one Q6.10 int16 pixel from bits[15:0] of a 32-bit AXI-Stream word
+static inline data_t s_read(hls::stream<axis_t>& s)
+{
+#pragma HLS INLINE
+    data_t v;
+    v.range() = s.read().data.range(15, 0);
+    return v;
+}
+
+// Reinterpret stored int16 bits as a Q6.10 ap_fixed<16,6> value
+static inline data_t w_to_fixed(int16_t raw)
+{
+#pragma HLS INLINE
+    data_t v;
+    v.range() = (ap_uint<16>)(uint16_t)raw;
+    return v;
+}
+
+// ------------- Top-level function ----------------------------------------
 
 void cnn_top(
     hls::stream<axis_t>& s_axis_input,
-    hls::stream<axis_t>& m_axis_output
-) {
-    #pragma HLS INTERFACE axis      port=s_axis_input
-    #pragma HLS INTERFACE axis      port=m_axis_output
-    #pragma HLS INTERFACE s_axilite port=return bundle=ctrl
+    hls::stream<axis_t>& m_axis_output)
+{
+#pragma HLS INTERFACE axis         port=s_axis_input  register
+#pragma HLS INTERFACE axis         port=m_axis_output register
+#pragma HLS INTERFACE ap_ctrl_none port=return
 
-    // ── 1. Read weights from stream ─────────────────────────────
-    int16_t w_conv1[N_W1], b_conv1[N_B1];
-    int16_t w_conv2[N_W2], b_conv2[N_B2];
-    int16_t w_fc[N_WFC],   b_fc[N_BFC];
+    // -- Weight ROM bindings (static const arrays from cnn_weights_data.h) --
+    // Small arrays -> LUTRAM ROM (saves BRAM for feature maps)
+#pragma HLS BIND_STORAGE variable=cnn_w1 type=rom_1p impl=lutram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_b1 type=rom_1p impl=lutram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_b2 type=rom_1p impl=lutram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_b3 type=rom_1p impl=lutram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_b4 type=rom_1p impl=lutram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_b5 type=rom_1p impl=lutram latency=1
+    // Large arrays -> BRAM ROM (single read-port, most efficient)
+#pragma HLS BIND_STORAGE variable=cnn_w2 type=rom_1p impl=bram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_w3 type=rom_1p impl=bram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_w4 type=rom_1p impl=bram latency=1
+#pragma HLS BIND_STORAGE variable=cnn_w5 type=rom_1p impl=bram latency=1
 
-    #pragma HLS ARRAY_PARTITION variable=b_conv1 complete dim=1
-    #pragma HLS ARRAY_PARTITION variable=b_conv2 complete dim=1
-    #pragma HLS ARRAY_PARTITION variable=b_fc    complete dim=1
-
-    RD_W1: for (int i = 0; i < N_W1; i++) {
-        #pragma HLS PIPELINE II=1
-        w_conv1[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-    RD_B1: for (int i = 0; i < N_B1; i++) {
-        #pragma HLS PIPELINE II=1
-        b_conv1[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-    RD_W2: for (int i = 0; i < N_W2; i++) {
-        #pragma HLS PIPELINE II=1
-        w_conv2[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-    RD_B2: for (int i = 0; i < N_B2; i++) {
-        #pragma HLS PIPELINE II=1
-        b_conv2[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-    RD_WFC: for (int i = 0; i < N_WFC; i++) {
-        #pragma HLS PIPELINE II=1
-        w_fc[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-    RD_BFC: for (int i = 0; i < N_BFC; i++) {
-        #pragma HLS PIPELINE II=1
-        b_fc[i] = (int16_t)s_axis_input.read().data(15, 0);
-    }
-
-    // ── 2. Read input image ──────────────────────────────────────
+    // ── 1. Read input image from AXI-Stream ──────────────────────────
     data_t img_buf[IMG_CH][IMG_H][IMG_W];
-    READ_IMG: for (int r = 0; r < IMG_H; r++) {
-        for (int c = 0; c < IMG_W; c++) {
-            #pragma HLS PIPELINE
-            ap_int<16> raw = s_axis_input.read().data(15, 0);
-            data_t val; val.range() = raw;
-            img_buf[0][r][c] = val;
-        }
-    }
-
-    // ── 3. Conv1 + ReLU ─────────────────────────────────────────
-    data_t conv1_buf[CONV1_CH][IMG_H][IMG_W];
-    CONV1_R: for (int r = 0; r < IMG_H; r++) {
-        CONV1_C: for (int c = 0; c < IMG_W; c++) {
-            CONV1_CH_L: for (int ch = 0; ch < CONV1_CH; ch++) {
-                #pragma HLS PIPELINE
-                data_t sum = 0;
-                for (int kr = 0; kr < CONV1_K; kr++)
-                    for (int kc = 0; kc < CONV1_K; kc++) {
-                        int rr = r+kr-1, cc = c+kc-1;
-                        data_t px = (rr>=0 && rr<IMG_H && cc>=0 && cc<IMG_W)
-                                    ? img_buf[0][rr][cc] : (data_t)0;
-                        data_t wv; wv.range() = w_conv1[ch*CONV1_K*CONV1_K + kr*CONV1_K + kc];
-                        sum += px * wv;
-                    }
-                data_t bv; bv.range() = b_conv1[ch];
-                sum += bv;
-                conv1_buf[ch][r][c] = (sum > 0) ? sum : (data_t)0;
+#pragma HLS ARRAY_PARTITION variable=img_buf complete dim=1
+    L1: for (int ch = 0; ch < IMG_CH; ch++) {
+        L2: for (int r = 0; r < IMG_H; r++) {
+        L3: for (int c = 0; c < IMG_W; c++) {
+#pragma HLS PIPELINE II=1
+                img_buf[ch][r][c] = s_read(s_axis_input);
             }
         }
     }
 
-    // ── 4. Pool1 (max 2x2) ──────────────────────────────────────
-    data_t pool1_buf[CONV1_CH][P1_H][P1_W];
-    POOL1_CH: for (int ch = 0; ch < CONV1_CH; ch++) {
-        POOL1_R: for (int r = 0; r < P1_H; r++) {
-            POOL1_C: for (int c = 0; c < P1_W; c++) {
-                #pragma HLS PIPELINE
-                data_t mx = conv1_buf[ch][r*2][c*2];
-                if (conv1_buf[ch][r*2  ][c*2+1] > mx) mx = conv1_buf[ch][r*2  ][c*2+1];
-                if (conv1_buf[ch][r*2+1][c*2  ] > mx) mx = conv1_buf[ch][r*2+1][c*2  ];
-                if (conv1_buf[ch][r*2+1][c*2+1] > mx) mx = conv1_buf[ch][r*2+1][c*2+1];
+    // ── 2. Conv1 + ReLU  (3 in → 32 out, 3×3, same-pad) ─────────────
+    data_t conv1_buf[CONV1_CH][IMG_H][IMG_W];
+    #pragma HLS BIND_STORAGE variable=conv1_buf type=ram_1p impl=bram
+
+    L4: for (int oc = 0; oc < CONV1_CH; oc++) {
+        L5: for (int r = 0; r < IMG_H; r++) {
+            L6: for (int c = 0; c < IMG_W; c++) {
+                accum_t sum = (accum_t)w_to_fixed(cnn_b1[oc]);
+                L7: for (int ic = 0; ic < IMG_CH; ic++) {
+        L8: for (int kr = 0; kr < K; kr++) {
+        L9: for (int kc = 0; kc < K; kc++) {
+#pragma HLS PIPELINE II=1
+                            int rr = r + kr - PAD;
+                            int cc = c + kc - PAD;
+                            data_t px = (rr >= 0 && rr < IMG_H && cc >= 0 && cc < IMG_W)
+                                        ? img_buf[ic][rr][cc] : (data_t)0;
+                            int widx = oc * (IMG_CH * K * K) + ic * (K * K) + kr * K + kc;
+                            sum += (accum_t)px * (accum_t)w_to_fixed(cnn_w1[widx]);
+                        }
+                    }
+                }
+                conv1_buf[oc][r][c] = (sum > (accum_t)0) ? (data_t)sum : (data_t)0;
+            }
+        }
+    }
+
+    // ── 3. Conv2 + ReLU  (32 in → 32 out, 3×3, same-pad) ────────────
+    data_t conv2_buf[CONV2_CH][IMG_H][IMG_W];
+    #pragma HLS BIND_STORAGE variable=conv2_buf type=ram_1p impl=bram
+    L10: for (int oc = 0; oc < CONV2_CH; oc++) {
+        L11: for (int r = 0; r < IMG_H; r++) {
+        L12: for (int c = 0; c < IMG_W; c++) {
+                accum_t sum = (accum_t)w_to_fixed(cnn_b2[oc]);
+                L13: for (int ic = 0; ic < CONV1_CH; ic++) {
+        L14: for (int kr = 0; kr < K; kr++) {
+        L15: for (int kc = 0; kc < K; kc++) {
+#pragma HLS PIPELINE II=1
+                            int rr = r + kr - PAD;
+                            int cc = c + kc - PAD;
+                            data_t px = (rr >= 0 && rr < IMG_H && cc >= 0 && cc < IMG_W)
+                                        ? conv1_buf[ic][rr][cc] : (data_t)0;
+                            int widx = oc * (CONV1_CH * K * K) + ic * (K * K) + kr * K + kc;
+                            sum += (accum_t)px * (accum_t)w_to_fixed(cnn_w2[widx]);
+                        }
+                    }
+                }
+                conv2_buf[oc][r][c] = (sum > (accum_t)0) ? (data_t)sum : (data_t)0;
+            }
+        }
+    }
+
+    // ── 4. MaxPool1  (32ch, 32×32 → 32ch, 16×16) ─────────────────────
+    data_t pool1_buf[CONV2_CH][P1_H][P1_W];
+#pragma HLS ARRAY_PARTITION variable=pool1_buf complete dim=1
+#pragma HLS BIND_STORAGE variable=pool1_buf type=ram_1p impl=lutram
+    L16: for (int ch = 0; ch < CONV2_CH; ch++) {
+        L17: for (int r = 0; r < P1_H; r++) {
+        L18: for (int c = 0; c < P1_W; c++) {
+#pragma HLS PIPELINE II=1
+                data_t mx = conv2_buf[ch][r*2][c*2];
+                if (conv2_buf[ch][r*2  ][c*2+1] > mx) mx = conv2_buf[ch][r*2  ][c*2+1];
+                if (conv2_buf[ch][r*2+1][c*2  ] > mx) mx = conv2_buf[ch][r*2+1][c*2  ];
+                if (conv2_buf[ch][r*2+1][c*2+1] > mx) mx = conv2_buf[ch][r*2+1][c*2+1];
                 pool1_buf[ch][r][c] = mx;
             }
         }
     }
 
-    // ── 5. Conv2 + ReLU ─────────────────────────────────────────
-    data_t conv2_buf[CONV2_CH][P1_H][P1_W];
-    CONV2_R: for (int r = 0; r < P1_H; r++) {
-        CONV2_C: for (int c = 0; c < P1_W; c++) {
-            CONV2_CH_L: for (int ch = 0; ch < CONV2_CH; ch++) {
-                #pragma HLS PIPELINE
-                data_t sum = 0;
-                for (int ic = 0; ic < CONV1_CH; ic++)
-                    for (int kr = 0; kr < CONV2_K; kr++)
-                        for (int kc = 0; kc < CONV2_K; kc++) {
-                            int rr = r+kr-1, cc = c+kc-1;
-                            data_t px = (rr>=0 && rr<P1_H && cc>=0 && cc<P1_W)
+    // ── 5. Conv3 + ReLU  (32 in → 64 out, 3×3, same-pad) ────────────
+    data_t conv3_buf[CONV3_CH][P1_H][P1_W];
+#pragma HLS BIND_STORAGE variable=conv3_buf type=ram_1p impl=bram
+    L19: for (int oc = 0; oc < CONV3_CH; oc++) {
+        L20: for (int r = 0; r < P1_H; r++) {
+        L21: for (int c = 0; c < P1_W; c++) {
+                accum_t sum = (accum_t)w_to_fixed(cnn_b3[oc]);
+                L22: for (int ic = 0; ic < CONV2_CH; ic++) {
+        L23: for (int kr = 0; kr < K; kr++) {
+        L24: for (int kc = 0; kc < K; kc++) {
+#pragma HLS PIPELINE II=1
+                            int rr = r + kr - PAD;
+                            int cc = c + kc - PAD;
+                            data_t px = (rr >= 0 && rr < P1_H && cc >= 0 && cc < P1_W)
                                         ? pool1_buf[ic][rr][cc] : (data_t)0;
-                            int widx = ch*CONV1_CH*CONV2_K*CONV2_K
-                                     + ic*CONV2_K*CONV2_K + kr*CONV2_K + kc;
-                            data_t wv; wv.range() = w_conv2[widx];
-                            sum += px * wv;
+                            int widx = oc * (CONV2_CH * K * K) + ic * (K * K) + kr * K + kc;
+                            sum += (accum_t)px * (accum_t)w_to_fixed(cnn_w3[widx]);
                         }
-                data_t bv; bv.range() = b_conv2[ch];
-                sum += bv;
-                conv2_buf[ch][r][c] = (sum > 0) ? sum : (data_t)0;
+                    }
+                }
+                conv3_buf[oc][r][c] = (sum > (accum_t)0) ? (data_t)sum : (data_t)0;
             }
         }
     }
 
-    // ── 6. Pool2 (max 2x2) ──────────────────────────────────────
-    data_t pool2_buf[CONV2_CH][P2_H][P2_W];
-    POOL2_CH: for (int ch = 0; ch < CONV2_CH; ch++) {
-        POOL2_R: for (int r = 0; r < P2_H; r++) {
-            POOL2_C: for (int c = 0; c < P2_W; c++) {
-                #pragma HLS PIPELINE
-                data_t mx = conv2_buf[ch][r*2][c*2];
-                if (conv2_buf[ch][r*2  ][c*2+1] > mx) mx = conv2_buf[ch][r*2  ][c*2+1];
-                if (conv2_buf[ch][r*2+1][c*2  ] > mx) mx = conv2_buf[ch][r*2+1][c*2  ];
-                if (conv2_buf[ch][r*2+1][c*2+1] > mx) mx = conv2_buf[ch][r*2+1][c*2+1];
+    // ── 6. Conv4 + ReLU  (64 in → 64 out, 3×3, same-pad) ────────────
+    data_t conv4_buf[CONV4_CH][P1_H][P1_W];
+#pragma HLS BIND_STORAGE variable=conv4_buf type=ram_1p impl=bram
+    L25: for (int oc = 0; oc < CONV4_CH; oc++) {
+        L26: for (int r = 0; r < P1_H; r++) {
+        L27: for (int c = 0; c < P1_W; c++) {
+                accum_t sum = (accum_t)w_to_fixed(cnn_b4[oc]);
+                L28: for (int ic = 0; ic < CONV3_CH; ic++) {
+        L29: for (int kr = 0; kr < K; kr++) {
+        L30: for (int kc = 0; kc < K; kc++) {
+#pragma HLS PIPELINE II=1
+                            int rr = r + kr - PAD;
+                            int cc = c + kc - PAD;
+                            data_t px = (rr >= 0 && rr < P1_H && cc >= 0 && cc < P1_W)
+                                        ? conv3_buf[ic][rr][cc] : (data_t)0;
+                            int widx = oc * (CONV3_CH * K * K) + ic * (K * K) + kr * K + kc;
+                            sum += (accum_t)px * (accum_t)w_to_fixed(cnn_w4[widx]);
+                        }
+                    }
+                }
+                conv4_buf[oc][r][c] = (sum > (accum_t)0) ? (data_t)sum : (data_t)0;
+            }
+        }
+    }
+
+    // ── 7. MaxPool2  (64ch, 16×16 → 64ch, 8×8) ───────────────────────
+    data_t pool2_buf[CONV4_CH][P2_H][P2_W];
+#pragma HLS ARRAY_PARTITION variable=pool2_buf complete dim=1
+#pragma HLS BIND_STORAGE variable=pool2_buf type=ram_1p impl=lutram
+    L31: for (int ch = 0; ch < CONV4_CH; ch++) {
+        L32: for (int r = 0; r < P2_H; r++) {
+        L33: for (int c = 0; c < P2_W; c++) {
+#pragma HLS PIPELINE II=1
+                data_t mx = conv4_buf[ch][r*2][c*2];
+                if (conv4_buf[ch][r*2  ][c*2+1] > mx) mx = conv4_buf[ch][r*2  ][c*2+1];
+                if (conv4_buf[ch][r*2+1][c*2  ] > mx) mx = conv4_buf[ch][r*2+1][c*2  ];
+                if (conv4_buf[ch][r*2+1][c*2+1] > mx) mx = conv4_buf[ch][r*2+1][c*2+1];
                 pool2_buf[ch][r][c] = mx;
             }
         }
     }
 
-    // ── 7. FC layer ──────────────────────────────────────────────
-    data_t fc_buf[FC_OUT];
-    FC_OUT_LOOP: for (int o = 0; o < FC_OUT; o++) {
-        data_t bv; bv.range() = b_fc[o];
-        accum_t acc = (accum_t)bv;
-        FC_IN_CH: for (int ch = 0; ch < CONV2_CH; ch++) {
-            FC_IN_R: for (int r = 0; r < P2_H; r++) {
-                FC_IN_C: for (int c = 0; c < P2_W; c++) {
-                    #pragma HLS PIPELINE
-                    int idx = o*FC_IN + ch*P2_H*P2_W + r*P2_W + c;
-                    data_t wv; wv.range() = w_fc[idx];
-                    acc += (accum_t)pool2_buf[ch][r][c] * (accum_t)wv;
+    // ── 8. Conv5 + ReLU  (64 in → 128 out, 3×3, same-pad) ───────────
+    data_t conv5_buf[CONV5_CH][P2_H][P2_W];
+#pragma HLS BIND_STORAGE variable=conv5_buf type=ram_1p impl=bram
+    L34: for (int oc = 0; oc < CONV5_CH; oc++) {
+        L35: for (int r = 0; r < P2_H; r++) {
+        L36: for (int c = 0; c < P2_W; c++) {
+                accum_t sum = (accum_t)w_to_fixed(cnn_b5[oc]);
+                L37: for (int ic = 0; ic < CONV4_CH; ic++) {
+        L38: for (int kr = 0; kr < K; kr++) {
+        L39: for (int kc = 0; kc < K; kc++) {
+#pragma HLS PIPELINE II=1
+                            int rr = r + kr - PAD;
+                            int cc = c + kc - PAD;
+                            data_t px = (rr >= 0 && rr < P2_H && cc >= 0 && cc < P2_W)
+                                        ? pool2_buf[ic][rr][cc] : (data_t)0;
+                            int widx = oc * (CONV4_CH * K * K) + ic * (K * K) + kr * K + kc;
+                            sum += (accum_t)px * (accum_t)w_to_fixed(cnn_w5[widx]);
+                        }
+                    }
                 }
+                conv5_buf[oc][r][c] = (sum > (accum_t)0) ? (data_t)sum : (data_t)0;
             }
         }
-        fc_buf[o] = (data_t)acc;
     }
 
-    // ── 8. Write output ──────────────────────────────────────────
-    WRITE_OUT: for (int o = 0; o < FC_OUT; o++) {
-        #pragma HLS PIPELINE
-        axis_t pkt;
-        pkt.data(15, 0) = fc_buf[o].range();
-        pkt.data(31,16) = 0;
-        pkt.last = (o == FC_OUT-1) ? 1 : 0;
-        pkt.keep = -1;
-        m_axis_output.write(pkt);
+    // ── 9. MaxPool3  (128ch, 8×8 → 128ch, 4×4) ───────────────────────
+    data_t pool3_buf[CONV5_CH][P3_H][P3_W];
+#pragma HLS ARRAY_PARTITION variable=pool3_buf complete dim=1
+#pragma HLS BIND_STORAGE variable=pool3_buf type=ram_1p impl=lutram
+    L40: for (int ch = 0; ch < CONV5_CH; ch++) {
+        L41: for (int r = 0; r < P3_H; r++) {
+        L42: for (int c = 0; c < P3_W; c++) {
+#pragma HLS PIPELINE II=1
+                data_t mx = conv5_buf[ch][r*2][c*2];
+                if (conv5_buf[ch][r*2  ][c*2+1] > mx) mx = conv5_buf[ch][r*2  ][c*2+1];
+                if (conv5_buf[ch][r*2+1][c*2  ] > mx) mx = conv5_buf[ch][r*2+1][c*2  ];
+                if (conv5_buf[ch][r*2+1][c*2+1] > mx) mx = conv5_buf[ch][r*2+1][c*2+1];
+                pool3_buf[ch][r][c] = mx;
+            }
+        }
+    }
+
+    // ── 10. Stream out pool3 features (128×4×4 = 2048 words) ─────────
+    int cnt = 0;
+    L43: for (int ch = 0; ch < CONV5_CH; ch++) {
+        L44: for (int r = 0; r < P3_H; r++) {
+        L45: for (int c = 0; c < P3_W; c++) {
+#pragma HLS PIPELINE II=1
+                axis_t pkt;
+                pkt.data(15, 0) = pool3_buf[ch][r][c].range();
+                pkt.data(31, 16) = 0;
+                pkt.keep = 0xF;
+                pkt.strb = 0xF;
+                cnt++;
+                pkt.last = (cnt == N_OUT) ? 1 : 0;
+                m_axis_output.write(pkt);
+            }
+        }
     }
 }
