@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 benchmark_web.py -- CPU latency benchmark for the CAN vehicle BNN accelerator
-                    model with calibrated ARM simulation and browser-side
-                    .log upload inference.
+                    model 
 
 The report uses the same fixed-point weights used by FPGA RTL
 (`bnn_can_weights.vh`) and the same feature normalization stats
