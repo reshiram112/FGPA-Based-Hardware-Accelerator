@@ -1,4 +1,7 @@
 .codex/
 .qodo/
 .runenv/
-.codex_deps/
+.codex_deps/.codex_deps/
+.codex/
+.qodo/
+.runenv/
